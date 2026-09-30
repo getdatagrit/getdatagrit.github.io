@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TCGplayer Price Trends &amp; Sales Velocity Tracker | datagrit</title>
+<meta name="description" content="Track TCGplayer price change, units sold and days of supply per printing and language for cards and sealed boxes. Filter by sales. Export JSON, CSV, Excel.">
+<link rel="canonical" href="https://getdatagrit.github.io/tcgplayer-price-trend-tracker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="TCGplayer Price Trends &amp; Sales Velocity Tracker | datagrit">
+<meta property="og:description" content="Track TCGplayer price change, units sold and days of supply per printing and language for cards and sealed boxes. Filter by sales. Export JSON, CSV, Excel."><meta property="og:url" content="https://getdatagrit.github.io/tcgplayer-price-trend-tracker/"><meta property="og:image" content="https://getdatagrit.github.io/og/tcgplayer-price-trend-tracker.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="TCGplayer Price Trends &amp; Sales Velocity Tracker | datagrit"><meta name="twitter:description" content="Track TCGplayer price change, units sold and days of supply per printing and language for cards and sealed boxes. Filter by sales. Export JSON, CSV, Excel."><meta name="twitter:image" content="https://getdatagrit.github.io/og/tcgplayer-price-trend-tracker.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TCGplayer Price Trends & Sales Velocity Tracker","description":"Track TCGplayer price change, units sold and days of supply per printing and language for cards and sealed boxes. Filter by sales. Export JSON, CSV, Excel.","url":"https://getdatagrit.github.io/tcgplayer-price-trend-tracker/","image":"https://getdatagrit.github.io/og/tcgplayer-price-trend-tracker.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Data","operatingSystem":"Web, Apify platform","softwareVersion":"0.2","dateModified":"2026-09-30T16:45:25.290Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/tcgplayer-price-trend-tracker","priceCurrency":"USD","price":0.007,"description":"from $7.00 per 1,000 results + $10 per run. The price per result depends on your Apify plan."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/tcgplayer-price-trend-tracker"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Data","item":"https://getdatagrit.github.io/#ecom"},{"@type":"ListItem","position":3,"name":"TCGplayer Price Trends & Sales Velocity Tracker","item":"https://getdatagrit.github.io/tcgplayer-price-trend-tracker/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How fresh is the data?","acceptedAnswer":{"@type":"Answer","text":"Every run reads TCGplayer live. The market price is the value of the latest 3-day window of sales, so it can differ by a few cents from the price shown on the product page right now (for example 14.57 against 14.63 for the same foil card). Use it for trends and comparisons between runs, not as a live quote."}},{"@type":"Question","name":"How many products and rows can one run read, and how long does it take?","acceptedAnswer":{"@type":"Answer","text":"One run reads up to 9950 products per search term, set by **Maximum products to scan**. Each product needs one extra request for its sales history, and the Actor keeps a short pause between batches, so expect roughly 6 seconds per 10 products and about a minute for the default 100 products. Rows are limited by **Maximum results**."}},{"@type":"Question","name":"Why do I get more rows than products?","acceptedAnswer":{"@type":"Answer","text":"Each printing and language is its own row; a card with Normal and Foil copies in two languages gives up to four rows."}},{"@type":"Question","name":"Why are the price change fields empty for some rows?","acceptedAnswer":{"@type":"Answer","text":"The printing had no sales in the window, or it is newer than 84 days for the 90-day change."}},{"@type":"Question","name":"Can I schedule runs?","acceptedAnswer":{"@type":"Answer","text":"Yes, use Apify schedules or call the Actor from your own workflow and compare runs over time."}},{"@type":"Question","name":"Something looks wrong.","acceptedAnswer":{"@type":"Answer","text":"Open an issue with the input you used; changes at the source are fixed quickly."}}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#ecom">Data</a> › TCGplayer Price Trends &amp; Sales Velocity Tracker</p>
+<span class="pill">Data</span>
+<h1>TCGplayer Price Trends &amp; Sales Velocity Tracker</h1>
+<p class="lead">TCGplayer card and sealed product prices with 30 and 90 day price change, sales velocity and days of supply per printing.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/tcgplayer-price-trend-tracker" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">from $7.00 per 1,000 results + $10 per run · no code needed</span></div>
+<div class="facts"><div class="fact"><b>from $7.00 per 1,000 results + $10 per run</b><span>pay only for price trend rows you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.2</b><span>updated 2026-09-30</span></div></div>
+<p>TCGplayer Price Trends &amp; Sales Velocity Tracker reads the public TCGplayer catalogue and returns, for every printing and language of a card or sealed product, the current market price, the 30-day and 90-day price change, the units sold in 30 and 90 days, sales per day and days of supply. Results are clean records you can export as JSON, CSV or Excel, call through the Apify API, or connect to n8n, Make and AI agents through MCP.</p>
+<p>It is built for card resellers, collectors, investors and price-tracking tools that need to know which cards are moving, not only what they cost today. Choose a game, add search terms, set your filters and run.</p>
+<h2>Why track TCGplayer prices and sales velocity?</h2>
+<ul>
+<li><strong>Find risers and fallers.</strong> Set a minimum 30-day price change to list cards that are climbing, or a maximum to list cards that are dropping, for any game TCGplayer carries.</li>
+<li><strong>Buy what sells.</strong> Filter by units sold in 30 or 90 days, so you skip cards nobody buys and rank the rest by sales per day.</li>
+<li><strong>Judge sealed products.</strong> Booster boxes and other sealed products carry the same metrics plus days of supply: active listings divided by average daily sales, a fast read on whether stock is tight.</li>
+<li><strong>Build a price feed.</strong> Schedule the Actor and push rows into a sheet, a database or a repricing tool, with prices for Lightly Played, Moderately Played, Heavily Played and Damaged copies next to the Near Mint price.</li>
+</ul>
+<h2>What data can you extract from TCGplayer?</h2>
+<p>Each row is one printing and language of one product, for example the Holofoil English copy of a card. The figures refer to the main condition: Near Mint for cards and Unopened for sealed products.</p>
+<div class="table"><table><thead><tr><th>productName</th><th>setName</th><th>variant</th><th>language</th><th>marketPrice</th><th>priceChange30dPct</th><th>sold30d</th><th>sold90d</th><th>soldPerDay</th><th>daysOfSupply</th></tr></thead><tbody>
+<tr><td>Charizard GX - 9/68 (#60 Charizard Stamped)</td><td>Battle Academy</td><td>Holofoil</td><td>English</td><td>14.57</td><td>8.8</td><td>35</td><td>138</td><td>1.53</td><td>54.2</td></tr>
+<tr><td>Charizard - 3/70 (#39 Charizard Stamped)</td><td>Battle Academy</td><td>Normal</td><td>English</td><td>7.37</td><td>-0.3</td><td>73</td><td>132</td><td>1.47</td><td>46.3</td></tr>
+</tbody></table></div>
+<pre><code>
+{
+  &quot;found&quot;: true,
+  &quot;productId&quot;: 219059,
+  &quot;productName&quot;: &quot;Charizard GX - 9/68 (#60 Charizard Stamped)&quot;,
+  &quot;productLine&quot;: &quot;Pokemon&quot;,
+  &quot;setName&quot;: &quot;Battle Academy&quot;,
+  &quot;variant&quot;: &quot;Holofoil&quot;,
+  &quot;language&quot;: &quot;English&quot;,
+  &quot;condition&quot;: &quot;Near Mint&quot;,
+  &quot;sealed&quot;: false,
+  &quot;marketPrice&quot;: 14.57,
+  &quot;priceChange30dPct&quot;: 8.8,
+  &quot;priceChange90dPct&quot;: 12.1,
+  &quot;lowSalePrice90d&quot;: 10.2,
+  &quot;highSalePrice90d&quot;: 20,
+  &quot;sold30d&quot;: 35,
+  &quot;sold90d&quot;: 138,
+  &quot;soldPerDay&quot;: 1.53,
+  &quot;marketPriceLightlyPlayed&quot;: 10.67,
+  &quot;daysOfSupply&quot;: 54.2,
+  &quot;productUrl&quot;: &quot;https://www.tcgplayer.com/product/219059&quot;
+}
+</code></pre>
+<p>The record also holds set code, card number, rarity, release date, the last sales window, sales across all conditions, listing count, lowest and median listing price, image URL and <code>scrapedAt</code>.</p>
+<h2>How to use the TCGplayer Price Trends Tracker</h2>
+<ol>
+<li>Pick a game in <strong>Game</strong> and add <strong>Search terms</strong>, for example <code>charizard</code>, <code>booster box</code> or <code>lightning bolt</code>. Leave the terms empty and pick a game, a set or both to read a whole game or set; this also works when you call the Actor through the API.</li>
+<li>Set the number of products to read in <strong>Maximum products to scan</strong> and the row limit in <strong>Maximum results</strong>.</li>
+<li>Add filters, for example a minimum number of units sold or a minimum 30-day price change.</li>
+<li>Run the Actor and download the dataset.</li>
+</ol>
+<h2>How the numbers are calculated</h2>
+<p>The market price is TCGplayer's own market price for the main condition in the latest 3-day window. It is an average of recent sales and carries over when nothing sold, so a price change is reported only when the printing had at least one sale in that window; otherwise the field is empty. Units sold are summed over the 3-day windows of the last 30 or 90 days, for the main condition. The 90-day change needs at least 84 days of history, so new releases have an empty 90-day change. Days of supply divides the active listings of the whole product by its average daily sales across all printings and conditions.</p>
+<p>TCGplayer reports sales per 3-day window, so figures are estimates of real sales volume rather than an audited count.</p>
+<h2>Is it legal to scrape TCGplayer?</h2>
+<p>The Actor reads only publicly available catalogue and sales information and does not log in or bypass access controls. You are responsible for using the data in line with applicable laws and the terms of the source. If you find an issue, open it in the Issues tab; problems are answered within one business day.</p>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>found</code></td><td>boolean</td><td>False only on the single status row emitted when nothing matched; every other field of that row is empty.</td><td><code>true</code></td></tr><tr><td><code>productId</code></td><td>integer</td><td>TCGplayer product id. One product can produce several rows, one per printing and language.</td><td><code>219059</code></td></tr><tr><td><code>productName</code></td><td>string</td><td>Name of the card or sealed product as listed on TCGplayer.</td><td><code>Charizard GX - 9/68 (#60 Charizard Stamped)</code></td></tr><tr><td><code>productLine</code></td><td>string</td><td>Trading card game (product line) the product belongs to.</td><td><code>Pokemon</code></td></tr><tr><td><code>setName</code></td><td>string</td><td>Set or expansion name.</td><td><code>Battle Academy</code></td></tr><tr><td><code>setCode</code></td><td>string</td><td>Short set code used by TCGplayer, when it has one.</td><td><code>BTA</code></td></tr><tr><td><code>cardNumber</code></td><td>string</td><td>Collector number printed on the card. Empty for sealed products and for cards without a number.</td><td><code>009/068</code></td></tr><tr><td><code>rarity</code></td><td>string</td><td>Rarity as named by TCGplayer. Empty for some sealed products.</td><td><code>Promo</code></td></tr><tr><td><code>releaseDate</code></td><td>string</td><td>Release date of the card or product in YYYY-MM-DD form, when TCGplayer has it.</td><td><code>2020-07-31</code></td></tr><tr><td><code>variant</code></td><td>string</td><td>Printing of the product, for example Normal, Foil, Holofoil or Reverse Holofoil. Each printing has its own price and sales.</td><td><code>Holofoil</code></td></tr><tr><td><code>language</code></td><td>string</td><td>Language of the printing.</td><td><code>English</code></td></tr><tr><td><code>condition</code></td><td>string</td><td>Condition the price and sales figures refer to: Near Mint for cards, Unopened for sealed products. If a printing has no Near Mint sales series, the condition with the most sales is used.</td><td><code>Near Mint</code></td></tr><tr><td><code>sealed</code></td><td>boolean</td><td>True when the price series is for an unopened sealed product such as a booster box.</td><td><code>false</code></td></tr><tr><td><code>marketPrice</code></td><td>number</td><td>TCGplayer market price of the main condition in the most recent 3-day window. It is an average of recent sales, so it carries over when nothing sold.</td><td><code>14.57</code></td></tr><tr><td><code>priceChange30dPct</code></td><td>number</td><td>Change of the market price between the window about 30 days ago and the latest window. Empty when a price is missing or when the printing had no sales in the last 30 days, because the market price then only carries over.</td><td><code>8.8</code></td></tr><tr><td><code>priceChange90dPct</code></td><td>number</td><td>Change of the market price between the oldest window of the 90-day history (about 87 days ago) and the latest window. Empty when a price is missing, when the printing has less than 84 days of history, or when it had no sales in 90 days.</td><td><code>12.1</code></td></tr><tr><td><code>lowSalePrice90d</code></td><td>number</td><td>Lowest single sale price (without shipping) in the 90-day history, taken over windows that had sales.</td><td><code>10.2</code></td></tr><tr><td><code>highSalePrice90d</code></td><td>number</td><td>Highest single sale price (without shipping) in the 90-day history, taken over windows that had sales.</td><td><code>20</code></td></tr><tr><td><code>sold30d</code></td><td>integer</td><td>Units sold at the main condition in the last 30 days, summed from the 3-day windows.</td><td><code>35</code></td></tr><tr><td><code>sold90d</code></td><td>integer</td><td>Units sold at the main condition in the 90-day history, summed from the 3-day windows.</td><td><code>138</code></td></tr><tr><td><code>soldPerDay</code></td><td>number</td><td>Average units sold per day at the main condition over the 90-day history (sold90d divided by the days covered).</td><td><code>1.53</code></td></tr><tr><td><code>lastSaleWindowStart</code></td><td>string</td><td>Start date (YYYY-MM-DD) of the most recent 3-day window in which this printing sold. The sale happened on or up to 2 days after this date.</td><td><code>2026-09-28</code></td></tr><tr><td><code>allConditionsSold90d</code></td><td>integer</td><td>Units sold in the 90-day history across all conditions of this printing and language.</td><td><code>275</code></td></tr><tr><td><code>marketPriceLightlyPlayed</code></td><td>number</td><td>Latest market price of the Lightly Played condition. Empty when this condition has no price series.</td><td><code>10.67</code></td></tr><tr><td><code>marketPriceModeratelyPlayed</code></td><td>number</td><td>Latest market price of the Moderately Played condition. Empty when this condition has no price series.</td><td><code>9.6</code></td></tr><tr><td><code>marketPriceHeavilyPlayed</code></td><td>number</td><td>Latest market price of the Heavily Played condition. Empty when this condition has no price series.</td><td><code>7.4</code></td></tr><tr><td><code>marketPriceDamaged</code></td><td>number</td><td>Latest market price of the Damaged condition. Empty when this condition has no price series.</td><td><code>5.2</code></td></tr><tr><td><code>listingsCount</code></td><td>integer</td><td>Number of active seller listings for the whole product, across all printings, languages and conditions.</td><td><code>114</code></td></tr><tr><td><code>lowestListingPrice</code></td><td>number</td><td>Lowest active listing price for the whole product, across all printings and conditions. Not specific to this printing.</td><td><code>7.21</code></td></tr><tr><td><code>medianListingPrice</code></td><td>number</td><td>Median price of the active listings for the whole product, when TCGplayer reports it.</td><td><code>13.9</code></td></tr><tr><td><code>daysOfSupply</code></td><td>number</td><td>Active listings of the whole product divided by its average daily sales across all printings and conditions. A low number means stock sells out fast; empty when nothing sold in 90 days.</td><td><code>54.2</code></td></tr><tr><td><code>productUrl</code></td><td>string</td><td>TCGplayer page of the product.</td><td><code>https://www.tcgplayer.com/product/219059</code></td></tr><tr><td><code>imageUrl</code></td><td>string</td><td>Product image on the TCGplayer image server.</td><td><code>https://product-images.tcgplayer.com/fit-in/437x437/219059.jpg</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>ISO 8601 timestamp of extraction.</td><td><code>2026-09-30T08:00:00.000Z</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;found&quot;: true,
+  &quot;productId&quot;: 219059,
+  &quot;productName&quot;: &quot;Charizard GX - 9/68 (#60 Charizard Stamped)&quot;,
+  &quot;productLine&quot;: &quot;Pokemon&quot;,
+  &quot;setName&quot;: &quot;Battle Academy&quot;,
+  &quot;setCode&quot;: &quot;BTA&quot;,
+  &quot;cardNumber&quot;: &quot;009/068&quot;,
+  &quot;rarity&quot;: &quot;Promo&quot;,
+  &quot;releaseDate&quot;: &quot;2020-07-31&quot;,
+  &quot;variant&quot;: &quot;Holofoil&quot;,
+  &quot;language&quot;: &quot;English&quot;,
+  &quot;condition&quot;: &quot;Near Mint&quot;,
+  &quot;sealed&quot;: false,
+  &quot;marketPrice&quot;: 14.57,
+  &quot;priceChange30dPct&quot;: 8.8,
+  &quot;priceChange90dPct&quot;: 12.1,
+  &quot;lowSalePrice90d&quot;: 10.2,
+  &quot;highSalePrice90d&quot;: 20,
+  &quot;sold30d&quot;: 35,
+  &quot;sold90d&quot;: 138,
+  &quot;soldPerDay&quot;: 1.53,
+  &quot;lastSaleWindowStart&quot;: &quot;2026-09-28&quot;,
+  &quot;allConditionsSold90d&quot;: 275,
+  &quot;marketPriceLightlyPlayed&quot;: 10.67,
+  &quot;marketPriceModeratelyPlayed&quot;: 9.6,
+  &quot;marketPriceHeavilyPlayed&quot;: 7.4,
+  &quot;marketPriceDamaged&quot;: 5.2,
+  &quot;listingsCount&quot;: 114,
+  &quot;lowestListingPrice&quot;: 7.21,
+  &quot;medianListingPrice&quot;: 13.9,
+  &quot;daysOfSupply&quot;: 54.2,
+  &quot;productUrl&quot;: &quot;https://www.tcgplayer.com/product/219059&quot;,
+  &quot;imageUrl&quot;: &quot;https://product-images.tcgplayer.com/fit-in/437x437/219059.jpg&quot;,
+  &quot;scrapedAt&quot;: &quot;2026-09-30T08:00:00.000Z&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>searchQueries</code></td><td>Search terms</td><td>array</td><td>Card or product names to search on TCGplayer, for example charizard or booster box. Every term is searched separately and a product found twice is returned once. Leave empty to read a whole product line or set.</td></tr><tr><td><code>productLine</code></td><td>Game (product line)</td><td>string</td><td>Limit the search to one trading card game. Choose All games to search every line, which works best together with a search term or a set.</td></tr><tr><td><code>setNames</code></td><td>Sets</td><td>array</td><td>Optional. Keep only products from these sets, for example Base Set or swsh-crown-zenith. Use the set name as shown on TCGplayer or the last part of the set URL. A set that does not exist in the chosen game stops the run with an error that lists similar names.</td></tr><tr><td><code>rarities</code></td><td>Rarities</td><td>array</td><td>Optional. Keep only these rarities, for example Secret Rare or Special Illustration Rare. Names follow TCGplayer and differ by game.</td></tr><tr><td><code>productType</code></td><td>Cards or sealed products</td><td>string</td><td>Single cards and sealed products (booster boxes, packs, decks) are both in the catalogue. Sealed products are the ones sold as Unopened.</td></tr><tr><td><code>printings</code></td><td>Printings</td><td>array</td><td>Optional. Keep only these printings, for example Normal, Foil, Holofoil or Reverse Holofoil. Every printing has its own price and sales history.</td></tr><tr><td><code>languages</code></td><td>Languages</td><td>array</td><td>Optional. Keep only these languages, for example English or Japanese. Leave empty for all languages.</td></tr><tr><td><code>minMarketPrice</code></td><td>Minimum market price (USD)</td><td>number</td><td>Keep only printings whose Near Mint market price (Unopened for sealed products) is at least this amount. 0 disables the filter.</td></tr><tr><td><code>maxMarketPrice</code></td><td>Maximum market price (USD)</td><td>number</td><td>Keep only printings whose market price is at most this amount. 0 disables the filter.</td></tr><tr><td><code>minSold30d</code></td><td>Minimum units sold in 30 days</td><td>integer</td><td>Keep only printings that sold at least this many units in the last 30 days at the main condition. Use it to drop cards nobody buys. 0 disables the filter.</td></tr><tr><td><code>minSold90d</code></td><td>Minimum units sold in 90 days</td><td>integer</td><td>Keep only printings that sold at least this many units in the last 90 days at the main condition. 0 disables the filter.</td></tr><tr><td><code>minPriceChange30dPct</code></td><td>Minimum 30-day price change (%)</td><td>number</td><td>Optional. Keep only printings whose market price rose at least this many percent over the last 30 days. Enter 20 to find risers. Negative values are allowed. Printings without a 30-day comparison are skipped.</td></tr><tr><td><code>maxPriceChange30dPct</code></td><td>Maximum 30-day price change (%)</td><td>number</td><td>Optional. Keep only printings whose market price changed at most this many percent over the last 30 days. Enter -15 to find fallers.</td></tr><tr><td><code>sortBy</code></td><td>Order of products to scan</td><td>string</td><td>Order in which TCGplayer returns products before they are scanned. Relevance follows TCGplayer popularity. Highest price first is useful with a minimum price.</td></tr><tr><td><code>maxProductsToScan</code></td><td>Maximum products to scan</td><td>integer</td><td>How many products to read the sales history of, per run across all search terms. One product gives one row per printing and language, so you often get more rows than products. TCGplayer search returns at most 9950 products per search.</td></tr><tr><td><code>maxItems</code></td><td>Maximum results</td><td>integer</td><td>Stop after this many rows in total. The first 10 rows of every run are free.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Optional proxy. Leave disabled: the TCGplayer endpoints used here are public and need none.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~tcgplayer-price-trend-tracker/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;searchQueries&quot;:[&quot;charizard&quot;],&quot;productLine&quot;:&quot;pokemon&quot;,&quot;maxProductsToScan&quot;:30,&quot;maxItems&quot;:50}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/tcgplayer-price-trend-tracker').call({
+  &quot;searchQueries&quot;: [
+    &quot;charizard&quot;
+  ],
+  &quot;productLine&quot;: &quot;pokemon&quot;,
+  &quot;maxProductsToScan&quot;: 30,
+  &quot;maxItems&quot;: 50
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/tcgplayer-price-trend-tracker&quot;).call(run_input={
+  &quot;searchQueries&quot;: [
+    &quot;charizard&quot;
+  ],
+  &quot;productLine&quot;: &quot;pokemon&quot;,
+  &quot;maxProductsToScan&quot;: 30,
+  &quot;maxItems&quot;: 50
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>How fresh is the data?</summary><p>Every run reads TCGplayer live. The market price is the value of the latest 3-day window of sales, so it can differ by a few cents from the price shown on the product page right now (for example 14.57 against 14.63 for the same foil card). Use it for trends and comparisons between runs, not as a live quote.</p></details>
+<details><summary>How many products and rows can one run read, and how long does it take?</summary><p>One run reads up to 9950 products per search term, set by **Maximum products to scan**. Each product needs one extra request for its sales history, and the Actor keeps a short pause between batches, so expect roughly 6 seconds per 10 products and about a minute for the default 100 products. Rows are limited by **Maximum results**.</p></details>
+<details><summary>Why do I get more rows than products?</summary><p>Each printing and language is its own row; a card with Normal and Foil copies in two languages gives up to four rows.</p></details>
+<details><summary>Why are the price change fields empty for some rows?</summary><p>The printing had no sales in the window, or it is newer than 84 days for the 90-day change.</p></details>
+<details><summary>Can I schedule runs?</summary><p>Yes, use Apify schedules or call the Actor from your own workflow and compare runs over time.</p></details>
+<details><summary>Something looks wrong.</summary><p>Open an issue with the input you used; changes at the source are fixed quickly.</p></details>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/tcgplayer-price-trend-tracker" rel="noopener">Try TCGplayer Price Trends &amp; Sales Velocity Tracker on Apify</a></div>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Public procurement</span><h3><a href="/ted-contract-expiry-radar/">TED Contract Expiry Radar - Recompete Leads</a></h3><p>Find EU public contracts approaching expiry from TED award notices: incumbent, buyer, value, end date and renewal options.</p><div class="meta">from $7.00 / 1,000 results</div></article><article class="card"><span class="pill">Company data</span><h3><a href="/french-company-finder/">French Company Finder - Sirene Financials</a></h3><p>French company lead lists from Sirene screened by net result and revenue, with net margin, size, matching establishment and optional directors.</p><div class="meta">from $5.60 / 1,000 results</div></article><article class="card"><span class="pill">Jobs &amp; salaries</span><h3><a href="/ashby-salary-scraper/">Ashby Salary Scraper - Startup Job Pay Ranges</a></h3><p>Ashby job postings with normalized annual salary ranges, equity flags and new-since-last-run detection.</p><div class="meta">from $2.10 / 1,000 results</div></article><article class="card"><span class="pill">Jobs &amp; salaries</span><h3><a href="/greenhouse-salary-scraper/">Greenhouse Salary Scraper - Job Pay Ranges</a></h3><p>Greenhouse job postings with published pay ranges by zone, annualised pay, filters and new-since-last-run detection.</p><div class="meta">from $2.10 / 1,000 results</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
