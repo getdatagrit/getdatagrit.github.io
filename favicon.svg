@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="datagrit">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
