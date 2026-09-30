@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Greenhouse Salary Scraper - Job Pay Ranges API | datagrit</title>
+<meta name="description" content="Scrape Greenhouse job boards with published pay ranges by zone, annualised pay, filters and only-new-since-last-run mode. Export JSON, CSV or Excel.">
+<link rel="canonical" href="https://getdatagrit.github.io/greenhouse-salary-scraper/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="Greenhouse Salary Scraper - Job Pay Ranges API | datagrit">
+<meta property="og:description" content="Scrape Greenhouse job boards with published pay ranges by zone, annualised pay, filters and only-new-since-last-run mode. Export JSON, CSV or Excel."><meta property="og:url" content="https://getdatagrit.github.io/greenhouse-salary-scraper/"><meta property="og:image" content="https://getdatagrit.github.io/og/greenhouse-salary-scraper.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Greenhouse Salary Scraper - Job Pay Ranges API | datagrit"><meta name="twitter:description" content="Scrape Greenhouse job boards with published pay ranges by zone, annualised pay, filters and only-new-since-last-run mode. Export JSON, CSV or Excel."><meta name="twitter:image" content="https://getdatagrit.github.io/og/greenhouse-salary-scraper.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Greenhouse Salary Scraper - Job Pay Ranges","description":"Scrape Greenhouse job boards with published pay ranges by zone, annualised pay, filters and only-new-since-last-run mode. Export JSON, CSV or Excel.","url":"https://getdatagrit.github.io/greenhouse-salary-scraper/","image":"https://getdatagrit.github.io/og/greenhouse-salary-scraper.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Jobs & salaries","operatingSystem":"Web, Apify platform","softwareVersion":"0.4","dateModified":"2026-09-30T12:37:31.054Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/greenhouse-salary-scraper","priceCurrency":"USD","price":0.003,"description":"$3.00 per 1,000 results. The first 10 results of every run are free."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/greenhouse-salary-scraper"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Jobs & salaries","item":"https://getdatagrit.github.io/#jobs"},{"@type":"ListItem","position":3,"name":"Greenhouse Salary Scraper - Job Pay Ranges","item":"https://getdatagrit.github.io/greenhouse-salary-scraper/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Which companies are covered?","acceptedAnswer":{"@type":"Answer","text":"Any company that publishes its roles through a public Greenhouse job board. The run status lists boards that were not found, entries that are not board names, and boards that exist but have no open postings, so you can tell a typo from an empty board."}},{"@type":"Question","name":"How long does a run take?","acceptedAnswer":{"@type":"Answer","text":"One request per company. Measured on 30 September 2026: five boards with 640 postings in 10 seconds, and Stripe's 712 postings in 8 seconds. Filters do not add requests."}},{"@type":"Question","name":"How often should I schedule it?","acceptedAnswer":{"@type":"Answer","text":"Daily is a good default for a hiring feed. With the only-new mode on, each scheduled run returns just the additions, and a run that finds nothing new returns one free status row."}},{"@type":"Question","name":"How does the only-new mode work?","acceptedAnswer":{"@type":"Answer","text":"The Actor remembers, in a storage on your account, the postings it actually returned to you, separately for each company and each combination of filters. Postings dropped by your filters or cut off by Maximum results are not remembered and can still come in a later run. Changing a filter starts a separate feed, and two scheduled tasks with different filters do not take postings from each other. Your first run returns everything that matches."}},{"@type":"Question","name":"Why do some postings have no pay range?","acceptedAnswer":{"@type":"Answer","text":"Employers decide whether to publish pay, and some regions require it. Use the pay filter to keep only postings that show it."}},{"@type":"Question","name":"What happens when Greenhouse changes its API?","acceptedAnswer":{"@type":"Answer","text":"If the board list stops carrying pay data or changes shape, the run fails with a message instead of returning postings that look like they have no pay."}},{"@type":"Question","name":"Something looks wrong.","acceptedAnswer":{"@type":"Answer","text":"Open an issue with the input you used; changes at the source are fixed quickly."}}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#jobs">Jobs &amp; salaries</a> › Greenhouse Salary Scraper - Job Pay Ranges</p>
+<span class="pill">Jobs &amp; salaries</span>
+<h1>Greenhouse Salary Scraper - Job Pay Ranges</h1>
+<p class="lead">Greenhouse job postings with published pay ranges by zone, annualised pay, filters and new-since-last-run detection.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/greenhouse-salary-scraper" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">$3.00 per 1,000 results · first 10 results free · no code needed</span></div>
+<div class="facts"><div class="fact"><b>$3.00 per 1,000 results</b><span>pay only for job postings you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.4</b><span>updated 2026-09-30</span></div></div>
+<p>Greenhouse Salary Scraper reads the public job boards of companies that hire through Greenhouse and returns every open posting as a clean record together with its published pay ranges. You get the range for every location pay zone, the overall band, the currency, the pay period and yearly amounts, plus flags for equity, bonus and commission mentioned in the pay text. Filter by minimum annual pay, currency, title keywords, department, location and posting age, and export the data as JSON, CSV or Excel, call it through the Apify API, or plug it into n8n, Make and AI agents through MCP. The first 10 results of every run are free.</p>
+<h2>Who is it for?</h2>
+<ul>
+<li><strong>Recruiters and sourcers</strong> who want a feed of new roles at target companies, filtered by title and location.</li>
+<li><strong>Job seekers and career coaches</strong> who compare pay bands across companies before negotiating.</li>
+<li><strong>Compensation and HR analysts</strong> who benchmark pay by role and location zone, including Canadian and European zones of US employers.</li>
+<li><strong>Sales teams</strong> who use hiring as a buying signal and want to see which companies are opening roles.</li>
+</ul>
+<h2>How to use it</h2>
+<ol>
+<li>Enter the companies you want as Greenhouse board names or URLs. The name is the last part of the careers link: <code>boards.greenhouse.io/robinhood</code> means the name is <code>robinhood</code>.</li>
+<li>Add filters if you need them: title keywords, department, location, only postings with a pay range, minimum annual pay, pay currency, or how recently the posting was first published.</li>
+<li>For a recurring feed, switch on <strong>Only postings new since my last run</strong> and schedule the Actor. Each run returns only the postings that earlier runs with the same companies and filters have not delivered yet.</li>
+<li>Download the dataset or fetch it from the API.</li>
+</ol>
+<p>The Actor reads each board in a single request that already contains the pay ranges, so pay does not slow the run down. On 30 September 2026 a run over five boards (Robinhood, Airbnb, Coinbase, Mercury and Discord) returned all 640 open postings in 10 seconds, 543 of them with a published pay range.</p>
+<h2>What data do you get?</h2>
+<p>Each record contains the title, departments, offices and location, the requisition number, first publication and update dates, the age of the posting in days and its link. When pay is published you also get the lowest and highest amounts across the pay zones, the currency of that band and the list of all currencies used, the pay period, the yearly equivalents, the number of pay zones, a one-line summary of every zone and flags for equity, bonus and commission mentioned in the pay text. The plain-text description is available on request.</p>
+<h4>Pay zones in several currencies</h4>
+<p>Many US employers publish a Canadian or European zone next to the US ones. Every zone is kept in the summary and counted in <code>payZones</code>. The band (<code>payMin</code>, <code>payMax</code> and the yearly amounts) is computed in one currency, because amounts are never converted between currencies: the first currency from your <strong>Pay currencies</strong> filter that the posting uses, or the currency of the first zone when you do not filter by currency. On 30 September 2026, 38 of Mercury's 63 postings had a zone in CAD after the USD zones; filtering by CAD returns all 38 with the band in CAD.</p>
+<p>The same applies to <strong>Minimum annual pay</strong>: without a currency filter the threshold is compared with each posting in its own currency, so on a global board 150000 also keeps postings paying 150,000 INR or PHP a year. Set <strong>Pay currencies</strong> together with Minimum annual pay, for example USD with 150000, to compare like with like.</p>
+<h4>Pay period</h4>
+<p>Greenhouse does not publish a pay period field, so the period is worked out from the title of the range, for example Hourly Rate, and from the size of the amount. When it cannot be determined the period and the yearly amounts are left empty instead of guessed.</p>
+<h2>Is it legal to scrape this data?</h2>
+<p>The Actor reads only the public job board API that Greenhouse offers to employers for publishing their open roles. It does not log in, bypass access controls or collect candidate data. Job descriptions can contain personal data such as a recruiter name, so if you request them you are responsible for handling them in line with applicable data protection law. This description is not legal advice.</p>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>company</code></td><td>string</td><td>Greenhouse board name the posting belongs to. On the single status row (found = false) it lists the boards that were read, comma-separated.</td><td><code>robinhood</code></td></tr><tr><td><code>id</code></td><td>string</td><td>Greenhouse identifier of the posting.</td><td><code>7563040</code></td></tr><tr><td><code>title</code></td><td>string</td><td>Job title.</td><td><code>Senior Software Engineer</code></td></tr><tr><td><code>departments</code></td><td>string</td><td>Department names joined with semicolons.</td><td><code>Financial Crimes</code></td></tr><tr><td><code>offices</code></td><td>string</td><td>Office names joined with semicolons.</td><td><code>Denver, CO; New York, NY</code></td></tr><tr><td><code>location</code></td><td>string</td><td>Location text of the posting.</td><td><code>Denver, CO; New York, NY; Westlake, TX</code></td></tr><tr><td><code>requisitionId</code></td><td>string</td><td>Employer requisition number when published.</td><td><code>JR109304</code></td></tr><tr><td><code>firstPublishedAt</code></td><td>string</td><td>ISO 8601 time the posting was first published.</td><td><code>2026-09-03T15:43:18.000Z</code></td></tr><tr><td><code>updatedAt</code></td><td>string</td><td>ISO 8601 time of the last update.</td><td><code>2026-09-25T17:03:21.000Z</code></td></tr><tr><td><code>daysSincePublished</code></td><td>integer</td><td>Whole days between first publication and this run.</td><td><code>27</code></td></tr><tr><td><code>jobUrl</code></td><td>string</td><td>Public page of the posting.</td><td><code>https://boards.greenhouse.io/robinhood/jobs/7563040</code></td></tr><tr><td><code>hasPay</code></td><td>boolean</td><td>True when the posting publishes at least one pay range.</td><td><code>true</code></td></tr><tr><td><code>payMin</code></td><td>number</td><td>Lowest amount across the pay zones in payCurrency and payPeriod.</td><td><code>148000</code></td></tr><tr><td><code>payMax</code></td><td>number</td><td>Highest amount across the pay zones in payCurrency and payPeriod.</td><td><code>198000</code></td></tr><tr><td><code>payCurrency</code></td><td>string</td><td>Currency of the band: the first of your Pay currencies found in the posting, otherwise the currency of the first pay zone. payMin, payMax and the annual amounts are in this currency.</td><td><code>USD</code></td></tr><tr><td><code>payCurrencies</code></td><td>string</td><td>All currencies used by the pay zones, for example &quot;USD, CAD&quot;.</td><td><code>USD, CAD</code></td></tr><tr><td><code>payPeriod</code></td><td>string</td><td>year, month, week or hour. Greenhouse publishes no period field, so it is inferred from the range title and size; null when it cannot be determined.</td><td><code>year</code></td></tr><tr><td><code>payAnnualMin</code></td><td>integer</td><td>Lowest yearly amount across the pay zones in payCurrency; null when the period is unknown.</td><td><code>148000</code></td></tr><tr><td><code>payAnnualMax</code></td><td>integer</td><td>Highest yearly amount across the pay zones in payCurrency; null when the period is unknown.</td><td><code>198000</code></td></tr><tr><td><code>payZones</code></td><td>integer</td><td>Number of published pay ranges, usually one per location zone, in all currencies.</td><td><code>3</code></td></tr><tr><td><code>payRangeSummaries</code></td><td>string</td><td>Each pay zone with its title, amounts, currency and period, joined with a pipe; at most 12, then &quot;+N more&quot;.</td><td><code>Zone 1: 148K-198K USD/year | Canada: 170K-220K CAD/year</code></td></tr><tr><td><code>equityMentioned</code></td><td>boolean</td><td>True when the pay text mentions equity, stock, RSUs or options.</td><td><code>true</code></td></tr><tr><td><code>bonusMentioned</code></td><td>boolean</td><td>True when the pay text mentions a bonus.</td><td><code>true</code></td></tr><tr><td><code>commissionMentioned</code></td><td>boolean</td><td>True when the pay text mentions commission.</td><td><code>false</code></td></tr><tr><td><code>descriptionText</code></td><td>string</td><td>Plain-text description, only when requested.</td><td></td></tr><tr><td><code>found</code></td><td>boolean</td><td>False only for the single status row emitted when nothing matched.</td><td><code>true</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>ISO 8601 timestamp of extraction.</td><td><code>2026-09-30T08:00:00.000Z</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;company&quot;: &quot;robinhood&quot;,
+  &quot;id&quot;: &quot;7563040&quot;,
+  &quot;title&quot;: &quot;Senior Software Engineer&quot;,
+  &quot;departments&quot;: &quot;Financial Crimes&quot;,
+  &quot;offices&quot;: &quot;Denver, CO; New York, NY&quot;,
+  &quot;location&quot;: &quot;Denver, CO; New York, NY; Westlake, TX&quot;,
+  &quot;requisitionId&quot;: &quot;JR109304&quot;,
+  &quot;firstPublishedAt&quot;: &quot;2026-09-03T15:43:18.000Z&quot;,
+  &quot;updatedAt&quot;: &quot;2026-09-25T17:03:21.000Z&quot;,
+  &quot;daysSincePublished&quot;: 27,
+  &quot;jobUrl&quot;: &quot;https://boards.greenhouse.io/robinhood/jobs/7563040&quot;,
+  &quot;hasPay&quot;: true,
+  &quot;payMin&quot;: 148000,
+  &quot;payMax&quot;: 198000,
+  &quot;payCurrency&quot;: &quot;USD&quot;,
+  &quot;payCurrencies&quot;: &quot;USD, CAD&quot;,
+  &quot;payPeriod&quot;: &quot;year&quot;,
+  &quot;payAnnualMin&quot;: 148000,
+  &quot;payAnnualMax&quot;: 198000,
+  &quot;payZones&quot;: 3,
+  &quot;payRangeSummaries&quot;: &quot;Zone 1: 148K-198K USD/year | Canada: 170K-220K CAD/year&quot;,
+  &quot;equityMentioned&quot;: true,
+  &quot;bonusMentioned&quot;: true,
+  &quot;commissionMentioned&quot;: false,
+  &quot;descriptionText&quot;: null,
+  &quot;found&quot;: true,
+  &quot;scrapedAt&quot;: &quot;2026-09-30T08:00:00.000Z&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>companies</code> <span class="note">required</span></td><td>Companies (Greenhouse boards)</td><td>array</td><td>Greenhouse job board names or URLs, one per company. The name is the last part of the careers link: boards.greenhouse.io/robinhood means the name is robinhood. Boards that do not exist are skipped and listed in the run status; if none of them exists the run fails, so a typo never looks like an empty result.</td></tr><tr><td><code>keywords</code></td><td>Job title keywords</td><td>array</td><td>Optional. Keep a posting when its title contains any of these words (case-insensitive), for example engineer or designer. Leave empty for all roles.</td></tr><tr><td><code>departments</code></td><td>Departments</td><td>array</td><td>Optional. Keep only postings whose department contains one of these words, for example Engineering or Sales.</td></tr><tr><td><code>locations</code></td><td>Locations</td><td>array</td><td>Optional. Keep only postings whose location contains one of these words, for example London, Germany or Remote.</td></tr><tr><td><code>onlyWithPay</code></td><td>Only postings with a published pay range</td><td>boolean</td><td>Skip postings that do not publish a pay range. Pay ranges come with the job list itself, so this filter does not slow the run down.</td></tr><tr><td><code>minAnnualPay</code></td><td>Minimum annual pay</td><td>integer</td><td>Keep only postings whose top pay, converted to a yearly amount, reaches this value. The comparison uses the currency of the band (see Pay currencies); amounts are never converted between currencies, so without Pay currencies a posting paid in INR or PHP is compared in INR or PHP. Set Pay currencies together with Minimum annual pay. 0 disables the filter. Postings whose pay period cannot be determined are skipped by this filter.</td></tr><tr><td><code>payCurrencies</code></td><td>Pay currencies</td><td>array</td><td>Optional. Keep only postings with at least one pay zone in these currencies (three-letter codes such as USD, CAD, GBP or EUR). A US posting with an extra Canadian zone matches CAD, and its band, yearly amounts and the minimum annual pay filter are then computed in CAD. Without this filter the band uses the currency of the first pay zone.</td></tr><tr><td><code>publishedWithinDays</code></td><td>First published within days</td><td>integer</td><td>Keep only postings first published in the last N days. 0 disables the filter.</td></tr><tr><td><code>onlyNewSinceLastRun</code></td><td>Only postings new since my last run</td><td>boolean</td><td>Return only postings that earlier runs with the same companies and the same filters have not delivered to you. The Actor remembers the postings it actually returned, per company and per filter combination, in a storage on your account; postings dropped by your filters or cut off by Maximum results are not remembered and can still come later. Changing a filter starts a separate feed. The first run returns everything that matches.</td></tr><tr><td><code>includeDescription</code></td><td>Include description text</td><td>boolean</td><td>Adds the plain-text job description, cut to 8000 characters. Off by default to keep the dataset small.</td></tr><tr><td><code>maxItems</code></td><td>Maximum results</td><td>integer</td><td>Stop after this many postings in total across all companies. The first 10 results of every run are free.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Optional proxy. Leave disabled: the Greenhouse job board API is public and needs none.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~greenhouse-salary-scraper/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;companies&quot;:[&quot;robinhood&quot;],&quot;onlyWithPay&quot;:true,&quot;maxItems&quot;:50}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/greenhouse-salary-scraper').call({
+  &quot;companies&quot;: [
+    &quot;robinhood&quot;
+  ],
+  &quot;onlyWithPay&quot;: true,
+  &quot;maxItems&quot;: 50
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/greenhouse-salary-scraper&quot;).call(run_input={
+  &quot;companies&quot;: [
+    &quot;robinhood&quot;
+  ],
+  &quot;onlyWithPay&quot;: True,
+  &quot;maxItems&quot;: 50
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>Which companies are covered?</summary><p>Any company that publishes its roles through a public Greenhouse job board. The run status lists boards that were not found, entries that are not board names, and boards that exist but have no open postings, so you can tell a typo from an empty board.</p></details>
+<details><summary>How long does a run take?</summary><p>One request per company. Measured on 30 September 2026: five boards with 640 postings in 10 seconds, and Stripe's 712 postings in 8 seconds. Filters do not add requests.</p></details>
+<details><summary>How often should I schedule it?</summary><p>Daily is a good default for a hiring feed. With the only-new mode on, each scheduled run returns just the additions, and a run that finds nothing new returns one free status row.</p></details>
+<details><summary>How does the only-new mode work?</summary><p>The Actor remembers, in a storage on your account, the postings it actually returned to you, separately for each company and each combination of filters. Postings dropped by your filters or cut off by Maximum results are not remembered and can still come in a later run. Changing a filter starts a separate feed, and two scheduled tasks with different filters do not take postings from each other. Your first run returns everything that matches.</p></details>
+<details><summary>Why do some postings have no pay range?</summary><p>Employers decide whether to publish pay, and some regions require it. Use the pay filter to keep only postings that show it.</p></details>
+<details><summary>What happens when Greenhouse changes its API?</summary><p>If the board list stops carrying pay data or changes shape, the run fails with a message instead of returning postings that look like they have no pay.</p></details>
+<details><summary>Something looks wrong.</summary><p>Open an issue with the input you used; changes at the source are fixed quickly.</p></details>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/greenhouse-salary-scraper" rel="noopener">Try Greenhouse Salary Scraper - Job Pay Ranges free</a></div>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Jobs &amp; salaries</span><h3><a href="/ashby-salary-scraper/">Ashby Salary Scraper - Startup Job Pay Ranges</a></h3><p>Ashby job postings with normalized annual salary ranges, equity flags and new-since-last-run detection.</p><div class="meta">$3.00 / 1,000 results · first 10 free</div></article><article class="card"><span class="pill">Company data</span><h3><a href="/french-company-finder/">French Company Finder - Sirene Financials</a></h3><p>French company lead lists from Sirene screened by net result and revenue, with net margin, size, matching establishment and optional directors.</p><div class="meta">$5.00 / 1,000 results · first 10 free</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>French Company Finder - Sirene Financials API | datagrit</title>
+<meta name="description" content="Find French companies in the official Sirene register and screen them by net result, revenue, size and NAF code, with net margin in every row. Export CSV.">
+<link rel="canonical" href="https://getdatagrit.github.io/french-company-finder/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="French Company Finder - Sirene Financials API | datagrit">
+<meta property="og:description" content="Find French companies in the official Sirene register and screen them by net result, revenue, size and NAF code, with net margin in every row. Export CSV."><meta property="og:url" content="https://getdatagrit.github.io/french-company-finder/"><meta property="og:image" content="https://getdatagrit.github.io/og/french-company-finder.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="French Company Finder - Sirene Financials API | datagrit"><meta name="twitter:description" content="Find French companies in the official Sirene register and screen them by net result, revenue, size and NAF code, with net margin in every row. Export CSV."><meta name="twitter:image" content="https://getdatagrit.github.io/og/french-company-finder.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"French Company Finder - Sirene Financials","description":"Find French companies in the official Sirene register and screen them by net result, revenue, size and NAF code, with net margin in every row. Export CSV.","url":"https://getdatagrit.github.io/french-company-finder/","image":"https://getdatagrit.github.io/og/french-company-finder.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Company data","operatingSystem":"Web, Apify platform","softwareVersion":"0.4","dateModified":"2026-09-30T11:55:33.786Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/french-company-finder","priceCurrency":"USD","price":0.005,"description":"$5.00 per 1,000 results. The first 10 results of every run are free."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/french-company-finder"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Company data","item":"https://getdatagrit.github.io/#kyb"},{"@type":"ListItem","position":3,"name":"French Company Finder - Sirene Financials","item":"https://getdatagrit.github.io/french-company-finder/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I find one specific company?","acceptedAnswer":{"@type":"Answer","text":"Paste its SIREN or SIRET number. Number lookups ignore the filters and also return closed companies and closed establishments. A SIRET lookup returns exactly that establishment."}},{"@type":"Question","name":"What if a number does not exist?","acceptedAnswer":{"@type":"Answer","text":"The run lists the numbers that are not in the public register in its status message and adds a free status row for each. If the input contains only numbers and none of them exists, the run fails with that list, so a scheduled run cannot turn green on a wrong input. Companies that opted out of public listing are not in the register."}},{"@type":"Question","name":"Why is revenue empty for some companies?","acceptedAnswer":{"@type":"Answer","text":"Many companies do not publish their accounts, and the register only holds what is filed publicly. The status message says how many returned companies have revenue."}},{"@type":"Question","name":"How fresh is the data?","acceptedAnswer":{"@type":"Answer","text":"Every run reads the live register."}},{"@type":"Question","name":"Can I schedule it?","acceptedAnswer":{"@type":"Answer","text":"Yes, use Apify schedules or call the Actor from your own workflow."}},{"@type":"Question","name":"Something looks wrong.","acceptedAnswer":{"@type":"Answer","text":"Open an issue with the input you used; changes at the source are fixed quickly."}}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#kyb">Company data</a> › French Company Finder - Sirene Financials</p>
+<span class="pill">Company data</span>
+<h1>French Company Finder - Sirene Financials</h1>
+<p class="lead">French company lead lists from Sirene screened by net result and revenue, with net margin, size, matching establishment and optional directors.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/french-company-finder" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">$5.00 per 1,000 results · first 10 results free · no code needed</span></div>
+<div class="facts"><div class="fact"><b>$5.00 per 1,000 results</b><span>pay only for company records you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.4</b><span>updated 2026-09-30</span></div></div>
+<p>French Company Finder searches the official Sirene register of French companies and returns each company as a clean record: identity, legal form, activity code, size, employer flag, head office address with coordinates, and the latest published financials. Beyond a plain lookup you can screen companies by profitability: filter on net result (profitable or loss-making) as well as revenue, and every record comes with the net margin already calculated. Location filters are checked on every record, so a company is returned only when it has an open establishment in the place you asked for. Export the data as JSON, CSV or Excel, call it through the Apify API, or plug it into n8n, Make and AI agents through MCP. The first 10 results of every run are free.</p>
+<h2>Who is it for?</h2>
+<ul>
+<li><strong>Sales and business development teams</strong> building lists of French prospects by activity, region, size and financial strength.</li>
+<li><strong>Compliance, KYB and procurement teams</strong> verifying a counterparty by SIREN or SIRET, including companies that have ceased activity.</li>
+<li><strong>Investors and analysts</strong> screening for profitable or loss-making companies in a sector.</li>
+<li><strong>Data teams</strong> enriching customer or supplier lists with size, activity and address data.</li>
+</ul>
+<h2>How to use it</h2>
+<ol>
+<li>Add search terms such as an activity or a name, paste SIREN or SIRET numbers, or use filters alone (for example a department and a size category, with no search term).</li>
+<li>Narrow the search with filters: department, region, postal code, NAF activity code, size category, employee band, legal form, revenue and net result ranges, employers only, social and solidarity economy only.</li>
+<li>Choose whether to include the directors listed in the register. This is off by default because it contains personal data.</li>
+<li>Set the maximum number of results and run the Actor.</li>
+</ol>
+<p>Fields you leave out stay neutral: a SIREN lookup called through the API returns only that company, and a filter-only call searches with the filters alone. Only an input with no search term, no number and no filter at all runs a small example search (boulangerie in department 75, free results only), and the status message says so.</p>
+<h2>What data do you get?</h2>
+<p>Each record contains the SIREN, names and acronym, active or closed status with creation and closure dates, legal form with a label for the common codes, NAF activity code and section, size category, employee band with its label, the number of establishments (total and open), the head office SIRET, address, postal code, city, department, region and coordinates, the VAT number, and the latest published financials: revenue, its year, net result and net margin. Flags show social economy, organic, employer and association status. The employer flag is true when the head office is registered as an employer or the company employee band shows at least one employee. Directors, with their roles, are available on request.</p>
+<p>Revenue and net result exist only for companies that publish their accounts, and the register exposes the latest published year only.</p>
+<h2>How do location filters work?</h2>
+<p>The Sirene register matches a location against every establishment of a company, including establishments closed decades ago. In a sample of 450 companies returned by the register for eight departments on 2026-09-30, 128 had only closed establishments in the requested department. The Actor therefore checks every record itself: with <strong>Only active companies</strong> on (the default), a company is returned only when it has an open establishment in the location, and the status message counts the companies it skipped. The head office is checked first, because the register does not always list it among the matching establishments.</p>
+<p>Each record carries the establishment that matched (SIRET, address, postal code, city, department, region, open or closed, closure date) next to the head office address, and the number of establishments of the company in the location. The Actor asks the register for up to 100 matching establishments per company, so a count of 100 means 100 or more. Switch off <strong>Only active companies</strong> to also get closed companies and companies whose only establishment in the location is closed. Switch on <strong>Head office only</strong> when you want companies whose head office itself is in the location. Without a location filter the matched establishment fields stay empty.</p>
+<h2>Is it legal to scrape this data?</h2>
+<p>The Actor reads only open data that the French state publishes through its public company search API. It does not log in or bypass any access control. Company data is open data; directors' names are personal data, so they are off by default and you are responsible for using them in line with data protection law. This description is not legal advice.</p>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>query</code></td><td>string</td><td>The search term or number this result came from; null for filter-only searches.</td><td><code>boulangerie</code></td></tr><tr><td><code>siren</code></td><td>string</td><td>Nine-digit company identifier.</td><td><code>403052111</code></td></tr><tr><td><code>name</code></td><td>string</td><td>Company display name.</td><td><code>BOULANGERIES PAUL</code></td></tr><tr><td><code>legalName</code></td><td>string</td><td>Registered company name.</td><td><code>BOULANGERIES PAUL</code></td></tr><tr><td><code>acronym</code></td><td>string</td><td>Registered acronym when there is one.</td><td></td></tr><tr><td><code>isActive</code></td><td>boolean</td><td>True while the company is active, false when it has ceased activity.</td><td><code>true</code></td></tr><tr><td><code>creationDate</code></td><td>string</td><td>Date of creation, YYYY-MM-DD.</td><td><code>1995-12-07</code></td></tr><tr><td><code>closureDate</code></td><td>string</td><td>Date of cessation, YYYY-MM-DD.</td><td></td></tr><tr><td><code>legalFormCode</code></td><td>string</td><td>INSEE legal form code.</td><td><code>5710</code></td></tr><tr><td><code>legalForm</code></td><td>string</td><td>Legal form label for the common codes; null when the code is not in the built-in list.</td><td><code>Simplified joint-stock company (SAS)</code></td></tr><tr><td><code>activityCode</code></td><td>string</td><td>Main activity code, NAF rev. 2.</td><td><code>10.71A</code></td></tr><tr><td><code>sectionCode</code></td><td>string</td><td>Letter of the activity section.</td><td><code>C</code></td></tr><tr><td><code>companySize</code></td><td>string</td><td>PME, ETI or GE.</td><td><code>ETI</code></td></tr><tr><td><code>employeeBandCode</code></td><td>string</td><td>INSEE employee band code.</td><td><code>41</code></td></tr><tr><td><code>employeeBand</code></td><td>string</td><td>Employee band label.</td><td><code>500-999 employees</code></td></tr><tr><td><code>employeeBandYear</code></td><td>number</td><td>Year the employee band refers to.</td><td><code>2023</code></td></tr><tr><td><code>establishments</code></td><td>number</td><td>Number of establishments ever registered.</td><td><code>315</code></td></tr><tr><td><code>establishmentsOpen</code></td><td>number</td><td>Number of establishments currently open.</td><td><code>125</code></td></tr><tr><td><code>headOfficeSiret</code></td><td>string</td><td>Fourteen-digit identifier of the head office.</td><td><code>40305211102616</code></td></tr><tr><td><code>address</code></td><td>string</td><td>Head office address.</td><td><code>344 AVENUE DE LA MARNE 59700 MARCQ-EN-BARŒUL</code></td></tr><tr><td><code>postalCode</code></td><td>string</td><td>Head office postal code.</td><td><code>59700</code></td></tr><tr><td><code>city</code></td><td>string</td><td>Head office city.</td><td><code>MARCQ-EN-BARŒUL</code></td></tr><tr><td><code>departmentCode</code></td><td>string</td><td>Department code of the head office.</td><td><code>59</code></td></tr><tr><td><code>regionCode</code></td><td>string</td><td>INSEE region code of the head office.</td><td><code>32</code></td></tr><tr><td><code>latitude</code></td><td>number</td><td>Head office latitude.</td><td><code>50.678029398</code></td></tr><tr><td><code>longitude</code></td><td>number</td><td>Head office longitude.</td><td><code>3.1169136021</code></td></tr><tr><td><code>vatNumber</code></td><td>string</td><td>Intra-community VAT number.</td><td><code>FR32403052111</code></td></tr><tr><td><code>revenue</code></td><td>number</td><td>Latest published revenue in EUR.</td><td><code>73611839</code></td></tr><tr><td><code>revenueYear</code></td><td>number</td><td>Financial year of the latest revenue.</td><td><code>2024</code></td></tr><tr><td><code>netResult</code></td><td>number</td><td>Latest net result in EUR.</td><td><code>-2197350</code></td></tr><tr><td><code>netMarginPct</code></td><td>number</td><td>Net result divided by revenue.</td><td><code>-3</code></td></tr><tr><td><code>isSocialEconomy</code></td><td>boolean</td><td>Part of the social and solidarity economy.</td><td><code>false</code></td></tr><tr><td><code>isOrganic</code></td><td>boolean</td><td>Registered in the organic agency register.</td><td><code>false</code></td></tr><tr><td><code>isEmployer</code></td><td>boolean</td><td>True when the head office is registered as an employer or the company employee band shows at least one employee; false when the head office is registered as a non-employer or the band says the company has no employees; null when the register has neither.</td><td><code>true</code></td></tr><tr><td><code>isAssociation</code></td><td>boolean</td><td>Is an association.</td><td><code>false</code></td></tr><tr><td><code>matchedEstablishmentSiret</code></td><td>string</td><td>Establishment in your location filter (or the SIRET you looked up); empty when no location filter is used. The head office is used when it is in the location; otherwise another establishment there. It can differ from the head office.</td><td><code>32868651400105</code></td></tr><tr><td><code>matchedEstablishmentAddress</code></td><td>string</td><td>Address of the matched establishment.</td><td><code>17 AV CHARLES DE GAULLE 69370 SAINT-DIDIER-AU-MONT-D OR</code></td></tr><tr><td><code>matchedEstablishmentPostalCode</code></td><td>string</td><td>Postal code of the matched establishment.</td><td><code>69370</code></td></tr><tr><td><code>matchedEstablishmentCity</code></td><td>string</td><td>City of the matched establishment.</td><td><code>SAINT-DIDIER-AU-MONT-D OR</code></td></tr><tr><td><code>matchedEstablishmentDepartment</code></td><td>string</td><td>Department of the matched establishment, from its INSEE commune code.</td><td><code>69</code></td></tr><tr><td><code>matchedEstablishmentRegion</code></td><td>string</td><td>INSEE region code of the matched establishment.</td><td><code>84</code></td></tr><tr><td><code>matchedEstablishmentIsHeadOffice</code></td><td>boolean</td><td>True when the matched establishment is the head office.</td><td><code>false</code></td></tr><tr><td><code>matchedEstablishmentIsActive</code></td><td>boolean</td><td>Whether the matched establishment is open. Always true while &quot;Only active companies&quot; is on (companies whose establishments in the location are all closed are skipped); can be false when you switch that option off or look up the SIRET of a closed establishment.</td><td><code>true</code></td></tr><tr><td><code>matchedEstablishmentClosureDate</code></td><td>string</td><td>Closure date of the matched establishment, YYYY-MM-DD; null while it is open.</td><td></td></tr><tr><td><code>matchedEstablishmentsListed</code></td><td>integer</td><td>Number of establishments of this company in the location found in the register response (the head office plus the matching establishments). The Actor asks the register for up to 100 matching establishments per company, so 100 means 100 or more. Empty when no location filter is used.</td><td><code>1</code></td></tr><tr><td><code>directorCount</code></td><td>number</td><td>Number of directors listed in the register (names only when requested).</td><td><code>4</code></td></tr><tr><td><code>directors</code></td><td>string</td><td>Names and roles joined with semicolons; only when directors are requested.</td><td></td></tr><tr><td><code>sourceUrl</code></td><td>string</td><td>Public company page.</td><td><code>https://annuaire-entreprises.data.gouv.fr/entreprise/403052111</code></td></tr><tr><td><code>updatedAt</code></td><td>string</td><td>Last update of the record in the register.</td><td><code>2026-09-17T04:38:04</code></td></tr><tr><td><code>found</code></td><td>boolean</td><td>False only for the single status row emitted when a search has no results.</td><td><code>true</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>ISO 8601 timestamp of extraction.</td><td><code>2026-09-30T08:00:00.000Z</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;query&quot;: &quot;boulangerie&quot;,
+  &quot;siren&quot;: &quot;403052111&quot;,
+  &quot;name&quot;: &quot;BOULANGERIES PAUL&quot;,
+  &quot;legalName&quot;: &quot;BOULANGERIES PAUL&quot;,
+  &quot;acronym&quot;: null,
+  &quot;isActive&quot;: true,
+  &quot;creationDate&quot;: &quot;1995-12-07&quot;,
+  &quot;closureDate&quot;: null,
+  &quot;legalFormCode&quot;: &quot;5710&quot;,
+  &quot;legalForm&quot;: &quot;Simplified joint-stock company (SAS)&quot;,
+  &quot;activityCode&quot;: &quot;10.71A&quot;,
+  &quot;sectionCode&quot;: &quot;C&quot;,
+  &quot;companySize&quot;: &quot;ETI&quot;,
+  &quot;employeeBandCode&quot;: &quot;41&quot;,
+  &quot;employeeBand&quot;: &quot;500-999 employees&quot;,
+  &quot;employeeBandYear&quot;: 2023,
+  &quot;establishments&quot;: 315,
+  &quot;establishmentsOpen&quot;: 125,
+  &quot;headOfficeSiret&quot;: &quot;40305211102616&quot;,
+  &quot;address&quot;: &quot;344 AVENUE DE LA MARNE 59700 MARCQ-EN-BARŒUL&quot;,
+  &quot;postalCode&quot;: &quot;59700&quot;,
+  &quot;city&quot;: &quot;MARCQ-EN-BARŒUL&quot;,
+  &quot;departmentCode&quot;: &quot;59&quot;,
+  &quot;regionCode&quot;: &quot;32&quot;,
+  &quot;latitude&quot;: 50.678029398,
+  &quot;longitude&quot;: 3.1169136021,
+  &quot;vatNumber&quot;: &quot;FR32403052111&quot;,
+  &quot;revenue&quot;: 73611839,
+  &quot;revenueYear&quot;: 2024,
+  &quot;netResult&quot;: -2197350,
+  &quot;netMarginPct&quot;: -3,
+  &quot;isSocialEconomy&quot;: false,
+  &quot;isOrganic&quot;: false,
+  &quot;isEmployer&quot;: true,
+  &quot;isAssociation&quot;: false,
+  &quot;matchedEstablishmentSiret&quot;: &quot;32868651400105&quot;,
+  &quot;matchedEstablishmentAddress&quot;: &quot;17 AV CHARLES DE GAULLE 69370 SAINT-DIDIER-AU-MONT-D OR&quot;,
+  &quot;matchedEstablishmentPostalCode&quot;: &quot;69370&quot;,
+  &quot;matchedEstablishmentCity&quot;: &quot;SAINT-DIDIER-AU-MONT-D OR&quot;,
+  &quot;matchedEstablishmentDepartment&quot;: &quot;69&quot;,
+  &quot;matchedEstablishmentRegion&quot;: &quot;84&quot;,
+  &quot;matchedEstablishmentIsHeadOffice&quot;: false,
+  &quot;matchedEstablishmentIsActive&quot;: true,
+  &quot;matchedEstablishmentClosureDate&quot;: null,
+  &quot;matchedEstablishmentsListed&quot;: 1,
+  &quot;directorCount&quot;: 4,
+  &quot;directors&quot;: null,
+  &quot;sourceUrl&quot;: &quot;https://annuaire-entreprises.data.gouv.fr/entreprise/403052111&quot;,
+  &quot;updatedAt&quot;: &quot;2026-09-17T04:38:04&quot;,
+  &quot;found&quot;: true,
+  &quot;scrapedAt&quot;: &quot;2026-09-30T08:00:00.000Z&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>queries</code></td><td>Search terms</td><td>array</td><td>Company names, activities or keywords, for example boulangerie or logiciel. Each term is searched separately. Leave empty when you search by filters or by SIREN/SIRET number only. If the input has no search term, no number and no filter at all, the Actor runs a small free example search (boulangerie in department 75) and says so in the status message.</td></tr><tr><td><code>sirens</code></td><td>SIREN or SIRET numbers</td><td>array</td><td>Look up specific companies by 9-digit SIREN or 14-digit SIRET. These lookups ignore the filters below and also return closed companies; a SIRET returns exactly that establishment. Numbers that are not in the public register get a free status row and are listed in the status message; when the input has only numbers and none exists, the run fails.</td></tr><tr><td><code>departments</code></td><td>Departments</td><td>array</td><td>French department codes, for example 75 for Paris, 69 for Rhône or 2A for Corse-du-Sud. A company is returned when it has an establishment in one of these departments; with &quot;Only active companies&quot; on (default) that establishment must be open. The establishment is returned in the matchedEstablishment fields. Switch on &quot;Head office only&quot; to require the head office itself.</td></tr><tr><td><code>regions</code></td><td>Regions</td><td>array</td><td>INSEE region codes, for example 11 for Île-de-France or 84 for Auvergne-Rhône-Alpes. Same rule as departments: an establishment in the region, open when &quot;Only active companies&quot; is on, or the head office when &quot;Head office only&quot; is on.</td></tr><tr><td><code>postalCodes</code></td><td>Postal codes</td><td>array</td><td>Postal codes, for example 75011. Same rule as departments: an establishment with this postal code, open when &quot;Only active companies&quot; is on, or the head office when &quot;Head office only&quot; is on.</td></tr><tr><td><code>headOfficeOnly</code></td><td>Head office only</td><td>boolean</td><td>Keep only companies whose head office is in the requested departments, regions or postal codes. Off by default: any establishment of the company in the location counts.</td></tr><tr><td><code>activityCodes</code></td><td>Activity codes (NAF)</td><td>array</td><td>Main activity codes in the NAF classification, for example 62.01Z for computer programming or 10.71C for bakeries.</td></tr><tr><td><code>companySizes</code></td><td>Company size categories</td><td>array</td><td>Official size category: PME (small and medium), ETI (mid-sized) or GE (large).</td></tr><tr><td><code>employeeBands</code></td><td>Employee bands</td><td>array</td><td>INSEE employee band codes, for example 11 for 10-19 employees, 12 for 20-49, 21 for 50-99, 22 for 100-199.</td></tr><tr><td><code>legalForms</code></td><td>Legal forms</td><td>array</td><td>INSEE legal form codes, for example 5710 for SAS, 5499 for SARL or 5599 for SA.</td></tr><tr><td><code>minRevenue</code></td><td>Minimum revenue (EUR)</td><td>integer</td><td>Only companies whose latest published revenue is at least this amount. Only companies that file their accounts publicly have revenue data.</td></tr><tr><td><code>maxRevenue</code></td><td>Maximum revenue (EUR)</td><td>integer</td><td>Only companies whose latest published revenue is at most this amount.</td></tr><tr><td><code>minNetResult</code></td><td>Minimum net result (EUR)</td><td>integer</td><td>Only companies whose latest net result is at least this amount. Use 1 to keep only profitable companies.</td></tr><tr><td><code>maxNetResult</code></td><td>Maximum net result (EUR)</td><td>integer</td><td>Only companies whose latest net result is at most this amount. Use 0 to find loss-making companies.</td></tr><tr><td><code>onlyActive</code></td><td>Only active companies</td><td>boolean</td><td>Skip companies that have ceased activity. With a location filter it also skips companies whose establishments in the location are all closed, and the status message counts them.</td></tr><tr><td><code>employersOnly</code></td><td>Employers only</td><td>boolean</td><td>Keep only companies flagged as employers: the head office is registered as an employer or the company employee band shows at least one employee (the isEmployer field). Checked by the Actor on every record.</td></tr><tr><td><code>socialEconomyOnly</code></td><td>Social and solidarity economy only</td><td>boolean</td><td>Keep only companies flagged as part of the social and solidarity economy (the isSocialEconomy field).</td></tr><tr><td><code>includeDirectors</code></td><td>Include company directors</td><td>boolean</td><td>Adds the names and roles of the directors listed in the register. Off by default because it contains personal data; when you switch it on you are responsible for using it in line with data protection law.</td></tr><tr><td><code>maxItems</code></td><td>Maximum results</td><td>integer</td><td>Stop after this many companies in total. The first 10 results of every run are free. The register search returns at most 10,000 results per search.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Optional proxy. Leave disabled: the Sirene search API is public and needs none.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~french-company-finder/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;queries&quot;:[&quot;logiciel&quot;],&quot;departments&quot;:[&quot;69&quot;],&quot;minRevenue&quot;:1000000,&quot;maxItems&quot;:25}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/french-company-finder').call({
+  &quot;queries&quot;: [
+    &quot;logiciel&quot;
+  ],
+  &quot;departments&quot;: [
+    &quot;69&quot;
+  ],
+  &quot;minRevenue&quot;: 1000000,
+  &quot;maxItems&quot;: 25
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/french-company-finder&quot;).call(run_input={
+  &quot;queries&quot;: [
+    &quot;logiciel&quot;
+  ],
+  &quot;departments&quot;: [
+    &quot;69&quot;
+  ],
+  &quot;minRevenue&quot;: 1000000,
+  &quot;maxItems&quot;: 25
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>How do I find one specific company?</summary><p>Paste its SIREN or SIRET number. Number lookups ignore the filters and also return closed companies and closed establishments. A SIRET lookup returns exactly that establishment.</p></details>
+<details><summary>What if a number does not exist?</summary><p>The run lists the numbers that are not in the public register in its status message and adds a free status row for each. If the input contains only numbers and none of them exists, the run fails with that list, so a scheduled run cannot turn green on a wrong input. Companies that opted out of public listing are not in the register.</p></details>
+<details><summary>Why is revenue empty for some companies?</summary><p>Many companies do not publish their accounts, and the register only holds what is filed publicly. The status message says how many returned companies have revenue.</p></details>
+<details><summary>How fresh is the data?</summary><p>Every run reads the live register.</p></details>
+<details><summary>Can I schedule it?</summary><p>Yes, use Apify schedules or call the Actor from your own workflow.</p></details>
+<details><summary>Something looks wrong.</summary><p>Open an issue with the input you used; changes at the source are fixed quickly.</p></details>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/french-company-finder" rel="noopener">Try French Company Finder - Sirene Financials free</a></div>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Jobs &amp; salaries</span><h3><a href="/ashby-salary-scraper/">Ashby Salary Scraper - Startup Job Pay Ranges</a></h3><p>Ashby job postings with normalized annual salary ranges, equity flags and new-since-last-run detection.</p><div class="meta">$3.00 / 1,000 results · first 10 free</div></article><article class="card"><span class="pill">Jobs &amp; salaries</span><h3><a href="/greenhouse-salary-scraper/">Greenhouse Salary Scraper - Job Pay Ranges</a></h3><p>Greenhouse job postings with published pay ranges by zone, annualised pay, filters and new-since-last-run detection.</p><div class="meta">$3.00 / 1,000 results · first 10 free</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
