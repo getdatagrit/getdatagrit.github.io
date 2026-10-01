@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bulk WHOIS &amp; RDAP Domain Lookup with DNS Records | datagrit</title>
+<meta name="description" content="Bulk WHOIS via official RDAP: registrar, creation and expiry dates, domain age, EPP status, plus DNS, MX mail provider, SPF, DMARC and hosting ASN.">
+<link rel="canonical" href="https://getdatagrit.github.io/domain-whois-rdap-lookup/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="Bulk WHOIS &amp; RDAP Domain Lookup with DNS Records | datagrit">
+<meta property="og:description" content="Bulk WHOIS via official RDAP: registrar, creation and expiry dates, domain age, EPP status, plus DNS, MX mail provider, SPF, DMARC and hosting ASN."><meta property="og:url" content="https://getdatagrit.github.io/domain-whois-rdap-lookup/"><meta property="og:image" content="https://getdatagrit.github.io/og/domain-whois-rdap-lookup.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Bulk WHOIS &amp; RDAP Domain Lookup with DNS Records | datagrit"><meta name="twitter:description" content="Bulk WHOIS via official RDAP: registrar, creation and expiry dates, domain age, EPP status, plus DNS, MX mail provider, SPF, DMARC and hosting ASN."><meta name="twitter:image" content="https://getdatagrit.github.io/og/domain-whois-rdap-lookup.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Domain WHOIS RDAP Lookup - DNS, MX & Expiry","description":"Bulk WHOIS via official RDAP: registrar, creation and expiry dates, domain age, EPP status, plus DNS, MX mail provider, SPF, DMARC and hosting ASN.","url":"https://getdatagrit.github.io/domain-whois-rdap-lookup/","image":"https://getdatagrit.github.io/og/domain-whois-rdap-lookup.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Data","operatingSystem":"Web, Apify platform","softwareVersion":"0.2","dateModified":"2026-09-30T21:49:53.793Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/domain-whois-rdap-lookup","priceCurrency":"USD","price":0.0035,"description":"from $3.50 per 1,000 results + $10 per run. The price per result depends on your Apify plan."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/domain-whois-rdap-lookup"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Data","item":"https://getdatagrit.github.io/#seo"},{"@type":"ListItem","position":3,"name":"Domain WHOIS RDAP Lookup - DNS, MX & Expiry","item":"https://getdatagrit.github.io/domain-whois-rdap-lookup/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#seo">Data</a> › Domain WHOIS RDAP Lookup - DNS, MX &amp; Expiry</p>
+<span class="pill">Data</span>
+<h1>Domain WHOIS RDAP Lookup - DNS, MX &amp; Expiry</h1>
+<p class="lead">Bulk domain lookup: official RDAP (WHOIS) registration, expiry and availability plus DNS, mail provider, SPF/DMARC and hosting ASN, with expiry and registrar filters.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/domain-whois-rdap-lookup" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">from $3.50 per 1,000 results + $10 per run · no code needed</span></div>
+<div class="facts"><div class="fact"><b>from $3.50 per 1,000 results + $10 per run</b><span>pay only for domain looked ups you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.2</b><span>updated 2026-09-30</span></div></div>
+<p>Domain WHOIS RDAP Lookup takes a list of domains and returns one flat row per domain: official registration data from the registry's RDAP server (the structured successor of WHOIS) plus the domain's DNS, mail provider, SPF and DMARC policy, and hosting network. It is built for bulk work: SEO and domain investors checking age and expiry, sales teams enriching lead lists with mail stack data, and security teams auditing email authentication.</p>
+<h2>Who is it for?</h2>
+<ul>
+<li><strong>Domain investors and expiry hunters</strong> - find domains that expire within N days, are in redemption or pending deletion, or are not registered at all.</li>
+<li><strong>SEO and link building</strong> - domain age, registrar and hosting network for every prospect site in one CSV.</li>
+<li><strong>B2B sales and lead enrichment</strong> - which companies run Google Workspace or Microsoft 365, and which sit behind Mimecast or Proofpoint.</li>
+<li><strong>Email security and deliverability audits</strong> - SPF all-mechanism, DMARC policy (none, quarantine, reject) and DKIM keys on common selectors for a whole portfolio.</li>
+<li><strong>Brand protection and due diligence</strong> - registrar, IANA id, abuse contact, transfer lock and DNSSEC for lookalike or acquired domains.</li>
+</ul>
+<h2>What data do you get?</h2>
+<h4>Registration (RDAP)</h4>
+<p>Registrar name, IANA registrar id and abuse e-mail, creation, last change and expiry dates, domain age and days to expiry, EPP status codes with <code>transferLocked</code> and <code>deletionPending</code> flags, registry nameservers and DNSSEC. Registrant organization and country only when the registry or registrar publishes them; redacted values become null with <code>registrantRedacted: true</code>. When the registrant card is a privacy or proxy service (Domains By Proxy, Withheld for Privacy and similar), the country is null too, because the address on the card is the service's. Personal names, addresses, e-mails and phone numbers are never returned.</p>
+<h4>Availability</h4>
+<p><code>registered: false</code> means the registry's RDAP server answered &quot;not found&quot; and the name is not delegated in DNS. When RDAP says not found but DNS still delegates the name, the row is <code>found: false</code> with reason <code>notFoundButDelegated</code> instead of a false &quot;available&quot;; when the delegation check itself fails, the row is <code>found: false</code> with reason <code>dnsUnavailable</code>. Both are free.</p>
+<h4>DNS, mail and hosting</h4>
+<p>A, AAAA, MX, NS and TXT records, mail provider (Google Workspace, Microsoft 365, Zoho, Proton, Fastmail, Amazon SES and 25 more), security gateway (Mimecast, Proofpoint, Broadcom, Barracuda, Cisco and others, with the mailbox provider behind it taken from the SPF include), DNS provider, SPF record and its all-mechanism, DMARC record and policy, DKIM keys on 9 common selectors, and the hosting ASN, network name and country of the first IPv4 address.</p>
+<h2>How it works</h2>
+<p>The RDAP server for each TLD comes from the IANA RDAP bootstrap file. Seven registries run official RDAP servers that are not in that file yet (.io, .sh, .ac, .me, .us, .ch, .li); they are used directly. If the IANA file cannot be read, lookups go through rdap.org. TLDs with no RDAP server in the IANA file or in that verified list (for example .de, .co, .it, .eu, .jp) are returned as <code>found: false</code> with reason <code>noRdapService</code>, free, and listed in the run status.</p>
+<p>Requests are paced per server. Measured on 2026-10-01: Verisign (.com) answered 30 requests at up to 15 per second without a limit response; the Actor sends at most 10 per second and 4 in parallel to one registry. GoDaddy's registrar RDAP allows 6 requests per minute and answers 429 with Retry-After; the Actor waits as asked (up to 3 minutes). When a server reports <code>x-ratelimit-remaining: 0</code>, the Actor pauses that server until <code>x-ratelimit-reset</code>, or for 60 seconds when no reset time is sent.</p>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>input</code></td><td>string</td><td>The entry from your input that produced this row. Null only on the &quot;no match&quot; status row.</td><td><code>https://www.wikipedia.org/wiki/Domain</code></td></tr><tr><td><code>domain</code></td><td>string</td><td>Registered domain that was looked up, lowercase ASCII (IDN names in punycode). Subdomains and URLs are reduced to it.</td><td><code>wikipedia.org</code></td></tr><tr><td><code>tld</code></td><td>string</td><td>Top-level domain (last label) used to find the RDAP server.</td><td><code>org</code></td></tr><tr><td><code>found</code></td><td>boolean</td><td>true when the registry gave a definitive answer (registered or not registered); false on rows that could not be looked up (see reason). found:false rows are free.</td><td><code>true</code></td></tr><tr><td><code>registered</code></td><td>boolean</td><td>true = the registry holds a registration; false = RDAP answered not found and the name is not delegated in DNS (available, unless the registry reserves it); null = unknown (found:false).</td><td><code>true</code></td></tr><tr><td><code>reason</code></td><td>string</td><td>Why the row has no answer: noRdapService (no RDAP server is known for the TLD: not in the IANA bootstrap nor in the verified list, e.g. .de), rateLimited, rdapError, rejectedByRegistry (the registry refused the name), unexpectedResponse, notFoundButDelegated (RDAP says not found but DNS delegates the name), dnsUnavailable (RDAP says not found but the DNS delegation check failed, so availability is not confirmed), noMatch (no domain passed your filters). Null on answered rows.</td><td></td></tr><tr><td><code>registrar</code></td><td>string</td><td>Sponsoring registrar name as published by the registry (for .uk the Nominet tag holder).</td><td><code>MarkMonitor Inc.</code></td></tr><tr><td><code>registrarIanaId</code></td><td>integer</td><td>IANA Registrar ID of the sponsoring registrar; null when the registry publishes none (many ccTLDs).</td><td><code>292</code></td></tr><tr><td><code>registrarAbuseEmail</code></td><td>string</td><td>Abuse contact e-mail of the registrar from the registry record (or from the registrar RDAP record when that lookup is on and the registry has none).</td><td><code>abusecomplaints@markmonitor.com</code></td></tr><tr><td><code>createdAt</code></td><td>string</td><td>Registration date (RDAP event &quot;registration&quot;), ISO 8601 UTC.</td><td><code>2001-01-13T00:12:14.754Z</code></td></tr><tr><td><code>updatedAt</code></td><td>string</td><td>Last change of the registry record (RDAP event &quot;last changed&quot;), ISO 8601 UTC.</td><td><code>2026-08-12T08:47:19.410Z</code></td></tr><tr><td><code>expiresAt</code></td><td>string</td><td>Registry expiry date (RDAP event &quot;expiration&quot;), ISO 8601 UTC. Null when the registry does not publish it (for example .ch and .li).</td><td><code>2027-01-13T00:12:14.000Z</code></td></tr><tr><td><code>domainAgeDays</code></td><td>integer</td><td>Whole days since createdAt at the time of the run.</td><td><code>9391</code></td></tr><tr><td><code>daysToExpiry</code></td><td>integer</td><td>Whole days from the run to expiresAt; negative when the date has passed and the registry still holds the domain.</td><td><code>104</code></td></tr><tr><td><code>status</code></td><td>array</td><td>Registry status codes converted from RDAP wording to EPP names, for example clientTransferProhibited, redemptionPeriod, pendingDelete; RDAP &quot;active&quot; becomes ok.</td><td><code>[&quot;clientDeleteProhibited&quot;,&quot;clientTransferProhibited&quot;,&quot;c</code></td></tr><tr><td><code>transferLocked</code></td><td>boolean</td><td>true when status contains clientTransferProhibited or serverTransferProhibited.</td><td><code>true</code></td></tr><tr><td><code>deletionPending</code></td><td>boolean</td><td>true when status contains redemptionPeriod, pendingDelete or pendingRestore (the domain is on its way to being released).</td><td><code>false</code></td></tr><tr><td><code>nameservers</code></td><td>array</td><td>Nameservers delegated at the registry, lowercase, sorted.</td><td><code>[&quot;ns0.wikimedia.org&quot;,&quot;ns1.wikimedia.org&quot;,&quot;ns2.wikimedia</code></td></tr><tr><td><code>dnssec</code></td><td>boolean</td><td>Whether the delegation is DNSSEC-signed (RDAP secureDNS.delegationSigned); null when the registry does not say.</td><td><code>false</code></td></tr><tr><td><code>registrantOrganization</code></td><td>string</td><td>Registrant organization when the registry (or the registrar, with Registrant from registrar RDAP) publishes it. Null when redacted, when a privacy or proxy service is shown instead, or when no registrant data is published. Personal names, addresses, e-mails and phone numbers are never returned.</td><td><code>Wikimedia Foundation, Inc.</code></td></tr><tr><td><code>registrantCountry</code></td><td>string</td><td>Two-letter country code of the registrant when published and not redacted. Null when the registrant card belongs to a privacy or proxy service (Domains By Proxy, Withheld for Privacy and similar), because its address is that of the service, not of the owner; GDPR-redacted cards that keep the real country (for example MarkMonitor, Cloudflare) keep it.</td><td><code>US</code></td></tr><tr><td><code>registrantRedacted</code></td><td>boolean</td><td>true = registrant data withheld or replaced by a privacy service; false = registrant organization published; null = the record carries no registrant data (thin registries such as .com unless Registrant from registrar RDAP is on).</td><td><code>false</code></td></tr><tr><td><code>registrarRdap</code></td><td>string</td><td>notNeeded (the registry record already had registrant data), off (option disabled), noLink (the registry gives no registrar RDAP link), ok, failed, rateLimited. Null on rows of unregistered or unanswered domains.</td><td><code>ok</code></td></tr><tr><td><code>dnsStatus</code></td><td>string</td><td>ok (the resolver answered; empty lists mean no such records), nxdomain (the name does not exist in DNS), failed (resolver errors for every record type; list fields are then null), skipped (DNS turned off). For not-registered domains only the NS delegation is checked.</td><td><code>ok</code></td></tr><tr><td><code>aRecords</code></td><td>array</td><td>IPv4 addresses of the domain apex, sorted. [] = no A record, null = lookup failed or not run.</td><td><code>[&quot;103.102.166.224&quot;]</code></td></tr><tr><td><code>aaaaRecords</code></td><td>array</td><td>IPv6 addresses of the domain apex, sorted. [] = none, null = lookup failed or not run.</td><td><code>[&quot;2001:df2:e500:ed1a::1&quot;]</code></td></tr><tr><td><code>mxRecords</code></td><td>array</td><td>Mail exchanger hosts ordered by priority. [] = no MX record, null = lookup failed or not run.</td><td><code>[&quot;mx-in1001.wikimedia.org&quot;,&quot;mx-in2001.wikimedia.org&quot;]</code></td></tr><tr><td><code>mailProvider</code></td><td>string</td><td>Mailbox provider recognised from the MX hosts (Google Workspace, Microsoft 365, Zoho Mail, Proton Mail, Amazon WorkMail / SES and 25 more). When the MX points to a security gateway it is taken from the SPF include for Google, Microsoft, Zoho, Proton, Fastmail or Amazon SES if present. &quot;Other&quot; = MX present but not recognised; null = no MX, or a gateway with no recognisable SPF include.</td><td><code>Google Workspace</code></td></tr><tr><td><code>mailGateway</code></td><td>string</td><td>Email security gateway in front of the mailboxes, recognised from the MX hosts (Mimecast, Proofpoint, Broadcom Email Security.cloud, Barracuda, Cisco Secure Email and others); null when none.</td><td><code>Proofpoint</code></td></tr><tr><td><code>dnsNameservers</code></td><td>array</td><td>NS records answered by DNS for the domain, sorted; can differ from the registry list during a DNS migration.</td><td><code>[&quot;ns0.wikimedia.org&quot;,&quot;ns1.wikimedia.org&quot;,&quot;ns2.wikimedia</code></td></tr><tr><td><code>dnsProvider</code></td><td>string</td><td>Managed DNS provider recognised from the NS hosts (Cloudflare, Amazon Route 53, Google Cloud DNS, Azure DNS, GoDaddy, Namecheap and others); &quot;Other&quot; when not recognised.</td><td><code>Cloudflare</code></td></tr><tr><td><code>spfRecord</code></td><td>string</td><td>The v=spf1 TXT record of the domain; null when absent or DNS not run.</td><td><code>v=spf1 include:_spf.google.com ~all</code></td></tr><tr><td><code>spfPolicy</code></td><td>string</td><td>The final all mechanism of the SPF record: -all, ~all, ?all or +all, or redirect when the record delegates with redirect=.</td><td><code>~all</code></td></tr><tr><td><code>dmarcRecord</code></td><td>string</td><td>The v=DMARC1 TXT record at _dmarc.&lt;domain&gt;; null when absent or DNS not run.</td><td><code>v=DMARC1; p=reject; rua=mailto:dmarc-rua@wikimedia.org;</code></td></tr><tr><td><code>dmarcPolicy</code></td><td>string</td><td>The p= tag of the DMARC record: none, quarantine or reject.</td><td><code>reject</code></td></tr><tr><td><code>dkimSelectors</code></td><td>array</td><td>Which of the common selectors google, selector1, selector2, k1, s1, s2, default, dkim and mail publish a DKIM key. An empty list does not prove the domain has no DKIM: custom selectors cannot be listed.</td><td><code>[&quot;google&quot;]</code></td></tr><tr><td><code>hostingIp</code></td><td>string</td><td>The IPv4 address used for the hosting lookup (first A record in sorted order).</td><td><code>103.102.166.224</code></td></tr><tr><td><code>hostingAsn</code></td><td>integer</td><td>Autonomous system number announcing hostingIp (Team Cymru IP-to-ASN service).</td><td><code>14907</code></td></tr><tr><td><code>hostingAsnName</code></td><td>string</td><td>Registered name of that autonomous system, e.g. &quot;CLOUDFLARENET - Cloudflare, Inc., US&quot;.</td><td><code>WIKIMEDIA - Wikimedia Foundation Inc., US</code></td></tr><tr><td><code>hostingCountry</code></td><td>string</td><td>Country code of the announcing network prefix.</td><td><code>US</code></td></tr><tr><td><code>rdapServer</code></td><td>string</td><td>Base URL of the RDAP server that answered.</td><td><code>https://rdap.publicinterestregistry.org/rdap/</code></td></tr><tr><td><code>rdapSource</code></td><td>string</td><td>How the server was chosen: iana-bootstrap (IANA RDAP bootstrap file), registry-unlisted (official registry RDAP server not yet in the IANA file: .io .sh .ac .me .us .ch .li), rdap.org (fallback used only when the IANA file is unreachable).</td><td><code>iana-bootstrap</code></td></tr><tr><td><code>sourceUrl</code></td><td>string</td><td>RDAP URL of the domain record.</td><td><code>https://rdap.publicinterestregistry.org/rdap/domain/wikipedia.org</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>Time of the lookup, ISO 8601 UTC.</td><td><code>2026-10-01T08:00:00.000Z</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;input&quot;: &quot;https://www.wikipedia.org/wiki/Domain&quot;,
+  &quot;domain&quot;: &quot;wikipedia.org&quot;,
+  &quot;tld&quot;: &quot;org&quot;,
+  &quot;found&quot;: true,
+  &quot;registered&quot;: true,
+  &quot;reason&quot;: null,
+  &quot;registrar&quot;: &quot;MarkMonitor Inc.&quot;,
+  &quot;registrarIanaId&quot;: 292,
+  &quot;registrarAbuseEmail&quot;: &quot;abusecomplaints@markmonitor.com&quot;,
+  &quot;createdAt&quot;: &quot;2001-01-13T00:12:14.754Z&quot;,
+  &quot;updatedAt&quot;: &quot;2026-08-12T08:47:19.410Z&quot;,
+  &quot;expiresAt&quot;: &quot;2027-01-13T00:12:14.000Z&quot;,
+  &quot;domainAgeDays&quot;: 9391,
+  &quot;daysToExpiry&quot;: 104,
+  &quot;status&quot;: [
+    &quot;clientDeleteProhibited&quot;,
+    &quot;clientTransferProhibited&quot;,
+    &quot;clientUpdateProhibited&quot;
+  ],
+  &quot;transferLocked&quot;: true,
+  &quot;deletionPending&quot;: false,
+  &quot;nameservers&quot;: [
+    &quot;ns0.wikimedia.org&quot;,
+    &quot;ns1.wikimedia.org&quot;,
+    &quot;ns2.wikimedia.org&quot;
+  ],
+  &quot;dnssec&quot;: false,
+  &quot;registrantOrganization&quot;: &quot;Wikimedia Foundation, Inc.&quot;,
+  &quot;registrantCountry&quot;: &quot;US&quot;,
+  &quot;registrantRedacted&quot;: false,
+  &quot;registrarRdap&quot;: &quot;ok&quot;,
+  &quot;dnsStatus&quot;: &quot;ok&quot;,
+  &quot;aRecords&quot;: [
+    &quot;103.102.166.224&quot;
+  ],
+  &quot;aaaaRecords&quot;: [
+    &quot;2001:df2:e500:ed1a::1&quot;
+  ],
+  &quot;mxRecords&quot;: [
+    &quot;mx-in1001.wikimedia.org&quot;,
+    &quot;mx-in2001.wikimedia.org&quot;
+  ],
+  &quot;mailProvider&quot;: &quot;Google Workspace&quot;,
+  &quot;mailGateway&quot;: &quot;Proofpoint&quot;,
+  &quot;dnsNameservers&quot;: [
+    &quot;ns0.wikimedia.org&quot;,
+    &quot;ns1.wikimedia.org&quot;,
+    &quot;ns2.wikimedia.org&quot;
+  ],
+  &quot;dnsProvider&quot;: &quot;Cloudflare&quot;,
+  &quot;spfRecord&quot;: &quot;v=spf1 include:_spf.google.com ~all&quot;,
+  &quot;spfPolicy&quot;: &quot;~all&quot;,
+  &quot;dmarcRecord&quot;: &quot;v=DMARC1; p=reject; rua=mailto:dmarc-rua@wikimedia.org;&quot;,
+  &quot;dmarcPolicy&quot;: &quot;reject&quot;,
+  &quot;dkimSelectors&quot;: [
+    &quot;google&quot;
+  ],
+  &quot;hostingIp&quot;: &quot;103.102.166.224&quot;,
+  &quot;hostingAsn&quot;: 14907,
+  &quot;hostingAsnName&quot;: &quot;WIKIMEDIA - Wikimedia Foundation Inc., US&quot;,
+  &quot;hostingCountry&quot;: &quot;US&quot;,
+  &quot;rdapServer&quot;: &quot;https://rdap.publicinterestregistry.org/rdap/&quot;,
+  &quot;rdapSource&quot;: &quot;iana-bootstrap&quot;,
+  &quot;sourceUrl&quot;: &quot;https://rdap.publicinterestregistry.org/rdap/domain/wikipedia.org&quot;,
+  &quot;scrapedAt&quot;: &quot;2026-10-01T08:00:00.000Z&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>domains</code></td><td>Domains</td><td>array</td><td>Domain names, one per line. URLs, www. hostnames, subdomains and e-mail addresses are accepted and reduced to the registered domain (https://blog.example.co.uk/x -&gt; example.co.uk). Duplicates are merged. Entries that are not a domain are skipped and listed in the run status; if none is valid the run fails. With an empty list the Actor runs a small free example lookup (stripe.com, wikipedia.org, bbc.co.uk, lemonde.fr, google.io, google.de) and says so in the status message.</td></tr><tr><td><code>includeDns</code></td><td>Include DNS, mail provider, SPF and DMARC</td><td>boolean</td><td>Query A, AAAA, MX, NS and TXT records, the DMARC record and common DKIM selectors for every registered domain, and detect the mail provider, mail security gateway and DNS provider. Turn off for registration data only.</td></tr><tr><td><code>includeHosting</code></td><td>Include hosting ASN</td><td>boolean</td><td>Map the first IPv4 address of the domain to its network (ASN number, network name and country) through the public Team Cymru IP-to-ASN DNS service. Needs DNS to be included.</td></tr><tr><td><code>registrantFromRegistrar</code></td><td>Registrant from registrar RDAP</td><td>boolean</td><td>For registries that publish no registrant (for example .com, .net, .org), make a second request to the registrar's own RDAP server to read the registrant organization and country. Registrar servers are rate-limited (GoDaddy allows about 6 requests per minute), so large lists run slower; domains skipped because of a registrar limit are marked registrarRdap = rateLimited.</td></tr><tr><td><code>onlyAvailable</code></td><td>Only available domains</td><td>boolean</td><td>Return only domains with no registration at the registry (RDAP answers not found and the name is not delegated in DNS). Cannot be combined with the expiry, registration date or registrar filters.</td></tr><tr><td><code>expiringWithinDays</code></td><td>Expiring within days</td><td>integer</td><td>Keep only registered domains whose registry expiry date is at most this many days away (daysToExpiry &lt;= N), including domains already past expiry that the registry still holds. Domains whose registry publishes no expiry date (for example .ch) are dropped by this filter. 0 disables the filter.</td></tr><tr><td><code>registeredAfter</code></td><td>Registered on or after</td><td>string</td><td>Keep only registered domains created on or after this date (YYYY-MM-DD, compared with createdAt in UTC). Domains without a creation date are dropped.</td></tr><tr><td><code>registeredBefore</code></td><td>Registered before</td><td>string</td><td>Keep only registered domains created before this date (YYYY-MM-DD, the date itself excluded). Domains without a creation date are dropped.</td></tr><tr><td><code>registrarContains</code></td><td>Registrar contains</td><td>array</td><td>Keep only registered domains whose registrar name contains one of these words (case-insensitive), for example GoDaddy or Namecheap.</td></tr><tr><td><code>maxItems</code></td><td>Maximum results</td><td>integer</td><td>Stop after this many returned domains. Domains not looked up because of this limit are listed in the run status.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Optional proxy for the RDAP requests. Leave disabled: RDAP servers are public. DNS queries never go through the proxy.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~domain-whois-rdap-lookup/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;domains&quot;:[&quot;stripe.com&quot;,&quot;shopify.com&quot;,&quot;atlassian.com&quot;,&quot;nature.com&quot;,&quot;wikipedia.org&quot;,&quot;mozilla.org&quot;,&quot;bbc.co.uk&quot;,&quot;lemonde.fr&quot;,&quot;web.dev&quot;,&quot;google.io&quot;,&quot;google.us&quot;,&quot;zzqx-nonexist-8841.com&quot;]}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/domain-whois-rdap-lookup').call({
+  &quot;domains&quot;: [
+    &quot;stripe.com&quot;,
+    &quot;shopify.com&quot;,
+    &quot;atlassian.com&quot;,
+    &quot;nature.com&quot;,
+    &quot;wikipedia.org&quot;,
+    &quot;mozilla.org&quot;,
+    &quot;bbc.co.uk&quot;,
+    &quot;lemonde.fr&quot;,
+    &quot;web.dev&quot;,
+    &quot;google.io&quot;,
+    &quot;google.us&quot;,
+    &quot;zzqx-nonexist-8841.com&quot;
+  ]
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/domain-whois-rdap-lookup&quot;).call(run_input={
+  &quot;domains&quot;: [
+    &quot;stripe.com&quot;,
+    &quot;shopify.com&quot;,
+    &quot;atlassian.com&quot;,
+    &quot;nature.com&quot;,
+    &quot;wikipedia.org&quot;,
+    &quot;mozilla.org&quot;,
+    &quot;bbc.co.uk&quot;,
+    &quot;lemonde.fr&quot;,
+    &quot;web.dev&quot;,
+    &quot;google.io&quot;,
+    &quot;google.us&quot;,
+    &quot;zzqx-nonexist-8841.com&quot;
+  ]
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/domain-whois-rdap-lookup" rel="noopener">Try Domain WHOIS RDAP Lookup - DNS, MX &amp; Expiry on Apify</a></div>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Data</span><h3><a href="/website-tech-stack-lookup/">Website Tech Stack Lookup - Technology Detector</a></h3><p>Detect the technology stack of any list of domains: CMS, ecommerce, analytics, CDN, frameworks with versions, plus mail provider, SPF and DMARC.</p><div class="meta">from $14.00 / 1,000 results</div></article><article class="card"><span class="pill">Public procurement</span><h3><a href="/ted-contract-expiry-radar/">TED Contract Expiry Radar - Recompete Leads</a></h3><p>Find EU public contracts approaching expiry from TED award notices: incumbent, buyer, value, end date and renewal options.</p><div class="meta">from $7.00 / 1,000 results</div></article><article class="card"><span class="pill">Company data</span><h3><a href="/french-company-finder/">French Company Finder - Sirene Financials</a></h3><p>French company lead lists from Sirene screened by net result and revenue, with net margin, size, matching establishment and optional directors.</p><div class="meta">from $5.60 / 1,000 results</div></article><article class="card"><span class="pill">Jobs &amp; salaries</span><h3><a href="/ashby-salary-scraper/">Ashby Salary Scraper - Startup Job Pay Ranges</a></h3><p>Ashby job postings with normalized annual salary ranges, equity flags and new-since-last-run detection.</p><div class="meta">from $2.10 / 1,000 results</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
