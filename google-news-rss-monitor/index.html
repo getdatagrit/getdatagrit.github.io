@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google News Monitor API - Full Text &amp; Real URLs | datagrit</title>
+<meta name="description" content="Monitor Google News by keyword, site: or topic in any country. Decoded publisher URLs, full article text, only-new mode for schedules. JSON, CSV, Excel.">
+<link rel="canonical" href="https://getdatagrit.github.io/google-news-rss-monitor/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="Google News Monitor API - Full Text &amp; Real URLs | datagrit">
+<meta property="og:description" content="Monitor Google News by keyword, site: or topic in any country. Decoded publisher URLs, full article text, only-new mode for schedules. JSON, CSV, Excel."><meta property="og:url" content="https://getdatagrit.github.io/google-news-rss-monitor/"><meta property="og:image" content="https://getdatagrit.github.io/og/google-news-rss-monitor.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Google News Monitor API - Full Text &amp; Real URLs | datagrit"><meta name="twitter:description" content="Monitor Google News by keyword, site: or topic in any country. Decoded publisher URLs, full article text, only-new mode for schedules. JSON, CSV, Excel."><meta name="twitter:image" content="https://getdatagrit.github.io/og/google-news-rss-monitor.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Google News Monitor - Full Text & Real URLs","description":"Monitor Google News by keyword, site: or topic in any country. Decoded publisher URLs, full article text, only-new mode for schedules. JSON, CSV, Excel.","url":"https://getdatagrit.github.io/google-news-rss-monitor/","image":"https://getdatagrit.github.io/og/google-news-rss-monitor.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Data","operatingSystem":"Web, Apify platform","softwareVersion":"0.2","dateModified":"2026-09-30T21:58:37.777Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/google-news-rss-monitor","priceCurrency":"USD","price":0.0035,"description":"from $3.50 per 1,000 results + $10 per run. The price per result depends on your Apify plan."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/google-news-rss-monitor"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Data","item":"https://getdatagrit.github.io/#news"},{"@type":"ListItem","position":3,"name":"Google News Monitor - Full Text & Real URLs","item":"https://getdatagrit.github.io/google-news-rss-monitor/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#news">Data</a> › Google News Monitor - Full Text &amp; Real URLs</p>
+<span class="pill">Data</span>
+<h1>Google News Monitor - Full Text &amp; Real URLs</h1>
+<p class="lead">Monitor Google News for keywords, site: queries and topics in any country; decoded publisher URLs, optional full text, only-new mode.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/google-news-rss-monitor" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">from $3.50 per 1,000 results + $10 per run · no code needed</span></div>
+<div class="facts"><div class="fact"><b>from $3.50 per 1,000 results + $10 per run</b><span>pay only for articles you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.2</b><span>updated 2026-09-30</span></div></div>
+<p>Google News Monitor watches Google News for your keywords, site: searches and topic sections in any country and language, and returns every article as a clean row: headline, source, publication time, the <strong>real publisher URL</strong> decoded from the Google News link and, if you want it, the <strong>full article text</strong>, author and image. Switch on <strong>Only new articles</strong> and schedule it, and each run returns just the articles you have not received yet. It is built for brand and competitor monitoring, PR and media tracking, market news for trading or research, and news feeds for AI agents and n8n, Make or Zapier workflows.</p>
+<h2>Use cases</h2>
+<ul>
+<li><strong>Brand and competitor monitoring</strong>: track mentions of your company, products and competitors in several countries at once, with duplicates across queries merged into one row.</li>
+<li><strong>PR and media clipping</strong>: collect every article from the last day or hour with the publisher's own URL, ready for a clipping report or a spreadsheet.</li>
+<li><strong>Company research before a call or deal</strong>: pull recent coverage of a company, including the full text, and feed it to an LLM for a summary.</li>
+<li><strong>Market and industry news</strong>: follow sectors, tickers or regulators with Google News operators such as &quot;exact phrase&quot;, OR, -exclude and site:reuters.com.</li>
+<li><strong>News datasets and alerts for AI agents</strong>: a typed output schema with a description of every field, list inputs and short runs make it easy to call from agents and automation tools.</li>
+</ul>
+<h2>Sample output</h2>
+<pre><code>
+{
+  &quot;query&quot;: &quot;openai&quot;,
+  &quot;matchedQueries&quot;: [&quot;openai&quot;],
+  &quot;title&quot;: &quot;FTC launches broad investigation into Anthropic, OpenAI&quot;,
+  &quot;sourceName&quot;: &quot;washingtonpost.com&quot;,
+  &quot;sourceDomain&quot;: &quot;washingtonpost.com&quot;,
+  &quot;sourceHomepage&quot;: &quot;https://www.washingtonpost.com&quot;,
+  &quot;publishedAt&quot;: &quot;2026-09-30T17:44:14.000Z&quot;,
+  &quot;hoursSincePublished&quot;: 0.6,
+  &quot;originalUrl&quot;: &quot;https://www.washingtonpost.com/technology/2026/09/30/ftc-launches-broad-investigation-into-anthropic-openai/&quot;,
+  &quot;urlStatus&quot;: &quot;resolved&quot;,
+  &quot;googleNewsUrl&quot;: &quot;https://news.google.com/rss/articles/CBMirAFBVV95cUxPNERSOFU3...?oc=5&quot;,
+  &quot;articleId&quot;: &quot;CBMirAFBVV95cUxPNERSOFU3...&quot;,
+  &quot;snippet&quot;: &quot;The probe reflects a focus by Trump administration officials on using existing laws to police AI.&quot;,
+  &quot;language&quot;: &quot;en&quot;,
+  &quot;country&quot;: &quot;US&quot;,
+  &quot;matchedEditions&quot;: [&quot;US:en&quot;, &quot;GB:en&quot;],
+  &quot;fullText&quot;: &quot;The Federal Trade Commission has opened a broad investigation into the safety of artificial intelligence systems...&quot;,
+  &quot;fullTextStatus&quot;: &quot;partial&quot;,
+  &quot;author&quot;: &quot;Ian Duncan&quot;,
+  &quot;imageUrl&quot;: &quot;https://www.washingtonpost.com/wp-apps/imrs.php?src=...&quot;,
+  &quot;found&quot;: true,
+  &quot;scrapedAt&quot;: &quot;2026-09-30T18:20:00.000Z&quot;
+}
+</code></pre>
+<p>Every field is described in the dataset schema of the Actor. The <strong>Articles</strong> view shows the main columns and the <strong>Full text</strong> view shows author, snippet, text and image.</p>
+<h2>How does URL decoding work?</h2>
+<p>Google News links point to news.google.com and hide the publisher URL in an encoded article ID. The Actor decodes each returned article through the same public endpoint the Google News website uses: one request for the article page and one decoding request per 10 articles, about 1.1 requests per article. The result goes into originalUrl. The run status reports how many links were decoded and how many decoded URLs are on the source's own domain (&quot;Original URL resolved for 20 of 20 articles, on the source's own domain for 20 of 20&quot;). If Google stops decoding links, or if most decoded URLs point away from the article's source, the run fails with a clear message before any article is returned or charged, instead of returning rows with missing or wrong URLs.</p>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>query</code></td><td>string</td><td>The first query or topic (topic:NAME) in your input that found the article. On the single status row (found = false) it lists all queries and topics that were read, comma-separated.</td><td><code>openai</code></td></tr><tr><td><code>matchedQueries</code></td><td>array</td><td>Every query and topic that found this article, in input order. Duplicates across queries and editions are merged into one row, so this list shows all of them. Empty on the status row.</td><td><code>[&quot;openai&quot;,&quot;topic:TECHNOLOGY&quot;]</code></td></tr><tr><td><code>title</code></td><td>string</td><td>Headline as Google News shows it, without the &quot; - Source&quot; suffix.</td><td><code>FTC launches broad investigation into Anthropic, OpenAI</code></td></tr><tr><td><code>sourceName</code></td><td>string</td><td>Publisher name from the Google News feed.</td><td><code>The Washington Post</code></td></tr><tr><td><code>sourceDomain</code></td><td>string</td><td>Domain of the publisher homepage from the feed, without www.</td><td><code>washingtonpost.com</code></td></tr><tr><td><code>sourceHomepage</code></td><td>string</td><td>Publisher homepage URL from the feed.</td><td><code>https://www.washingtonpost.com</code></td></tr><tr><td><code>publishedAt</code></td><td>string</td><td>Publication time from the feed, ISO 8601 in UTC.</td><td><code>2026-09-30T17:44:14.000Z</code></td></tr><tr><td><code>hoursSincePublished</code></td><td>number</td><td>Hours between publication and the start of the run, one decimal. The time range filter is checked against this value.</td><td><code>0.6</code></td></tr><tr><td><code>originalUrl</code></td><td>string</td><td>Publisher URL of the article decoded from the Google News link. Null when decoding is off or failed (see urlStatus).</td><td><code>https://www.washingtonpost.com/technology/2026/09/30/ftc-launches-broad-investig</code></td></tr><tr><td><code>urlStatus</code></td><td>string</td><td>resolved = originalUrl decoded; failed = Google did not decode this link; notRequested = Decode original article URLs was off. Null only on the status row.</td><td><code>resolved</code></td></tr><tr><td><code>googleNewsUrl</code></td><td>string</td><td>Article link as published in the Google News feed (news.google.com). It redirects to the publisher in a browser.</td><td><code>https://news.google.com/rss/articles/CBMirAFBVV95cUxPNERSOFU3M09XYWNrVTdSdHhkcVl</code></td></tr><tr><td><code>articleId</code></td><td>string</td><td>Google News article identifier (the guid of the feed item). The same article has the same ID in every edition and query.</td><td><code>CBMirAFBVV95cUxPNERSOFU3M09XYWNrVTdSdHhkcVl4NkxXeUU2dHItLW41QnJ5TjhOX1VhaUh0Wmc1</code></td></tr><tr><td><code>snippet</code></td><td>string</td><td>Article summary from the publisher page (structured data description, og:description or meta description). Filled only with Full text on: the Google News feed itself carries no summary, only the headline.</td><td><code>The probe reflects a focus by Trump administration officials on using existing l</code></td></tr><tr><td><code>language</code></td><td>string</td><td>Language of the edition in which the article was found first, for example en, de or es-419.</td><td><code>en</code></td></tr><tr><td><code>country</code></td><td>string</td><td>Country code of the edition in which the article was found first.</td><td><code>US</code></td></tr><tr><td><code>matchedEditions</code></td><td>array</td><td>Every edition (COUNTRY:language) whose feed contained this article.</td><td><code>[&quot;US:en&quot;,&quot;GB:en&quot;]</code></td></tr><tr><td><code>fullText</code></td><td>string</td><td>Article text extracted from the publisher page (up to 100,000 characters), paragraphs separated by blank lines. Null unless Full text is on and text was found.</td><td><code>The Federal Trade Commission has opened a broad investigation into the safety of</code></td></tr><tr><td><code>fullTextStatus</code></td><td>string</td><td>ok = 500 or more characters extracted; partial = shorter text (paywall teaser, video page or short item); empty = page without readable paragraphs; blocked = publisher answered 401, 402, 403, 429 or 451; failed = other HTTP error or not an HTML page; noUrl = original URL could not be decoded; notRequested = Full text was off. Null only on the status row.</td><td><code>ok</code></td></tr><tr><td><code>author</code></td><td>string</td><td>Author names from the publisher page, separated by semicolons. Filled only with Full text on.</td><td><code>Ian Duncan</code></td></tr><tr><td><code>imageUrl</code></td><td>string</td><td>Main image of the article from the publisher page. Filled only with Full text on.</td><td><code>https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washp</code></td></tr><tr><td><code>found</code></td><td>boolean</td><td>True for every article. False only on the single status row written when a run returns no article; its query field and the run status say why.</td><td><code>true</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>ISO 8601 time when the run started reading the feeds.</td><td><code>2026-09-30T18:20:00.000Z</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;query&quot;: &quot;openai&quot;,
+  &quot;matchedQueries&quot;: [
+    &quot;openai&quot;,
+    &quot;topic:TECHNOLOGY&quot;
+  ],
+  &quot;title&quot;: &quot;FTC launches broad investigation into Anthropic, OpenAI&quot;,
+  &quot;sourceName&quot;: &quot;The Washington Post&quot;,
+  &quot;sourceDomain&quot;: &quot;washingtonpost.com&quot;,
+  &quot;sourceHomepage&quot;: &quot;https://www.washingtonpost.com&quot;,
+  &quot;publishedAt&quot;: &quot;2026-09-30T17:44:14.000Z&quot;,
+  &quot;hoursSincePublished&quot;: 0.6,
+  &quot;originalUrl&quot;: &quot;https://www.washingtonpost.com/technology/2026/09/30/ftc-launches-broad-investigation-into-anthropic-openai/&quot;,
+  &quot;urlStatus&quot;: &quot;resolved&quot;,
+  &quot;googleNewsUrl&quot;: &quot;https://news.google.com/rss/articles/CBMirAFBVV95cUxPNERSOFU3M09XYWNrVTdSdHhkcVl4NkxXeUU2dHItLW41QnJ5TjhOX1VhaUh0Wmc1Y3ZFVm9qeXhfd0gxRVNNclo3UURDbGFrb19KS2RhSWlrbFl1RTZ5V2dlbEN4WXZ0SkwyTy1mRFc4M0lDYVRCZ0lBQnJzZ2xmenA1cDNaX294MzJYVmhydXlBQ1ZQbG40LW9lY1UtQ2MzRmZsdDJ2MWplNVAx?oc=5&quot;,
+  &quot;articleId&quot;: &quot;CBMirAFBVV95cUxPNERSOFU3M09XYWNrVTdSdHhkcVl4NkxXeUU2dHItLW41QnJ5TjhOX1VhaUh0Wmc1Y3ZFVm9qeXhfd0gxRVNNclo3UURDbGFrb19KS2RhSWlrbFl1RTZ5V2dlbEN4WXZ0SkwyTy1mRFc4M0lDYVRCZ0lBQnJzZ2xmenA1cDNaX294MzJYVmhydXlBQ1ZQbG40LW9lY1UtQ2MzRmZsdDJ2MWplNVAx&quot;,
+  &quot;snippet&quot;: &quot;The probe reflects a focus by Trump administration officials on using existing laws to police AI.&quot;,
+  &quot;language&quot;: &quot;en&quot;,
+  &quot;country&quot;: &quot;US&quot;,
+  &quot;matchedEditions&quot;: [
+    &quot;US:en&quot;,
+    &quot;GB:en&quot;
+  ],
+  &quot;fullText&quot;: &quot;The Federal Trade Commission has opened a broad investigation into the safety of artificial intelligence systems made by Anthropic and OpenAI...&quot;,
+  &quot;fullTextStatus&quot;: &quot;ok&quot;,
+  &quot;author&quot;: &quot;Ian Duncan&quot;,
+  &quot;imageUrl&quot;: &quot;https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/example.jpg&quot;,
+  &quot;found&quot;: true,
+  &quot;scrapedAt&quot;: &quot;2026-09-30T18:20:00.000Z&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>queries</code></td><td>Search queries</td><td>array</td><td>Google News searches, one per line. Google News operators work: &quot;exact phrase&quot;, OR, -exclude, site:reuters.com, intitle:word, when:1d, after:2026-09-01 and before:2026-09-30. Each query is read in every edition below. An article found by several queries or editions is returned once, with all of them in matchedQueries and matchedEditions. Leave empty when you only monitor topics.</td></tr><tr><td><code>topics</code></td><td>Topic sections</td><td>array</td><td>Optional Google News sections to monitor in every edition: TOP (top stories), WORLD, NATION, BUSINESS, TECHNOLOGY, ENTERTAINMENT, SPORTS, SCIENCE or HEALTH. Rows from a section have the query topic:NAME, for example topic:TECHNOLOGY. Unknown names are skipped and listed in the run status.</td></tr><tr><td><code>editions</code></td><td>Editions (country:language)</td><td>array</td><td>Google News editions to read, as COUNTRY:language codes: US:en, GB:en, IN:en, AU:en, CA:en, CA:fr, DE:de, FR:fr, ES:es, IT:it, NL:nl, PL:pl, JP:ja, BR:pt-419, MX:es-419 and other editions Google News offers. en-US style codes are accepted and UK is read as GB. Each edition is one feed per query, so 3 queries x 2 editions read 6 feeds. Google serves another edition for a pair it does not offer (for example PL:en returns US:en); such an edition is skipped, returns no articles, is not charged and is named in the run status. If none of the editions exists, the run fails.</td></tr><tr><td><code>timeRange</code></td><td>Time range</td><td>string</td><td>Keep only articles published within this period before the run. The Actor adds the matching when: operator to every query that has no when:, after: or before: of its own, and then checks the publication date of every article again against the time range and the query's own when:, after: and before: (the last two with one day of tolerance), because Google News sometimes returns older articles (on 30 September 2026, 8 of 100 results of site:bbc.co.uk when:1d were from 2011 to 2025). Topic sections are filtered by the same date check.</td></tr><tr><td><code>maxItems</code></td><td>Maximum articles</td><td>integer</td><td>Most articles to return in one run, newest first, across all queries, topics and editions. One Google News feed holds about 100 articles at most, so this is the practical maximum per query and edition.</td></tr><tr><td><code>onlyNew</code></td><td>Only articles new since the last run</td><td>boolean</td><td>Return only articles that an earlier run with the same queries, topics, editions and time range has not returned yet. The memory is kept per combination of those settings in your account, so two monitors with different queries never hide each other's articles, and only articles that were actually returned are remembered. Use it with a schedule to get a stream of fresh news.</td></tr><tr><td><code>resolveUrls</code></td><td>Decode original article URLs</td><td>boolean</td><td>Google News links point to news.google.com, not to the publisher. When on, the Actor decodes every returned article to its original publisher URL (originalUrl) and checks site: queries against it too. This takes one request per article plus one per 10 articles to Google News (about 1.1 per article), so a run of 100 articles takes one to two minutes longer. Always on when Full text is on.</td></tr><tr><td><code>fullText</code></td><td>Full text, author and image</td><td>boolean</td><td>Open each article on the publisher's site and extract the article text, author, main image and summary (snippet). Plain HTTP, no browser: paywalled and script-rendered pages return partial or no text, which fullTextStatus reports per article. Adds roughly one second per article.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Optional proxy for requests to Google News and publishers. Not needed in normal use.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~google-news-rss-monitor/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;queries&quot;:[&quot;openai&quot;,&quot;\&quot;electric vehicles\&quot;&quot;],&quot;editions&quot;:[&quot;US:en&quot;],&quot;timeRange&quot;:&quot;1d&quot;,&quot;maxItems&quot;:20}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/google-news-rss-monitor').call({
+  &quot;queries&quot;: [
+    &quot;openai&quot;,
+    &quot;\&quot;electric vehicles\&quot;&quot;
+  ],
+  &quot;editions&quot;: [
+    &quot;US:en&quot;
+  ],
+  &quot;timeRange&quot;: &quot;1d&quot;,
+  &quot;maxItems&quot;: 20
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/google-news-rss-monitor&quot;).call(run_input={
+  &quot;queries&quot;: [
+    &quot;openai&quot;,
+    &quot;\&quot;electric vehicles\&quot;&quot;
+  ],
+  &quot;editions&quot;: [
+    &quot;US:en&quot;
+  ],
+  &quot;timeRange&quot;: &quot;1d&quot;,
+  &quot;maxItems&quot;: 20
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/google-news-rss-monitor" rel="noopener">Try Google News Monitor - Full Text &amp; Real URLs on Apify</a></div>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Public procurement</span><h3><a href="/ted-contract-expiry-radar/">TED Contract Expiry Radar - Recompete Leads</a></h3><p>Find EU public contracts approaching expiry from TED award notices: incumbent, buyer, value, end date and renewal options.</p><div class="meta">from $7.00 / 1,000 results</div></article><article class="card"><span class="pill">Company data</span><h3><a href="/french-company-finder/">French Company Finder - Sirene Financials</a></h3><p>French company lead lists from Sirene screened by net result and revenue, with net margin, size, matching establishment and optional directors.</p><div class="meta">from $5.60 / 1,000 results</div></article><article class="card"><span class="pill">Jobs &amp; salaries</span><h3><a href="/ashby-salary-scraper/">Ashby Salary Scraper - Startup Job Pay Ranges</a></h3><p>Ashby job postings with normalized annual salary ranges, equity flags and new-since-last-run detection.</p><div class="meta">from $2.10 / 1,000 results</div></article><article class="card"><span class="pill">Jobs &amp; salaries</span><h3><a href="/career-site-jobs-aggregator/">Career Site Jobs Aggregator - ATS Salary Data</a></h3><p>Open jobs from Greenhouse, Lever, Ashby, Workday, Workable, SmartRecruiters, Recruitee and Personio in one schema with normalized salaries.</p><div class="meta">from $2.80 / 1,000 results</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
