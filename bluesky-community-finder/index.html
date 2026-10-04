@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bluesky Starter Pack, Feed &amp; List Finder API | datagrit</title>
+<meta name="description" content="Find Bluesky starter packs, custom feeds and lists by topic or account. Filter by joins, likes and size, check feed health, export members to CSV.">
+<link rel="canonical" href="https://getdatagrit.github.io/bluesky-community-finder/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="Bluesky Starter Pack, Feed &amp; List Finder API | datagrit">
+<meta property="og:description" content="Find Bluesky starter packs, custom feeds and lists by topic or account. Filter by joins, likes and size, check feed health, export members to CSV."><meta property="og:url" content="https://getdatagrit.github.io/bluesky-community-finder/"><meta property="og:image" content="https://getdatagrit.github.io/og/bluesky-community-finder.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Bluesky Starter Pack, Feed &amp; List Finder API | datagrit"><meta name="twitter:description" content="Find Bluesky starter packs, custom feeds and lists by topic or account. Filter by joins, likes and size, check feed health, export members to CSV."><meta name="twitter:image" content="https://getdatagrit.github.io/og/bluesky-community-finder.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bluesky Community Finder: Starter Packs & Feeds","description":"Find Bluesky starter packs, custom feeds and lists by topic or account. Filter by joins, likes and size, check feed health, export members to CSV.","url":"https://getdatagrit.github.io/bluesky-community-finder/","image":"https://getdatagrit.github.io/og/bluesky-community-finder.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Data","operatingSystem":"Web, Apify platform","softwareVersion":"0.3","dateModified":"2026-10-04T11:10:36.842Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/bluesky-community-finder","priceCurrency":"USD","price":0.0035,"description":"from $3.50 per 1,000 results + $10 per run. The price per result depends on your Apify plan."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/bluesky-community-finder"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Data","item":"https://getdatagrit.github.io/#social"},{"@type":"ListItem","position":3,"name":"Bluesky Community Finder: Starter Packs & Feeds","item":"https://getdatagrit.github.io/bluesky-community-finder/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it need a Bluesky account?","acceptedAnswer":{"@type":"Answer","text":"No. It uses the public API without login."}},{"@type":"Question","name":"Can I search lists by topic?","acceptedAnswer":{"@type":"Answer","text":"Bluesky has no search for lists. Give the handles of the accounts whose lists you want."}},{"@type":"Question","name":"How do I get only new packs each day?","acceptedAnswer":{"@type":"Answer","text":"Schedule the Actor with the same input and switch on \"Only communities not seen before\"."}},{"@type":"Question","name":"Something looks wrong in the data.","acceptedAnswer":{"@type":"Answer","text":"Open an issue on the Actor page with the input you used and the run link."}}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#social">Data</a> › Bluesky Community Finder: Starter Packs &amp; Feeds</p>
+<span class="pill">Data</span>
+<h1>Bluesky Community Finder: Starter Packs &amp; Feeds</h1>
+<p class="lead">Find Bluesky starter packs, custom feeds and curated lists by topic, with join counts, feed likes and full member lists with follower counts.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/bluesky-community-finder" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">from $3.50 per 1,000 results + $10 per run · no code needed</span></div>
+<div class="facts"><div class="fact"><b>from $3.50 per 1,000 results + $10 per run</b><span>pay only for community or members you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.3</b><span>updated 2026-10-04</span></div></div>
+<p>Bluesky Community Finder builds a catalog of the communities on Bluesky: starter packs, custom feeds and curated lists. Search by topic or point it at specific accounts, and every starter pack, feed or list comes back as one clean row with its creator, dates, size and popularity. Starter packs carry all-time and weekly join counts and the member count. Feeds carry likes and, if you ask for it, a live check of whether the feed is still online and valid. Lists carry their purpose (curate, moderation or reference) and member count. Turn on members and every pack or list is followed by one row per account, with followers, follows, posts and verification status. It reads Bluesky's public API, needs no login or API key, and exports to JSON, CSV or Excel.</p>
+<h2>Who is it for?</h2>
+<ul>
+<li><strong>Community managers and marketers</strong> looking for the starter packs and feeds that already gather an audience around a topic, and for the people inside them.</li>
+<li><strong>Creators and publishers</strong> checking where their niche lives on Bluesky and which packs are still gaining joins.</li>
+<li><strong>Researchers and analysts</strong> mapping topic communities, comparing how many people join packs and like feeds.</li>
+<li><strong>Developers and data teams</strong> who need a scheduled, deduplicated feed of new packs, feeds and lists for a dashboard or an alert.</li>
+</ul>
+<h2>Pricing</h2>
+<p>You pay per result row: each starter pack, feed, list or member returned is one result, and the price per result is set on the Actor page and shown before you run it. The free example with empty input is not charged. There are no charges for rows that were filtered out or skipped as already seen, and a search that finds nothing returns a single status row with <code>found: false</code> that is not billed. Set a maximum charge per run in the Apify console to cap spending; the Actor stops cleanly when it is reached.</p>
+<h2>How to use it</h2>
+<ol>
+<li>Choose what to find: starter packs, custom feeds, or lists.</li>
+<li>Add search terms (for example <code>journalists</code> or <code>science</code>) or account handles such as <code>bsky.app</code>. Starter packs and feeds can be searched by topic. Lists cannot be searched by topic, so use handles for them.</li>
+<li>Narrow the results with the filters below, and switch on members if you want the accounts inside each pack or list.</li>
+<li>Set the maximum number of communities and run the Actor.</li>
+</ol>
+<p>If you leave search terms and handles empty, the Actor runs a small free example (up to 10 results, not charged) so you can see the output before you configure anything; the status message says so.</p>
+<h4>Filters</h4>
+<ul>
+<li><strong>Name or description contains</strong>: keep results matching any of your words.</li>
+<li><strong>Minimum joins</strong> (starter packs): people who joined through the pack, all time.</li>
+<li><strong>Minimum members</strong> (starter packs and lists): accounts inside the community.</li>
+<li><strong>Minimum likes</strong> (feeds).</li>
+<li><strong>Created after</strong>: packs use their creation date, feeds and lists the date Bluesky indexed them.</li>
+<li><strong>List type</strong> (lists): curate, moderation or reference.</li>
+<li><strong>Check feed health</strong> and <strong>Only feeds that are online</strong> (feeds): one extra request per feed to confirm it still answers and returns valid posts.</li>
+<li><strong>Only communities not seen before</strong>: skip anything an earlier run with the same search terms, handles and filters already returned, so a scheduled run delivers only new packs and feeds.</li>
+</ul>
+<p>A filter that does not apply to the chosen type is listed in the status message instead of failing silently.</p>
+<h4>Members</h4>
+<p>With <strong>Include members</strong>, each starter pack or list is followed by up to your chosen number of member rows. <strong>Add follower counts to members</strong> looks up followers, follows, posts and verification for every member. Member rows are separate results and are billed like any other row; the limit on communities does not cap them, so set the maximum members per community to match your budget.</p>
+<h2>Good to know</h2>
+<ul>
+<li>Bluesky's public API returns member counts for starter packs only from the detail of each pack, so the Actor makes one extra request per pack. Feeds and lists carry their counts in the listing.</li>
+<li>The status message at the end of every run reports how many member counts, feed health checks and member profiles were actually retrieved. If Bluesky stops returning one of them for every record, the run fails instead of filling the field with zeros. Member lists that Bluesky no longer serves are skipped and counted (<code>Member lists unavailable</code>), and the run fails only when none can be read; the same applies to listing fields such as join, like and member counts and to member records in an unexpected shape.</li>
+<li>Accounts that were deactivated after being added to a list keep their member row, with follower counts set to null.</li>
+<li>Only public data is read. Private accounts, direct messages and anything behind a login are out of reach.</li>
+</ul>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>type</code></td><td>string</td><td>What the row is: starterPack, feed, list or member. On the status row it is the type you searched for.</td><td><code>starterPack</code></td></tr><tr><td><code>query</code></td><td>string</td><td>The search term or handle this row came from. Member rows carry the query of their starter pack or list.</td><td><code>journalists</code></td></tr><tr><td><code>uri</code></td><td>string</td><td>Permanent AT Protocol address of the starter pack, feed or list. Null on member rows and the status row.</td><td><code>at://did:plc:ab12cd34ef56/app.bsky.graph.starterpack/3kabcdefgh2</code></td></tr><tr><td><code>url</code></td><td>string</td><td>Link to the starter pack, feed, list or member profile on bsky.app. Null on the status row.</td><td><code>https://bsky.app/starter-pack/example.bsky.social/3kabcdefgh2</code></td></tr><tr><td><code>name</code></td><td>string</td><td>Name of the starter pack, feed or list. Null on member rows and the status row.</td><td><code>Bluesky for Journalists</code></td></tr><tr><td><code>description</code></td><td>string</td><td>Description written by the creator, or for a member the profile bio. Null when empty.</td><td><code>Journalists worth following on Bluesky.</code></td></tr><tr><td><code>creatorHandle</code></td><td>string</td><td>Handle of the account that created the community. Null on member rows and the status row.</td><td><code>example.bsky.social</code></td></tr><tr><td><code>creatorDisplayName</code></td><td>string</td><td>Display name of the creator. Null when the creator has none.</td><td><code>Example Creator</code></td></tr><tr><td><code>creatorDid</code></td><td>string</td><td>Permanent identifier of the creator account. Null on member rows and the status row.</td><td><code>did:plc:ab12cd34ef56</code></td></tr><tr><td><code>createdAt</code></td><td>string</td><td>Starter packs only: when the creator made the pack (ISO 8601). Null for feeds, lists and members.</td><td><code>2024-06-25T05:30:27.442Z</code></td></tr><tr><td><code>updatedAt</code></td><td>string</td><td>Starter packs only: last edit by the creator (ISO 8601). Null when never edited.</td><td><code>2024-07-01T10:00:00.000Z</code></td></tr><tr><td><code>indexedAt</code></td><td>string</td><td>When Bluesky indexed the community (ISO 8601). Null for members.</td><td><code>2024-06-25T05:30:28.000Z</code></td></tr><tr><td><code>joinedAllTimeCount</code></td><td>integer</td><td>Starter packs only: how many people joined through the pack, all time. Null for feeds and lists.</td><td><code>37</code></td></tr><tr><td><code>joinedWeekCount</code></td><td>integer</td><td>Starter packs only: joins in the last 7 days. Null for feeds and lists.</td><td><code>2</code></td></tr><tr><td><code>memberCount</code></td><td>integer</td><td>Starter packs and lists: number of accounts in it. Null for feeds and members.</td><td><code>150</code></td></tr><tr><td><code>feedCount</code></td><td>integer</td><td>Starter packs only: how many custom feeds the pack recommends. Null for feeds, lists and members.</td><td><code>3</code></td></tr><tr><td><code>feedUris</code></td><td>array</td><td>Starter packs only: AT URIs of the feeds the pack recommends. Null for feeds, lists and members.</td><td><code>[&quot;at://did:plc:ab12cd34ef56/app.bsky.feed.generator/news&quot;]</code></td></tr><tr><td><code>likeCount</code></td><td>integer</td><td>Feeds only: number of likes. Null for starter packs and lists.</td><td><code>23983</code></td></tr><tr><td><code>acceptsInteractions</code></td><td>boolean</td><td>Feeds only: whether the feed takes like and reply signals from users. Null for starter packs and lists.</td><td><code>true</code></td></tr><tr><td><code>contentMode</code></td><td>string</td><td>Feeds only: unspecified (posts) or video. Null when Bluesky does not say.</td><td><code>unspecified</code></td></tr><tr><td><code>serviceDid</code></td><td>string</td><td>Feeds only: identifier of the server that generates the feed. Null for other types.</td><td><code>did:web:feed.example.com</code></td></tr><tr><td><code>isOnline</code></td><td>boolean</td><td>Feeds only, when Check feed health is on: whether the feed server answers. Null when health was not checked.</td><td><code>true</code></td></tr><tr><td><code>isValid</code></td><td>boolean</td><td>Feeds only, when Check feed health is on: whether the feed returns valid posts. Null when health was not checked.</td><td><code>true</code></td></tr><tr><td><code>purpose</code></td><td>string</td><td>Lists only: curate, mod or reference. Null for other types.</td><td><code>curate</code></td></tr><tr><td><code>communityType</code></td><td>string</td><td>Members only: starterPack or list the member belongs to. Null on community rows.</td><td><code>starterPack</code></td></tr><tr><td><code>communityUri</code></td><td>string</td><td>Members only: AT URI of the starter pack or list. Null on community rows.</td><td><code>at://did:plc:ab12cd34ef56/app.bsky.graph.starterpack/3kabcdefgh2</code></td></tr><tr><td><code>communityName</code></td><td>string</td><td>Members only: name of the starter pack or list. Null on community rows.</td><td><code>Bluesky for Journalists</code></td></tr><tr><td><code>did</code></td><td>string</td><td>Members only: permanent identifier of the account. Null on community rows.</td><td><code>did:plc:zz99yy88xx77</code></td></tr><tr><td><code>handle</code></td><td>string</td><td>Members only: handle of the account. Null on community rows.</td><td><code>reporter.bsky.social</code></td></tr><tr><td><code>displayName</code></td><td>string</td><td>Members only: display name. Null when the account has none.</td><td><code>Example Reporter</code></td></tr><tr><td><code>accountCreatedAt</code></td><td>string</td><td>Members only: when the account was created (ISO 8601). Null when unknown.</td><td><code>2023-05-01T12:00:00.000Z</code></td></tr><tr><td><code>followersCount</code></td><td>integer</td><td>Members only: follower count. Null when Add follower counts is off or the account was deactivated.</td><td><code>1200</code></td></tr><tr><td><code>followsCount</code></td><td>integer</td><td>Members only: how many accounts the member follows. Null when stats are off or unavailable.</td><td><code>340</code></td></tr><tr><td><code>postsCount</code></td><td>integer</td><td>Members only: number of posts. Null when stats are off or unavailable.</td><td><code>5600</code></td></tr><tr><td><code>isVerified</code></td><td>boolean</td><td>Members only: whether Bluesky verified the account. Null when stats are off or unavailable.</td><td><code>false</code></td></tr><tr><td><code>avatar</code></td><td>string</td><td>Members only: profile picture URL. Null when the account has none.</td><td><code>https://cdn.bsky.app/img/avatar/plain/did:plc:zz99yy88xx77/abc@jpeg</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>ISO 8601 timestamp of extraction.</td><td><code>2026-10-01T08:00:00.000Z</code></td></tr><tr><td><code>found</code></td><td>boolean</td><td>False only on the single status row emitted when a search term or handle returns nothing.</td><td><code>true</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;type&quot;: &quot;starterPack&quot;,
+  &quot;query&quot;: &quot;journalists&quot;,
+  &quot;uri&quot;: &quot;at://did:plc:ab12cd34ef56/app.bsky.graph.starterpack/3kabcdefgh2&quot;,
+  &quot;url&quot;: &quot;https://bsky.app/starter-pack/example.bsky.social/3kabcdefgh2&quot;,
+  &quot;name&quot;: &quot;Bluesky for Journalists&quot;,
+  &quot;description&quot;: &quot;Journalists worth following on Bluesky.&quot;,
+  &quot;creatorHandle&quot;: &quot;example.bsky.social&quot;,
+  &quot;creatorDisplayName&quot;: &quot;Example Creator&quot;,
+  &quot;creatorDid&quot;: &quot;did:plc:ab12cd34ef56&quot;,
+  &quot;createdAt&quot;: &quot;2024-06-25T05:30:27.442Z&quot;,
+  &quot;updatedAt&quot;: &quot;2024-07-01T10:00:00.000Z&quot;,
+  &quot;indexedAt&quot;: &quot;2024-06-25T05:30:28.000Z&quot;,
+  &quot;joinedAllTimeCount&quot;: 37,
+  &quot;joinedWeekCount&quot;: 2,
+  &quot;memberCount&quot;: 150,
+  &quot;feedCount&quot;: 3,
+  &quot;feedUris&quot;: [
+    &quot;at://did:plc:ab12cd34ef56/app.bsky.feed.generator/news&quot;
+  ],
+  &quot;likeCount&quot;: 23983,
+  &quot;acceptsInteractions&quot;: true,
+  &quot;contentMode&quot;: &quot;unspecified&quot;,
+  &quot;serviceDid&quot;: &quot;did:web:feed.example.com&quot;,
+  &quot;isOnline&quot;: true,
+  &quot;isValid&quot;: true,
+  &quot;purpose&quot;: &quot;curate&quot;,
+  &quot;communityType&quot;: &quot;starterPack&quot;,
+  &quot;communityUri&quot;: &quot;at://did:plc:ab12cd34ef56/app.bsky.graph.starterpack/3kabcdefgh2&quot;,
+  &quot;communityName&quot;: &quot;Bluesky for Journalists&quot;,
+  &quot;did&quot;: &quot;did:plc:zz99yy88xx77&quot;,
+  &quot;handle&quot;: &quot;reporter.bsky.social&quot;,
+  &quot;displayName&quot;: &quot;Example Reporter&quot;,
+  &quot;accountCreatedAt&quot;: &quot;2023-05-01T12:00:00.000Z&quot;,
+  &quot;followersCount&quot;: 1200,
+  &quot;followsCount&quot;: 340,
+  &quot;postsCount&quot;: 5600,
+  &quot;isVerified&quot;: false,
+  &quot;avatar&quot;: &quot;https://cdn.bsky.app/img/avatar/plain/did:plc:zz99yy88xx77/abc@jpeg&quot;,
+  &quot;scrapedAt&quot;: &quot;2026-10-01T08:00:00.000Z&quot;,
+  &quot;found&quot;: true
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>mode</code></td><td>What to find</td><td>string</td><td>Starter packs: curated follow-packs you can search by topic. Feeds: custom feed generators you can search by topic. Lists: curated, moderation or reference lists published by the accounts in Handles.</td></tr><tr><td><code>queries</code></td><td>Search terms</td><td>array</td><td>Topics to search, for example journalists, science or birds. Each term is searched separately. Works for starter packs and feeds. Lists cannot be searched by topic: use Handles. Leave Search terms and Handles empty to get a free example of up to 10 results.</td></tr><tr><td><code>handles</code></td><td>Account handles</td><td>array</td><td>Bluesky handles, for example bsky.app, or profile URLs such as https://bsky.app/profile/bsky.app. Returns the starter packs, feeds or lists that these accounts created, depending on the mode.</td></tr><tr><td><code>maxItems</code></td><td>Maximum communities</td><td>integer</td><td>Stop after this many starter packs, feeds or lists in total across all search terms and handles. Member rows are not counted here; they come on top when Include members is on.</td></tr><tr><td><code>textContains</code></td><td>Name or description contains</td><td>array</td><td>Keep only results whose name or description contains at least one of these words (case-insensitive).</td></tr><tr><td><code>minJoinedAllTime</code></td><td>Minimum joins (starter packs only)</td><td>integer</td><td>Starter packs only: keep packs that at least this many people joined through, all time. Ignored for feeds and lists.</td></tr><tr><td><code>minMembers</code></td><td>Minimum members (starter packs and lists)</td><td>integer</td><td>Starter packs and lists only: keep communities with at least this many accounts. Ignored for feeds.</td></tr><tr><td><code>minLikes</code></td><td>Minimum likes (feeds only)</td><td>integer</td><td>Feeds only: keep feeds with at least this many likes. Ignored for starter packs and lists.</td></tr><tr><td><code>publishedAfter</code></td><td>Created after</td><td>string</td><td>Keep communities created or first indexed on or after this date, for example 2025-06-01. Starter packs use their creation date; feeds and lists use the date Bluesky indexed them.</td></tr><tr><td><code>listPurpose</code></td><td>List type (lists only)</td><td>string</td><td>Lists only: curate lists group accounts worth following, mod lists are moderation lists, reference lists are general collections. Ignored for starter packs and feeds.</td></tr><tr><td><code>checkFeedHealth</code></td><td>Check feed health (feeds only)</td><td>boolean</td><td>Feeds only: ask Bluesky whether each feed is online and valid, one extra request per feed. Without it, isOnline and isValid stay null.</td></tr><tr><td><code>onlyOnlineFeeds</code></td><td>Only feeds that are online (feeds only)</td><td>boolean</td><td>Feeds only: drop feeds that are offline or invalid. Turns on the health check automatically.</td></tr><tr><td><code>includeMembers</code></td><td>Include members</td><td>boolean</td><td>Starter packs and lists only: add one row per member account after each community. Each member row is a separate billed result.</td></tr><tr><td><code>maxMembersPerCommunity</code></td><td>Maximum members per community</td><td>integer</td><td>Cap on member rows per starter pack or list when Include members is on.</td></tr><tr><td><code>includeMemberStats</code></td><td>Add follower counts to members</td><td>boolean</td><td>When Include members is on, look up followers, follows, posts and verification for every member (one request per 25 members).</td></tr><tr><td><code>onlyNewSinceLastRun</code></td><td>Only communities not seen before</td><td>boolean</td><td>Skip starter packs, feeds and lists already returned by an earlier run with the same search terms, handles and filters. Only delivered results are remembered.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Optional proxy. Bluesky's public API needs none; leave disabled unless you have a reason.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~bluesky-community-finder/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;mode&quot;:&quot;starterPacks&quot;,&quot;queries&quot;:[&quot;journalists&quot;,&quot;science&quot;],&quot;maxItems&quot;:30}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/bluesky-community-finder').call({
+  &quot;mode&quot;: &quot;starterPacks&quot;,
+  &quot;queries&quot;: [
+    &quot;journalists&quot;,
+    &quot;science&quot;
+  ],
+  &quot;maxItems&quot;: 30
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/bluesky-community-finder&quot;).call(run_input={
+  &quot;mode&quot;: &quot;starterPacks&quot;,
+  &quot;queries&quot;: [
+    &quot;journalists&quot;,
+    &quot;science&quot;
+  ],
+  &quot;maxItems&quot;: 30
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>Does it need a Bluesky account?</summary><p>No. It uses the public API without login.</p></details>
+<details><summary>Can I search lists by topic?</summary><p>Bluesky has no search for lists. Give the handles of the accounts whose lists you want.</p></details>
+<details><summary>How do I get only new packs each day?</summary><p>Schedule the Actor with the same input and switch on &quot;Only communities not seen before&quot;.</p></details>
+<details><summary>Something looks wrong in the data.</summary><p>Open an issue on the Actor page with the input you used and the run link.</p></details>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/bluesky-community-finder" rel="noopener">Try Bluesky Community Finder: Starter Packs &amp; Feeds on Apify</a></div>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Data</span><h3><a href="/substack-sponsor-prospector/">Substack Newsletter Sponsorship Prospect Finder</a></h3><p>Substack publications ranked for sponsorship: subscriber count, paid-tier size, plan prices, posting cadence and engagement per 1,000 subscribers.</p><div class="meta">from $3.15 / 1,000 results</div></article><article class="card"><span class="pill">Public procurement</span><h3><a href="/ted-contract-expiry-radar/">TED Contract Expiry Radar - Recompete Leads</a></h3><p>Find EU public contracts approaching expiry from TED award notices: incumbent, buyer, value, end date and renewal options.</p><div class="meta">from $7.00 / 1,000 results</div></article><article class="card"><span class="pill">Company data</span><h3><a href="/french-company-finder/">French Company Finder - Sirene Financials</a></h3><p>French company lead lists from Sirene screened by net result and revenue, with net margin, size, matching establishment and optional directors.</p><div class="meta">from $5.60 / 1,000 results</div></article><article class="card"><span class="pill">Company data</span><h3><a href="/irs-990-officer-compensation/">IRS 990 Nonprofit Officers and Compensation</a></h3><p>Named officers, directors and key employees with pay, hours and titles from IRS e-filed 990, 990-EZ and 990-PF returns.</p><div class="meta">from $3.50 / 1,000 results</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
