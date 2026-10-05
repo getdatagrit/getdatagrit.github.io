@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to track new TikTok Top Ads by industry and country with Python | datagrit</title>
+<meta name="description" content="Pull TikTok Creative Center Top Ads for several countries and industries, merge the lists, and get only the ads that are new since your last run.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/tiktok-top-ads-monitor/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to track new TikTok Top Ads by industry and country with Python | datagrit">
+<meta property="og:description" content="Pull TikTok Creative Center Top Ads for several countries and industries, merge the lists, and get only the ads that are new since your last run."><meta property="og:url" content="https://getdatagrit.github.io/guides/tiktok-top-ads-monitor/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to track new TikTok Top Ads by industry and country with Python | datagrit"><meta name="twitter:description" content="Pull TikTok Creative Center Top Ads for several countries and industries, merge the lists, and get only the ads that are new since your last run."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to track new TikTok Top Ads by industry and country with Python","description":"Pull TikTok Creative Center Top Ads for several countries and industries, merge the lists, and get only the ads that are new since your last run.","datePublished":"2026-10-05","dateModified":"2026-10-05","image":"https://getdatagrit.github.io/og/default.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/tiktok-top-ads-monitor/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webscraping, python, api, marketing","about":{"@type":"SoftwareApplication","name":"TikTok Top Ads Monitor: New Ads by Industry","url":"https://getdatagrit.github.io/tiktok-top-ads-monitor/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to track new TikTok Top Ads by industry and country with Python","item":"https://getdatagrit.github.io/guides/tiktok-top-ads-monitor/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › TikTok Top Ads Monitor: New Ads by Industry</p>
+<span class="pill">Guide</span>
+<h1>How to track new TikTok Top Ads by industry and country with Python</h1>
+<p class="lead">Pull TikTok Creative Center Top Ads for several countries and industries, merge the lists, and get only the ads that are new since your last run.</p>
+<p class="note">Published 2026-10-05 · uses the <a href="/tiktok-top-ads-monitor/">TikTok Top Ads Monitor: New Ads by Industry</a> Actor</p>
+<p>TikTok Creative Center publishes a Top Ads ranking: the ads that perform best in a country, an industry and a campaign objective over the last 7, 30 or 180 days. Media buyers use it as a swipe file, dropshippers use it to spot products that are being pushed, and agencies use it for client reports. The page works well for browsing. It works badly for monitoring, because tomorrow's top 20 looks a lot like today's, and nothing tells you which ads are new.</p>
+<p>This guide shows how to turn the ranking into a feed: one row per ad, several countries and industries in a single run, and a flag that separates ads you have already seen from ads that just entered the ranking.</p>
+<h3>Where the data comes from</h3>
+<p>The Creative Center page is backed by a JSON API on <code>ads.tiktok.com</code> that anonymous visitors can call. There is no login, but a few things make a hand-written scraper annoying:</p>
+<ul>
+<li><strong>Signed requests.</strong> Every call carries a timestamp and a signature. When TikTok changes the scheme, calls fail with an authentication code, not an empty list.</li>
+<li><strong>One page of 20 per list.</strong> An anonymous visitor gets page 1 only, with 20 ads. A list is one combination of country, industry, objective, language, period and sort order.</li>
+<li><strong>No keyword search.</strong> The API accepts a <code>keyword</code> but returns nothing for anonymous callers, so you cannot search by brand or product.</li>
+<li><strong>Details need a second request.</strong> The list gives title, metrics and video links. The landing page, comments, shares and the countries an ad ran in come from a per-ad detail call.</li>
+<li><strong>Expiring links.</strong> Video and cover URLs are signed and stop working after a few days.</li>
+<li><strong>Industry codes.</strong> Ads come back with codes such as <code>label_14109000000</code>, not names, and the code-to-name table is a separate call.</li>
+</ul>
+<p>The TikTok Top Ads Monitor Actor on Apify handles these. It signs the requests, resolves industry and objective names from the filter catalog, fetches details for you, and fails the run loudly instead of returning silent zeros if TikTok changes its response.</p>
+<p>The 20-ad cap is the main limit, and the Actor works around it the only honest way: a single list never returns more than 20 ads, so one run reads many lists and merges them. Each sort order (<code>for_you</code>, <code>ctr</code>, <code>like</code>, <code>impression</code>, <code>cvr</code>) is a different top 20, and so is each country, industry, objective and language. An ad found in several lists becomes one row with its <code>bestRank</code> and the list of <code>matchedSlices</code> it appeared in. One run reads up to 400 lists.</p>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>Top ads in the US and the UK, ranked both by the default ranking and by CTR, over the last 7 days, with landing pages:</p>
+<pre><code>
+{
+  &quot;countries&quot;: [&quot;US&quot;, &quot;GB&quot;],
+  &quot;periodDays&quot;: &quot;7&quot;,
+  &quot;sortBy&quot;: [&quot;for_you&quot;, &quot;ctr&quot;],
+  &quot;industries&quot;: [],
+  &quot;objectives&quot;: [],
+  &quot;adLanguages&quot;: [],
+  &quot;includeDetails&quot;: true,
+  &quot;onlyNew&quot;: false,
+  &quot;maxItems&quot;: 50
+}
+</code></pre>
+<p><code>countries</code> takes two-letter codes or names (28 countries are available). <code>industries</code> takes the 21 top-level Creative Center industries, for example <code>Beauty &amp; Personal Care</code> or <code>Apps</code>. <code>objectives</code> takes names such as <code>Conversions</code> or <code>Video Views</code>. An unknown value stops the run with a message that names it, rather than reading the wrong list.</p>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run_input = {
+    &quot;countries&quot;: [&quot;US&quot;, &quot;GB&quot;],
+    &quot;sortBy&quot;: [&quot;for_you&quot;, &quot;ctr&quot;],
+    &quot;periodDays&quot;: &quot;7&quot;,
+    &quot;includeDetails&quot;: True,
+    &quot;maxItems&quot;: 50,
+}
+
+run = client.actor(&quot;datagrit/tiktok-top-ads-monitor&quot;).call(run_input=run_input)
+ads = [a for a in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if a.get(&quot;found&quot;)]
+
+for ad in ads[:10]:
+    print(ad[&quot;bestRank&quot;], ad[&quot;industry&quot;], ad[&quot;ctr&quot;], ad[&quot;landingDomain&quot;])
+</code></pre>
+<h4>3. Or with cURL</h4>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~tiktok-top-ads-monitor/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;countries&quot;: [&quot;US&quot;], &quot;industries&quot;: [&quot;Beauty &amp; Personal Care&quot;], &quot;maxItems&quot;: 20}'
+</code></pre>
+<h3>What you get</h3>
+<p>One row per unique ad, best rank first. The fields that matter most:</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>adId</code></td><td><code>7687879583547113492</code></td><td>TikTok's ad id, stable across runs</td></tr>
+<tr><td><code>industry</code></td><td><code>Hotels &amp; Accommodation</code></td><td>Industry name, with <code>industryGroup</code> (<code>Travel</code>) above it</td></tr>
+<tr><td><code>objective</code></td><td><code>Video Views</code></td><td>Campaign objective</td></tr>
+<tr><td><code>ctr</code></td><td><code>0.95</code></td><td>Click-through rate TikTok shows for the ad</td></tr>
+<tr><td><code>likes</code></td><td><code>554</code></td><td>Likes on the ad</td></tr>
+<tr><td><code>landingDomain</code></td><td><code>example-brand.com</code></td><td>Domain of the landing page, without <code>www</code></td></tr>
+<tr><td><code>bestRank</code></td><td><code>1</code></td><td>Best position across all lists the ad appeared in</td></tr>
+<tr><td><code>matchedSlices</code></td><td>`[&quot;US \</td><td>7d \</td><td>for_you&quot;]`</td><td>Every list that contained the ad</td></tr>
+<tr><td><code>isNew</code></td><td><code>true</code></td><td>Not delivered by an earlier run with the same filters</td></tr>
+<tr><td><code>firstSeenAt</code></td><td><code>2026-10-05T08:00:00.000Z</code></td><td>When this monitor first saw the ad</td></tr>
+</tbody></table></div>
+<p>You also get <code>title</code>, <code>comments</code>, <code>shares</code>, <code>costLevel</code>, <code>durationSeconds</code>, <code>videoUrl720p</code>, <code>videoUrl1080p</code>, <code>coverUrl</code>, <code>landingPage</code>, <code>shownInCountries</code>, <code>timesSeen</code>, <code>detailStatus</code> and <code>sourceUrl</code>. Fields TikTok does not provide for an ad are <code>null</code>, never an empty string. If a run finds nothing, the dataset holds one status row with <code>found: false</code> and the reason, and that row is not charged.</p>
+<h3>Recipes</h3>
+<h4>A daily feed of fresh creatives</h4>
+<p>Set <code>onlyNew: true</code> and schedule the Actor once a day. The first run returns everything that matches. Later runs return only ads that were not delivered before for the same filters, so the output is the list of ads that entered your ranking since yesterday.</p>
+<p>The memory is a named key-value store on your own Apify account, keyed by a hash of your countries, industries, objectives, languages, sort orders and period. Two monitors with different filters never hide each other's ads, and reordering the same filters does not reset the memory. Connect the run's webhook to Slack, Zapier or n8n and post each new row with its cover image and landing page.</p>
+<h4>Which sort order finds the most ads?</h4>
+<p>A single list is capped at 20, so it pays to check what each order adds. In pandas:</p>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(ads)
+orders = df.explode(&quot;matchedSlices&quot;)
+orders[&quot;order&quot;] = orders[&quot;matchedSlices&quot;].str.split(&quot; \\| &quot;).str[2]
+
+print(orders.groupby(&quot;order&quot;)[&quot;adId&quot;].nunique())
+print(&quot;unique ads:&quot;, df[&quot;adId&quot;].nunique())
+</code></pre>
+<p>If two orders overlap heavily, drop one and spend the slots on another country or industry instead.</p>
+<h4>Landing page watchlist for a niche</h4>
+<p>Run a niche such as <code>Household Products</code> with <code>objectives: [&quot;Conversions&quot;]</code> and <code>includeDetails: true</code>, then count landing domains over a few weeks:</p>
+<pre><code>
+df = pd.DataFrame(ads)
+top_domains = df[&quot;landingDomain&quot;].value_counts().head(15)
+print(top_domains)
+</code></pre>
+<p>A domain that shows up in several lists, or keeps returning week after week (<code>timesSeen</code> rises), is a store that is scaling its spend. A new domain with <code>isNew: true</code> and a high <code>bestRank</code> is worth a look the same day.</p>
+<h3>Limitations</h3>
+<ul>
+<li><strong>20 ads per list.</strong> More coverage comes from more lists (countries, industries, objectives, languages, sort orders), not from deeper pages.</li>
+<li><strong>No keyword search.</strong> The anonymous API returns no results for keywords, so you cannot look up a single brand. Use industry and objective filters.</li>
+<li><strong>Expiring media links.</strong> <code>videoUrl720p</code>, <code>videoUrl1080p</code> and <code>coverUrl</code> are signed by TikTok and expire after a few days. Download what you need to keep.</li>
+<li><strong><code>brandName</code> is often empty.</strong> TikTok does not provide it for every ad, and the Actor leaves it <code>null</code> instead of guessing.</li>
+</ul>
+<p>The Actor reads only the public Top Ads pages that anyone can open without an account. It returns advertising metrics and links, not personal profiles.</p>
+<h3>Wrapping up</h3>
+<p>If you want a daily list of the TikTok ads that just entered the ranking in your industry, <a href="https://apify.com/datagrit/tiktok-top-ads-monitor" rel="noopener">TikTok Top Ads Monitor on Apify Store</a> does it in one scheduled run, and the full input reference is on the <a href="https://getdatagrit.github.io/tiktok-top-ads-monitor/">documentation page</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/tiktok-top-ads-monitor" rel="noopener">Try TikTok Top Ads Monitor: New Ads by Industry on Apify</a><a class="btn ghost" href="/tiktok-top-ads-monitor/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/career-site-jobs-aggregator/">How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</a></h3><p>Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/french-company-finder/">How to search French companies by profit and revenue with the Sirene API</a></h3><p>Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
