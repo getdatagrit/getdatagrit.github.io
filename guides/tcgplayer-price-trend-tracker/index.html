@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to track TCGplayer price changes and sales velocity with Python | datagrit</title>
+<meta name="description" content="Get 30 and 90-day price change, units sold, sales per day and days of supply for Pokemon, Magic and other TCG cards and sealed products.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/tcgplayer-price-trend-tracker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to track TCGplayer price changes and sales velocity with Python | datagrit">
+<meta property="og:description" content="Get 30 and 90-day price change, units sold, sales per day and days of supply for Pokemon, Magic and other TCG cards and sealed products."><meta property="og:url" content="https://getdatagrit.github.io/guides/tcgplayer-price-trend-tracker/"><meta property="og:image" content="https://getdatagrit.github.io/og/tcgplayer-price-trend-tracker.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to track TCGplayer price changes and sales velocity with Python | datagrit"><meta name="twitter:description" content="Get 30 and 90-day price change, units sold, sales per day and days of supply for Pokemon, Magic and other TCG cards and sealed products."><meta name="twitter:image" content="https://getdatagrit.github.io/og/tcgplayer-price-trend-tracker.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to track TCGplayer price changes and sales velocity with Python","description":"Get 30 and 90-day price change, units sold, sales per day and days of supply for Pokemon, Magic and other TCG cards and sealed products.","datePublished":"2026-10-01","dateModified":"2026-10-01","image":"https://getdatagrit.github.io/og/tcgplayer-price-trend-tracker.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/tcgplayer-price-trend-tracker/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webscraping, python, ecommerce, datascience","about":{"@type":"SoftwareApplication","name":"TCGplayer Price Trends & Sales Velocity Tracker","url":"https://getdatagrit.github.io/tcgplayer-price-trend-tracker/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to track TCGplayer price changes and sales velocity with Python","item":"https://getdatagrit.github.io/guides/tcgplayer-price-trend-tracker/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › TCGplayer Price Trends &amp; Sales Velocity Tracker</p>
+<span class="pill">Guide</span>
+<h1>How to track TCGplayer price changes and sales velocity with Python</h1>
+<p class="lead">Get 30 and 90-day price change, units sold, sales per day and days of supply for Pokemon, Magic and other TCG cards and sealed products.</p>
+<p class="note">Published 2026-10-01 · uses the <a href="/tcgplayer-price-trend-tracker/">TCGplayer Price Trends &amp; Sales Velocity Tracker</a> Actor</p>
+<p>A card's price today tells you very little on its own. A 15-dollar card that sells forty copies a month and rose 9% in thirty days is a very different item from a 15-dollar card that sold twice in a quarter. Resellers deciding what to buy, collectors timing a sale, store owners pricing singles and people building repricing tools all need the same three things: where the price is going, how fast the item actually sells, and how much stock is sitting on the market.</p>
+<p>TCGplayer, a marketplace for trading card games from Pokemon and Magic to Lorcana and One Piece, shows sales history and listings on its product pages. But turning that into a ranked list of risers, fallers and fast movers across a whole set or game means collecting per-printing histories for hundreds of products and doing the arithmetic yourself.</p>
+<p>This post covers what TCGplayer exposes, what gets in the way, and how to get computed trend metrics as rows.</p>
+<h3>Where the data comes from</h3>
+<p>The data comes from TCGplayer's public catalogue: its product search and the price history behind each product page. The history is reported in <strong>3-day windows</strong>, separately for each printing (Normal, Holofoil, Reverse Holofoil and so on), language and condition, with the market price, units sold and sale price range of each window.</p>
+<p>Several details make the raw history awkward to use:</p>
+<ul>
+<li><strong>Market price carries over.</strong> TCGplayer's market price is an average of recent sales and stays the same when nothing sold. A naive &quot;price 30 days ago versus today&quot; can report a change for a card that has not traded at all. The TCGplayer Price Trends &amp; Sales Velocity Tracker Actor on Apify reports a price change only when the printing had at least one sale in the window.</li>
+<li><strong>One product, many series.</strong> A single product id can carry Normal and Foil printings in several languages and five conditions. Each printing and language becomes its own row, with Near Mint (or Unopened for sealed) as the main condition, and the other conditions' prices next to it.</li>
+<li><strong>New releases.</strong> A 90-day change makes no sense for a card with six weeks of history; the Actor needs at least 84 days of history before filling it.</li>
+<li><strong>Unknown sets.</strong> TCGplayer's search silently returns every product when you filter on a set name it does not know. The Actor checks set names against TCGplayer's set list for the chosen game first and stops with similar names if a set does not exist, instead of returning another set's cards.</li>
+<li><strong>Sealed versus singles.</strong> Filtering &quot;sealed&quot; after the search wastes the scan on cards; the Actor applies the card/sealed choice inside the search.</li>
+</ul>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>Pokemon cards from one set, priced at least 5 dollars, with at least 10 sales in 30 days, sorted by TCGplayer relevance:</p>
+<pre><code>
+{
+  &quot;searchQueries&quot;: [],
+  &quot;productLine&quot;: &quot;pokemon&quot;,
+  &quot;setNames&quot;: [&quot;sv-scarlet-and-violet-151&quot;],
+  &quot;rarities&quot;: [],
+  &quot;productType&quot;: &quot;cards&quot;,
+  &quot;printings&quot;: [],
+  &quot;languages&quot;: [&quot;English&quot;],
+  &quot;minMarketPrice&quot;: 5,
+  &quot;maxMarketPrice&quot;: 0,
+  &quot;minSold30d&quot;: 10,
+  &quot;minSold90d&quot;: 0,
+  &quot;sortBy&quot;: &quot;relevance&quot;,
+  &quot;maxProductsToScan&quot;: 200,
+  &quot;maxItems&quot;: 300
+}
+</code></pre>
+<p>To list risers instead, add <code>&quot;minPriceChange30dPct&quot;: 20</code>; for fallers, <code>&quot;maxPriceChange30dPct&quot;: -15</code>. <code>productLine</code> covers 25 product lines, including <code>magic</code>, <code>yugioh</code>, <code>lorcana-tcg</code>, <code>one-piece-card-game</code> and <code>pokemon-japan</code>, or <code>all</code>. Leave <code>searchQueries</code> empty to read a whole set or game, or add terms such as <code>charizard</code> or <code>booster box</code>.</p>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run_input = {
+    &quot;searchQueries&quot;: [&quot;charizard&quot;],
+    &quot;productLine&quot;: &quot;pokemon&quot;,
+    &quot;productType&quot;: &quot;cards&quot;,
+    &quot;minSold30d&quot;: 5,
+    &quot;maxProductsToScan&quot;: 100,
+    &quot;maxItems&quot;: 200,
+}
+
+run = client.actor(&quot;datagrit/tcgplayer-price-trend-tracker&quot;).call(run_input=run_input)
+rows = [r for r in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if r.get(&quot;found&quot;)]
+
+for r in rows[:10]:
+    print(r[&quot;productName&quot;], r[&quot;variant&quot;], r[&quot;marketPrice&quot;], r[&quot;priceChange30dPct&quot;], r[&quot;soldPerDay&quot;])
+</code></pre>
+<h4>3. Or with cURL</h4>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~tcgplayer-price-trend-tracker/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;searchQueries&quot;: [&quot;booster box&quot;], &quot;productLine&quot;: &quot;pokemon&quot;, &quot;productType&quot;: &quot;sealed&quot;, &quot;maxProductsToScan&quot;: 30, &quot;maxItems&quot;: 50}'
+</code></pre>
+<p>Each product needs one extra request for its sales history and the Actor pauses between batches, so plan for roughly 6 seconds per 10 products, about a minute for 100.</p>
+<h3>What you get</h3>
+<p>One row per printing and language of a product:</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>productName</code></td><td><code>Charizard GX - 9/68 (#60 Charizard Stamped)</code></td><td>Card or sealed product</td></tr>
+<tr><td><code>setName</code></td><td><code>Battle Academy</code></td><td>Set or expansion</td></tr>
+<tr><td><code>variant</code> / <code>language</code></td><td><code>Holofoil</code> / <code>English</code></td><td>Printing and language of this row</td></tr>
+<tr><td><code>marketPrice</code></td><td><code>14.57</code></td><td>Market price, latest 3-day window, main condition</td></tr>
+<tr><td><code>priceChange30dPct</code></td><td><code>8.8</code></td><td>Change versus about 30 days ago</td></tr>
+<tr><td><code>priceChange90dPct</code></td><td><code>12.1</code></td><td>Change versus the oldest window of the 90-day history</td></tr>
+<tr><td><code>sold30d</code> / <code>sold90d</code></td><td><code>35</code> / <code>138</code></td><td>Units sold at the main condition</td></tr>
+<tr><td><code>soldPerDay</code></td><td><code>1.53</code></td><td>Average daily sales over the 90-day history</td></tr>
+<tr><td><code>daysOfSupply</code></td><td><code>54.2</code></td><td>Active listings divided by average daily sales</td></tr>
+<tr><td><code>marketPriceLightlyPlayed</code></td><td><code>10.67</code></td><td>Market price of the Lightly Played condition</td></tr>
+</tbody></table></div>
+<p>Rows also include <code>setCode</code>, <code>cardNumber</code>, <code>rarity</code>, <code>releaseDate</code>, <code>condition</code>, <code>sealed</code>, <code>lowSalePrice90d</code>, <code>highSalePrice90d</code>, <code>lastSaleWindowStart</code>, <code>allConditionsSold90d</code>, prices for Moderately Played, Heavily Played and Damaged, <code>listingsCount</code>, <code>lowestListingPrice</code>, <code>medianListingPrice</code>, <code>productUrl</code> and <code>imageUrl</code>. Note that listing counts, listing prices and <code>daysOfSupply</code> refer to the whole product, not to one printing.</p>
+<h3>Recipes</h3>
+<h4>Weekly risers report</h4>
+<p>Schedule a weekly run per game you trade with <code>minPriceChange30dPct: 15</code> and <code>minSold30d: 10</code>, and write the dataset to a Google Sheet. The sales threshold keeps out cards whose price moved on one or two sales.</p>
+<h4>Sealed stock tightness</h4>
+<p>Run with <code>productType: &quot;sealed&quot;</code> and a term like <code>booster box</code>, then sort by <code>daysOfSupply</code>. A low number means listings would sell out in a few days at the current pace; a high one means plenty of stock.</p>
+<h4>Buy list in pandas</h4>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(rows)
+df = df.dropna(subset=[&quot;priceChange30dPct&quot;, &quot;soldPerDay&quot;])
+
+candidates = df[(df[&quot;soldPerDay&quot;] &gt;= 1) &amp; (df[&quot;priceChange30dPct&quot;].between(0, 25))].copy()
+candidates[&quot;lp_discount_pct&quot;] = (1 - candidates[&quot;marketPriceLightlyPlayed&quot;] / candidates[&quot;marketPrice&quot;]) * 100
+
+cols = [&quot;productName&quot;, &quot;variant&quot;, &quot;marketPrice&quot;, &quot;priceChange30dPct&quot;, &quot;soldPerDay&quot;, &quot;daysOfSupply&quot;, &quot;lp_discount_pct&quot;]
+print(candidates.sort_values(&quot;soldPerDay&quot;, ascending=False)[cols].head(25))
+</code></pre>
+<p>This lists steadily rising, frequently sold printings and shows how much cheaper Lightly Played copies trade.</p>
+<h3>Limitations</h3>
+<ul>
+<li><strong>Not a live quote.</strong> The market price is the value of the latest 3-day window, so it can differ by a few cents from the product page right now (for example 14.57 versus 14.63). Use it for trends and comparisons between runs.</li>
+<li><strong>Sales are estimates.</strong> TCGplayer reports sales per 3-day window, so unit counts approximate real volume rather than being an audited count.</li>
+<li><strong>Empty trend fields are expected</strong> when a printing had no sales in the window, or is younger than 84 days for the 90-day change.</li>
+<li><strong>Search depth.</strong> TCGplayer search exposes at most 9,950 products per search; <code>maxProductsToScan</code> bounds each run.</li>
+<li><strong>Prices in USD only</strong>, as TCGplayer publishes them.</li>
+<li><strong>More rows than products.</strong> A card with Normal and Foil copies in two languages can produce four rows; size <code>maxItems</code> accordingly.</li>
+</ul>
+<p>The Actor reads publicly available catalogue and sales information; it does not log in or bypass access controls.</p>
+<h3>Wrapping up</h3>
+<p>If you price, buy or analyse cards, computed trend and velocity per printing saves most of the spreadsheet work; pricing is pay per result, the Actor is <a href="https://apify.com/datagrit/tcgplayer-price-trend-tracker" rel="noopener">on Apify</a>, and all fields are described in the <a href="https://getdatagrit.github.io/tcgplayer-price-trend-tracker/">documentation</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/tcgplayer-price-trend-tracker" rel="noopener">Try TCGplayer Price Trends &amp; Sales Velocity Tracker on Apify</a><a class="btn ghost" href="/tcgplayer-price-trend-tracker/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/career-site-jobs-aggregator/">How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</a></h3><p>Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/french-company-finder/">How to search French companies by profit and revenue with the Sirene API</a></h3><p>Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

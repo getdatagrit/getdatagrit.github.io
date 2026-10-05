@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to get salary ranges from Greenhouse job boards by pay zone | datagrit</title>
+<meta name="description" content="Collect Greenhouse job postings with published pay ranges per location zone, annualised and filtered by currency, using Python, cURL or pandas.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/greenhouse-salary-scraper/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to get salary ranges from Greenhouse job boards by pay zone | datagrit">
+<meta property="og:description" content="Collect Greenhouse job postings with published pay ranges per location zone, annualised and filtered by currency, using Python, cURL or pandas."><meta property="og:url" content="https://getdatagrit.github.io/guides/greenhouse-salary-scraper/"><meta property="og:image" content="https://getdatagrit.github.io/og/greenhouse-salary-scraper.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to get salary ranges from Greenhouse job boards by pay zone | datagrit"><meta name="twitter:description" content="Collect Greenhouse job postings with published pay ranges per location zone, annualised and filtered by currency, using Python, cURL or pandas."><meta name="twitter:image" content="https://getdatagrit.github.io/og/greenhouse-salary-scraper.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to get salary ranges from Greenhouse job boards by pay zone","description":"Collect Greenhouse job postings with published pay ranges per location zone, annualised and filtered by currency, using Python, cURL or pandas.","datePublished":"2026-10-01","dateModified":"2026-10-01","image":"https://getdatagrit.github.io/og/greenhouse-salary-scraper.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/greenhouse-salary-scraper/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webscraping, python, jobs, datascience","about":{"@type":"SoftwareApplication","name":"Greenhouse Salary Scraper - Job Pay Ranges","url":"https://getdatagrit.github.io/greenhouse-salary-scraper/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to get salary ranges from Greenhouse job boards by pay zone","item":"https://getdatagrit.github.io/guides/greenhouse-salary-scraper/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Greenhouse Salary Scraper - Job Pay Ranges</p>
+<span class="pill">Guide</span>
+<h1>How to get salary ranges from Greenhouse job boards by pay zone</h1>
+<p class="lead">Collect Greenhouse job postings with published pay ranges per location zone, annualised and filtered by currency, using Python, cURL or pandas.</p>
+<p class="note">Published 2026-10-01 · uses the <a href="/greenhouse-salary-scraper/">Greenhouse Salary Scraper - Job Pay Ranges</a> Actor</p>
+<p>Many employers publish a pay range on their job postings, and in some regions they must. For companies hiring through Greenhouse, those ranges sit on public job boards at <code>boards.greenhouse.io/&lt;company&gt;</code>, often split into location zones. On Robinhood's board, for example, &quot;Zone 1&quot; covers Menlo Park and New York and &quot;Zone 2&quot; Denver and Chicago; many US employers add a Canadian or European zone next to them.</p>
+<p>That is exactly the data a compensation analyst wants for benchmarking, a recruiter wants for a target-company feed, and a job seeker wants before a negotiation. It is also awkward to use as published: several ranges per role, different currencies, and no field that says whether a range is hourly or yearly.</p>
+<p>This post shows where the data lives, what goes wrong when you collect it yourself, and how to get it as a clean table.</p>
+<h3>Where the data comes from</h3>
+<p>Greenhouse offers employers a public job board API at <code>boards-api.greenhouse.io/v1/boards/&lt;board&gt;/jobs</code>. Called with <code>content=true&amp;pay_transparency=true</code>, a single request returns every open posting on the board together with its pay ranges (<code>pay_input_ranges</code>). No login and no browser are involved.</p>
+<p>The friction is in the pay data itself:</p>
+<ul>
+<li><strong>Several zones per posting.</strong> A single Robinhood posting can list three US zones with different ranges. You need the overall band and every zone, not just the first one.</li>
+<li><strong>Mixed currencies.</strong> Many US employers add a Canadian zone after the US zones. On 30 September 2026, 38 of Mercury's 63 postings had a CAD zone. Taking a min and max across currencies produces nonsense.</li>
+<li><strong>No pay period field.</strong> Greenhouse does not say whether a range is per hour, month or year. You have to infer it from the range title (for example &quot;Hourly Rate&quot;) and the size of the amount.</li>
+<li><strong>Minimum pay filters compare apples and oranges.</strong> On a global board, a threshold of 150000 without a currency also matches postings paying 150,000 INR or PHP a year.</li>
+<li><strong>Incremental feeds.</strong> For a daily new-roles feed you need to remember what you already delivered, per company and per filter combination.</li>
+</ul>
+<p>The Greenhouse Salary Scraper Actor on Apify reads each board in one request, keeps every zone (count plus a one-line summary per zone), computes the band in a single currency, infers the period and leaves it empty when it cannot be determined, and annualises amounts (month × 12, week × 52, hour × 2080). If the board list stops carrying <code>pay_input_ranges</code>, the run fails instead of returning postings that only look unpaid.</p>
+<p>Speed is a side effect of the one-request design: on 30 September 2026 a run over five boards (Robinhood, Airbnb, Coinbase, Mercury, Discord) returned 640 postings in 10 seconds, 543 of them with a published pay range.</p>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>Engineering roles in New York, San Francisco or remote, paying at least 150,000 USD a year, first published in the last 14 days:</p>
+<pre><code>
+{
+  &quot;companies&quot;: [&quot;robinhood&quot;, &quot;coinbase&quot;, &quot;mercury&quot;],
+  &quot;keywords&quot;: [&quot;engineer&quot;],
+  &quot;departments&quot;: [&quot;Engineering&quot;],
+  &quot;locations&quot;: [&quot;New York&quot;, &quot;San Francisco&quot;, &quot;Remote&quot;],
+  &quot;onlyWithPay&quot;: true,
+  &quot;minAnnualPay&quot;: 150000,
+  &quot;payCurrencies&quot;: [&quot;USD&quot;],
+  &quot;publishedWithinDays&quot;: 14,
+  &quot;onlyNewSinceLastRun&quot;: false,
+  &quot;includeDescription&quot;: false,
+  &quot;maxItems&quot;: 300
+}
+</code></pre>
+<p><code>companies</code> takes board names (the last part of the careers link) or full URLs. A board that does not exist is skipped and listed in the run status; if none exists, the run fails, so a typo never looks like an empty result. Always set <code>payCurrencies</code> together with <code>minAnnualPay</code>, so the threshold is compared in a single currency.</p>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run_input = {
+    &quot;companies&quot;: [&quot;robinhood&quot;, &quot;coinbase&quot;, &quot;mercury&quot;],
+    &quot;onlyWithPay&quot;: True,
+    &quot;minAnnualPay&quot;: 150000,
+    &quot;payCurrencies&quot;: [&quot;USD&quot;],
+    &quot;maxItems&quot;: 300,
+}
+
+run = client.actor(&quot;datagrit/greenhouse-salary-scraper&quot;).call(run_input=run_input)
+jobs = [j for j in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if j.get(&quot;found&quot;)]
+
+for j in jobs[:10]:
+    print(j[&quot;company&quot;], j[&quot;title&quot;], j[&quot;payAnnualMin&quot;], j[&quot;payAnnualMax&quot;], j[&quot;payCurrency&quot;], j[&quot;payZones&quot;])
+</code></pre>
+<h4>3. Or with cURL</h4>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~greenhouse-salary-scraper/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;companies&quot;: [&quot;robinhood&quot;], &quot;onlyWithPay&quot;: true, &quot;maxItems&quot;: 50}'
+</code></pre>
+<h3>What you get</h3>
+<p>One row per posting:</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>company</code></td><td><code>robinhood</code></td><td>Greenhouse board name</td></tr>
+<tr><td><code>title</code></td><td><code>AML Investigator</code></td><td>Job title</td></tr>
+<tr><td><code>departments</code></td><td><code>Financial Crimes</code></td><td>Departments, semicolon-separated</td></tr>
+<tr><td><code>location</code></td><td><code>Denver, CO; New York, NY; Westlake, TX</code></td><td>Location text</td></tr>
+<tr><td><code>payMin</code> / <code>payMax</code></td><td><code>58000</code> / <code>87000</code></td><td>Band across zones, in <code>payCurrency</code></td></tr>
+<tr><td><code>payCurrency</code></td><td><code>USD</code></td><td>Currency of the band</td></tr>
+<tr><td><code>payPeriod</code></td><td><code>year</code></td><td>Inferred: year, month, week or hour</td></tr>
+<tr><td><code>payAnnualMax</code></td><td><code>87000</code></td><td>Yearly equivalent of the top of the band</td></tr>
+<tr><td><code>payZones</code></td><td><code>3</code></td><td>Number of published pay ranges</td></tr>
+<tr><td><code>payRangeSummaries</code></td><td><code>Zone 1 (Menlo Park, CA; ...): 74K-87K USD/year</code></td><td>Every zone on one line, pipe-separated</td></tr>
+</tbody></table></div>
+<p>Rows also include <code>payCurrencies</code> (all currencies used by the zones), <code>equityMentioned</code>, <code>bonusMentioned</code> and <code>commissionMentioned</code> (from the pay text), <code>firstPublishedAt</code>, <code>daysSincePublished</code>, <code>requisitionId</code>, <code>offices</code> and <code>jobUrl</code>. The plain-text description (up to 8,000 characters) is added only when <code>includeDescription</code> is on.</p>
+<h3>Recipes</h3>
+<h4>Daily new-roles feed</h4>
+<p>Turn on <code>onlyNewSinceLastRun</code> and schedule a daily run. The first run returns everything that matches; each later run returns only postings not delivered before for the same companies and filters. Postings cut off by <code>maxItems</code> are not remembered, so they arrive in the next run. A run with nothing new returns one status row (not charged), which makes it easy to skip empty notifications in Zapier, Make or n8n.</p>
+<h4>Canadian pay bands of US employers</h4>
+<p>Set <code>payCurrencies: [&quot;CAD&quot;]</code>. A US posting with an extra Canadian zone then matches, and its band and yearly amounts are recomputed in CAD. Comparing that with a USD run of the same boards shows how each employer prices its Canadian roles.</p>
+<h4>Benchmark table in pandas</h4>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(jobs)
+yearly = df[(df[&quot;payPeriod&quot;] == &quot;year&quot;) &amp; (df[&quot;payCurrency&quot;] == &quot;USD&quot;)].copy()
+yearly[&quot;midpoint&quot;] = (yearly[&quot;payAnnualMin&quot;] + yearly[&quot;payAnnualMax&quot;]) / 2
+
+table = (
+    yearly.groupby([&quot;company&quot;, &quot;departments&quot;])
+          .agg(roles=(&quot;id&quot;, &quot;count&quot;),
+               median_mid=(&quot;midpoint&quot;, &quot;median&quot;),
+               max_top=(&quot;payAnnualMax&quot;, &quot;max&quot;),
+               equity_share=(&quot;equityMentioned&quot;, &quot;mean&quot;))
+          .sort_values(&quot;median_mid&quot;, ascending=False)
+)
+print(table.head(15))
+</code></pre>
+<p>Keep in mind that <code>payMin</code> is the bottom of the lowest zone and <code>payMax</code> the top of the highest, so a midpoint across zones is a blend of locations. For location-level analysis, parse <code>payRangeSummaries</code>.</p>
+<h3>Limitations</h3>
+<ul>
+<li><strong>Pay only where employers publish it.</strong> <code>hasPay</code> is false for postings without a range. Postings that lack the pay data field are skipped and counted in the run status.</li>
+<li><strong>Inferred periods.</strong> The period comes from the zone title and the amount size; when it cannot be determined, <code>payPeriod</code> and the yearly amounts are empty, and <code>minAnnualPay</code> skips the posting.</li>
+<li><strong>No currency conversion.</strong> The band is always in one currency; other currencies appear only in <code>payCurrencies</code> and the summaries.</li>
+<li><strong>Summaries are capped</strong> at 12 zones, then &quot;+N more&quot;.</li>
+<li><strong>Equity, bonus and commission flags</strong> come from keywords in the pay text, not from structured fields.</li>
+<li><strong>Only public Greenhouse boards.</strong> Companies on other applicant tracking systems are not covered.</li>
+</ul>
+<p>The Actor reads only the public job board API that Greenhouse provides for employers to publish roles; it does not log in or collect candidate data. Descriptions can contain names such as a recruiter's, so they are off by default.</p>
+<h3>Wrapping up</h3>
+<p>For pay benchmarks that respect zones and currencies, this is a straightforward way to turn Greenhouse boards into a table; pricing is pay per result, the Actor is <a href="https://apify.com/datagrit/greenhouse-salary-scraper" rel="noopener">on Apify</a> and the field reference is in the <a href="https://getdatagrit.github.io/greenhouse-salary-scraper/">documentation</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/greenhouse-salary-scraper" rel="noopener">Try Greenhouse Salary Scraper - Job Pay Ranges on Apify</a><a class="btn ghost" href="/greenhouse-salary-scraper/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/career-site-jobs-aggregator/">How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</a></h3><p>Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/french-company-finder/">How to search French companies by profit and revenue with the Sirene API</a></h3><p>Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

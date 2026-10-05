@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once | datagrit</title>
+<meta name="description" content="Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/career-site-jobs-aggregator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once | datagrit">
+<meta property="og:description" content="Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed."><meta property="og:url" content="https://getdatagrit.github.io/guides/career-site-jobs-aggregator/"><meta property="og:image" content="https://getdatagrit.github.io/og/career-site-jobs-aggregator.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once | datagrit"><meta name="twitter:description" content="Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed."><meta name="twitter:image" content="https://getdatagrit.github.io/og/career-site-jobs-aggregator.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once","description":"Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.","datePublished":"2026-10-01","dateModified":"2026-10-01","image":"https://getdatagrit.github.io/og/career-site-jobs-aggregator.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/career-site-jobs-aggregator/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webscraping, python, jobs, api","about":{"@type":"SoftwareApplication","name":"Career Site Jobs Aggregator - ATS Salary Data","url":"https://getdatagrit.github.io/career-site-jobs-aggregator/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once","item":"https://getdatagrit.github.io/guides/career-site-jobs-aggregator/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Career Site Jobs Aggregator - ATS Salary Data</p>
+<span class="pill">Guide</span>
+<h1>How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</h1>
+<p class="lead">Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p>
+<p class="note">Published 2026-10-01 · uses the <a href="/career-site-jobs-aggregator/">Career Site Jobs Aggregator - ATS Salary Data</a> Actor</p>
+<p>If you run a niche job board, a hiring newsletter or a sales team that treats hiring as a buying signal, your input is a list of companies you care about. The output you want: their open roles in one table, salary as a number, and tomorrow only the new roles.</p>
+<p>The difficulty is that those companies do not share a careers system. One uses Greenhouse, another Lever, a third Workday, a German startup Personio. Each has its own URL pattern, its own JSON (or XML) format, its own way of writing locations and its own idea of what a salary field looks like, if it has one at all.</p>
+<p>This post walks through what that problem looks like in practice and how to collect the data through one API call.</p>
+<h3>Where the data comes from</h3>
+<p>Applicant tracking systems publish public job board feeds so employers can show open roles on their careers pages. The Career Site Jobs Aggregator Actor on Apify reads those feeds for eight of them: <strong>Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Personio and Workday</strong>. It uses plain HTTP, no browser and no login.</p>
+<p>Doing this yourself means solving a set of problems per ATS:</p>
+<ul>
+<li><strong>Finding the board.</strong> You usually know a company name or a careers page URL, not the ATS slug. The Actor reads a careers page once and follows the job board it links to most often. A bare slug is tried on Greenhouse, Lever, Ashby, Workable, Recruitee, Personio and SmartRecruiters in that order, and the first board with open postings wins.</li>
+<li><strong>Different schemas.</strong> Workable has a shortcode, Workday a posting path, Greenhouse joins departments, Lever and Ashby add teams. Employment types, workplace types and locations are all written differently. The Actor maps all of them to one schema (<code>employmentType</code> becomes <code>full_time</code>, <code>part_time</code>, <code>contract</code> and so on).</li>
+<li><strong>Salary in very different places.</strong> Greenhouse has pay ranges by zone, Lever a salary range, Ashby compensation tiers, Recruitee a salary field. Many other postings put the range only in the description text. The Actor reads ATS pay fields first, and otherwise looks for an explicit pay range in the description, such as <code>184,000 USD - 287,500 USD</code> or <code>$28.50 - $34.00 per hour</code>.</li>
+<li><strong>False salaries in text.</strong> Descriptions are full of numbers that are not pay: deal sizes (ACV, TCV, quota), funding amounts, grants, stipends. A range is used only with a currency and either a period word or pay wording next to it (salary, pay, base, compensation, OTE). A bare <code>$</code> is not read as USD for postings in Mexico, Latin America, the Philippines, Hong Kong or Taiwan.</li>
+<li><strong>Workday specifics.</strong> Listings stop at 2,000 postings per career site and each posting needs a separate detail request.</li>
+</ul>
+<p>How much does description parsing add? In the measurements recorded on 1 October 2026, the description supplied the salary for 22 of 27 Recruitee postings (Great Minds), 8 of 10 Lever postings (Epoch AI) and 8 of 10 Workday postings (NVIDIA), where the ATS feed had no pay field.</p>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>Companies can be given in any form, mixed in one list:</p>
+<pre><code>
+{
+  &quot;companies&quot;: [
+    &quot;https://jobs.ashbyhq.com/ramp&quot;,
+    &quot;robinhood&quot;,
+    &quot;lever:palantir&quot;,
+    &quot;https://greatminds.recruitee.com&quot;,
+    &quot;https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite&quot;
+  ],
+  &quot;keywords&quot;: [&quot;engineer&quot;, &quot;developer&quot;],
+  &quot;excludeKeywords&quot;: [&quot;intern&quot;],
+  &quot;locations&quot;: [&quot;united states&quot;, &quot;remote&quot;],
+  &quot;remoteOnly&quot;: false,
+  &quot;onlyWithSalary&quot;: true,
+  &quot;salaryFromDescription&quot;: true,
+  &quot;minAnnualSalary&quot;: 120000,
+  &quot;salaryCurrencies&quot;: [&quot;USD&quot;],
+  &quot;postedWithinDays&quot;: 30,
+  &quot;onlyNewSinceLastRun&quot;: false,
+  &quot;maxItemsPerCompany&quot;: 100,
+  &quot;maxItems&quot;: 1000
+}
+</code></pre>
+<p>Title keywords match words that <em>start with</em> the term, so <code>engineer</code> also matches &quot;Engineering&quot;. <code>maxItemsPerCompany</code> stops one big employer from using up the whole <code>maxItems</code> budget. Workday needs the full career site URL; the other systems accept a slug.</p>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run_input = {
+    &quot;companies&quot;: [&quot;https://jobs.ashbyhq.com/ramp&quot;, &quot;robinhood&quot;, &quot;lever:palantir&quot;],
+    &quot;onlyWithSalary&quot;: True,
+    &quot;salaryCurrencies&quot;: [&quot;USD&quot;],
+    &quot;minAnnualSalary&quot;: 120000,
+    &quot;maxItems&quot;: 500,
+}
+
+run = client.actor(&quot;datagrit/career-site-jobs-aggregator&quot;).call(run_input=run_input)
+jobs = [j for j in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if j.get(&quot;found&quot;)]
+
+for j in jobs[:10]:
+    print(j[&quot;ats&quot;], j[&quot;company&quot;], j[&quot;title&quot;], j[&quot;salaryAnnualMin&quot;], j[&quot;salaryAnnualMax&quot;], j[&quot;salarySource&quot;])
+</code></pre>
+<h4>3. Or with cURL</h4>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~career-site-jobs-aggregator/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;companies&quot;: [&quot;https://jobs.ashbyhq.com/ramp&quot;, &quot;robinhood&quot;], &quot;onlyWithSalary&quot;: true, &quot;maxItems&quot;: 50}'
+</code></pre>
+<p>An input with no companies at all runs a small example (Ramp on Ashby, up to 10 postings) that is not charged per result, which is handy for checking the output shape.</p>
+<h3>What you get</h3>
+<p>One row per posting, the same schema for every ATS:</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>company</code></td><td><code>nvidia</code></td><td>Company name, or board slug when the ATS has none</td></tr>
+<tr><td><code>ats</code></td><td><code>workday</code></td><td>Where the posting was read from</td></tr>
+<tr><td><code>title</code></td><td><code>Growth Engineer, Developer Platform</code></td><td>Job title</td></tr>
+<tr><td><code>locations</code></td><td><code>[&quot;US, CA, Santa Clara&quot;, &quot;US, Remote&quot;]</code></td><td>Every location of the posting</td></tr>
+<tr><td><code>workplaceType</code></td><td><code>remote</code></td><td>remote, hybrid, onsite or null</td></tr>
+<tr><td><code>employmentType</code></td><td><code>full_time</code></td><td>Normalized type</td></tr>
+<tr><td><code>salaryMin</code> / <code>salaryMax</code></td><td><code>200000</code> / <code>322000</code></td><td>Range in <code>salaryCurrency</code> per <code>salaryPeriod</code></td></tr>
+<tr><td><code>salaryAnnualMax</code></td><td><code>322000</code></td><td>Yearly equivalent (hour × 2080, day × 260, week × 52, month × 12)</td></tr>
+<tr><td><code>salarySource</code></td><td><code>description</code></td><td><code>ats</code> or <code>description</code></td></tr>
+<tr><td><code>salaryText</code></td><td><code>200,000 USD - 322,000 USD</code></td><td>The range as published or matched</td></tr>
+</tbody></table></div>
+<p>There is also <code>jobId</code>, <code>requisitionId</code>, <code>department</code>, <code>team</code>, <code>postedAt</code>, <code>daysSincePosted</code>, <code>url</code>, <code>applyUrl</code>, <code>salaryCurrencies</code>, <code>equityMentioned</code>, <code>bonusMentioned</code> and, on request, the plain-text <code>description</code>.</p>
+<h3>Recipes</h3>
+<h4>Daily feed for a job board or newsletter</h4>
+<p>Set <code>onlyNewSinceLastRun: true</code> and schedule a daily run on Apify. The Actor remembers delivered postings per job board and per filter combination in a storage on your account, so each run returns and charges only new postings. Changing a filter starts a separate feed. Connect the run to a webhook, Google Sheets or your CMS import.</p>
+<h4>Hiring signal for sales</h4>
+<p>Feed your account list (careers page URLs work) with <code>postedWithinDays: 7</code> and count new roles per company. A sudden cluster of new data or security roles at an account is a timing signal for outreach.</p>
+<h4>Salary coverage and bands in pandas</h4>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(jobs)
+
+coverage = df.groupby(&quot;ats&quot;).agg(postings=(&quot;jobId&quot;, &quot;count&quot;), with_salary=(&quot;hasSalary&quot;, &quot;mean&quot;))
+print(coverage)
+
+usd_year = df[(df[&quot;salaryCurrency&quot;] == &quot;USD&quot;) &amp; df[&quot;salaryAnnualMax&quot;].notna()]
+print(usd_year.groupby(&quot;company&quot;)[&quot;salaryAnnualMax&quot;].describe()[[&quot;count&quot;, &quot;50%&quot;, &quot;max&quot;]])
+</code></pre>
+<p><code>salarySource</code> is worth keeping in any analysis: you may want to treat ranges written in descriptions separately from ranges in structured ATS fields.</p>
+<h3>Limitations</h3>
+<ul>
+<li><strong>SmartRecruiters has no salary or description</strong> in the list the Actor reads, so <code>hasSalary</code> is false and <code>equityMentioned</code> is null there.</li>
+<li><strong>Some filters cannot apply everywhere.</strong> Workday publishes no department, so the departments filter never matches Workday postings; Greenhouse publishes no employment type, so the employment type filter never matches Greenhouse postings.</li>
+<li><strong>Remote detection varies by ATS.</strong> Lever, Ashby, SmartRecruiters and Recruitee publish a workplace type and Workable a remote flag; otherwise the Actor marks a role remote only when a location says so.</li>
+<li><strong>Listing caps.</strong> Workday lists at most 2,000 postings per career site; very large Lever and SmartRecruiters boards are read up to 5,000 and 10,000 postings. Cuts are reported in the run status. Workday boards are also slower, because each posting needs its own request.</li>
+<li><strong>No currency conversion.</strong> Use <code>salaryCurrencies</code> together with <code>minAnnualSalary</code>.</li>
+<li><strong>Slug guessing can pick the wrong board</strong> when two companies share a slug on different ATS. Use <code>ats:slug</code> or the board URL to be explicit; the run status shows which board each slug matched.</li>
+</ul>
+<p>The Actor reads only public job board feeds that ATS vendors provide for employers; it does not log in or collect candidate data.</p>
+<h3>Wrapping up</h3>
+<p>One company list in, one schema out, with salaries you can filter on: pricing is pay per result, the Actor is <a href="https://apify.com/datagrit/career-site-jobs-aggregator" rel="noopener">on Apify</a>, and the full field reference is in the <a href="https://getdatagrit.github.io/career-site-jobs-aggregator/">documentation</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/career-site-jobs-aggregator" rel="noopener">Try Career Site Jobs Aggregator - ATS Salary Data on Apify</a><a class="btn ghost" href="/career-site-jobs-aggregator/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/french-company-finder/">How to search French companies by profit and revenue with the Sirene API</a></h3><p>Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/greenhouse-salary-scraper/">How to get salary ranges from Greenhouse job boards by pay zone</a></h3><p>Collect Greenhouse job postings with published pay ranges per location zone, annualised and filtered by currency, using Python, cURL or pandas.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

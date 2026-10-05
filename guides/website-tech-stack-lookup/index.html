@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to detect the tech stack and email provider of a list of websites | datagrit</title>
+<meta name="description" content="Detect CMS, ecommerce platform, analytics, CDN and hosting of many domains, plus MX mail provider, SPF and DMARC, from Python or cURL.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/website-tech-stack-lookup/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to detect the tech stack and email provider of a list of websites | datagrit">
+<meta property="og:description" content="Detect CMS, ecommerce platform, analytics, CDN and hosting of many domains, plus MX mail provider, SPF and DMARC, from Python or cURL."><meta property="og:url" content="https://getdatagrit.github.io/guides/website-tech-stack-lookup/"><meta property="og:image" content="https://getdatagrit.github.io/og/website-tech-stack-lookup.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to detect the tech stack and email provider of a list of websites | datagrit"><meta name="twitter:description" content="Detect CMS, ecommerce platform, analytics, CDN and hosting of many domains, plus MX mail provider, SPF and DMARC, from Python or cURL."><meta name="twitter:image" content="https://getdatagrit.github.io/og/website-tech-stack-lookup.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to detect the tech stack and email provider of a list of websites","description":"Detect CMS, ecommerce platform, analytics, CDN and hosting of many domains, plus MX mail provider, SPF and DMARC, from Python or cURL.","datePublished":"2026-10-01","dateModified":"2026-10-01","image":"https://getdatagrit.github.io/og/website-tech-stack-lookup.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/website-tech-stack-lookup/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webdev, python, api, leadgeneration","about":{"@type":"SoftwareApplication","name":"Website Tech Stack Lookup - Technology Detector","url":"https://getdatagrit.github.io/website-tech-stack-lookup/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to detect the tech stack and email provider of a list of websites","item":"https://getdatagrit.github.io/guides/website-tech-stack-lookup/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Website Tech Stack Lookup - Technology Detector</p>
+<span class="pill">Guide</span>
+<h1>How to detect the tech stack and email provider of a list of websites</h1>
+<p class="lead">Detect CMS, ecommerce platform, analytics, CDN and hosting of many domains, plus MX mail provider, SPF and DMARC, from Python or cURL.</p>
+<p class="note">Published 2026-10-01 · uses the <a href="/website-tech-stack-lookup/">Website Tech Stack Lookup - Technology Detector</a> Actor</p>
+<p>&quot;Find me every Shopify store in this list of 5,000 domains&quot; is a typical request in B2B sales. So are its cousins: which prospects already use a competitor's product, which ones run Magento 2 and might need a migration, which domains still have no DMARC policy, which companies receive email through Microsoft 365 rather than Google Workspace.</p>
+<p>Agencies use the answer to qualify leads, SaaS companies to size a market, deliverability consultants to audit a portfolio, and investors to understand a target's stack before a call. The information is public: a website's HTML, headers and DNS records reveal most of it. The work is in reading it reliably at scale.</p>
+<p>This post shows what a technology detector actually looks at, where homemade versions go wrong, and how to run one over a list of domains through the Apify API.</p>
+<h3>Where the data comes from</h3>
+<p>There is no registry of &quot;which site uses what&quot;. Detection is inference from two public sources:</p>
+<ol>
+<li><strong>The web response.</strong> Headers (<code>Server</code>, <code>X-Powered-By</code>), cookie names, meta generator tags, script URLs and HTML snippets. A <code>/wp-content/plugins/woocommerce/</code> path or a <code>wc_add_to_cart_params</code> variable means WooCommerce.</li>
+<li><strong>Public DNS.</strong> MX records show who receives mail for the domain, the SPF record lists the services allowed to send on its behalf (SendGrid, Mailgun, Amazon SES, HubSpot and others), the <code>_dmarc</code> record holds the DMARC policy, NS records give the DNS provider, CNAME, A and PTR records hint at hosting and CDN, and TXT verification records show services the domain was verified with.</li>
+</ol>
+<p>Writing this yourself sounds like a few regexes. In practice:</p>
+<ul>
+<li><strong>Bare domains do not always answer at the apex.</strong> The Website Tech Stack Lookup Actor on Apify tries <code>https://domain/</code>, then <code>https://www.domain/</code>, then <code>http://domain/</code>, and follows up to 8 redirects and one meta refresh.</li>
+<li><strong>Bot challenge pages look like websites.</strong> Cloudflare, Akamai, Fastly or DataDome may return a challenge page to data center addresses. Fingerprinting that page describes the challenge, not the site. The Actor recognises challenge pages and returns <code>found: false</code> with the reason <code>blocked-by-bot-protection</code> instead.</li>
+<li><strong>Fingerprints produce false positives.</strong> In a hand check of 175 page and header detections on 23 well-known sites on 1 October 2026, the first pass found 2 false positives (a Jetpack statistics script read as WordPress.com hosting, and a Vue.js signal that also appears in Inertia/React pages). Both were fixed, after which all 175 were correct. The same sample was used to tune fingerprints, so it is a sanity check, not a benchmark.</li>
+<li><strong>Implied technologies.</strong> WordPress implies PHP; Next.js implies React. These are marked as implied, with a lower confidence.</li>
+<li><strong>Registrable domains.</strong> DNS checks must run on <code>bbc.co.uk</code>, not <code>www.bbc.co.uk</code> and not <code>co.uk</code>. The Actor uses a public-suffix-aware domain for DNS.</li>
+</ul>
+<p>The Actor matches 847 technology fingerprints in 62 categories, each detection with a version when exposed, a confidence from 0 to 100 and up to three pieces of evidence.</p>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>A list of prospects, keeping only those that run one of three ecommerce platforms:</p>
+<pre><code>
+{
+  &quot;domains&quot;: [
+    &quot;porterandyork.com&quot;,
+    &quot;coxandcox.co.uk&quot;,
+    &quot;allbirds.com&quot;,
+    &quot;https://example.com/pricing&quot;
+  ],
+  &quot;categories&quot;: [],
+  &quot;requireTechnologies&quot;: [&quot;Shopify&quot;, &quot;WooCommerce&quot;, &quot;Magento&quot;],
+  &quot;followRedirects&quot;: true,
+  &quot;includeDns&quot;: true,
+  &quot;maxConcurrency&quot;: 10,
+  &quot;requestTimeoutSecs&quot;: 20
+}
+</code></pre>
+<p><code>domains</code> accepts bare domains, hostnames or full URLs; a full URL is fetched exactly as given. Duplicates (with or without <code>www</code>, <code>http</code> or <code>https</code>) are merged. <code>requireTechnologies</code> is the lead filter: sites that do not use any of the listed technologies are skipped and not charged. <code>categories</code> only trims the <code>technologies</code> list; the summary columns are always complete.</p>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+with open(&quot;domains.txt&quot;) as f:
+    domains = [line.strip() for line in f if line.strip()]
+
+run = client.actor(&quot;datagrit/website-tech-stack-lookup&quot;).call(run_input={
+    &quot;domains&quot;: domains,
+    &quot;requireTechnologies&quot;: [&quot;Shopify&quot;, &quot;WooCommerce&quot;],
+    &quot;maxConcurrency&quot;: 20,
+})
+
+for site in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    if site.get(&quot;found&quot;):
+        print(site[&quot;domain&quot;], site[&quot;ecommerce&quot;], site[&quot;mailProvider&quot;], site[&quot;dmarcPolicy&quot;])
+    else:
+        print(site.get(&quot;input&quot;), &quot;skipped:&quot;, site.get(&quot;errorReason&quot;))
+</code></pre>
+<h4>3. Or with cURL</h4>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~website-tech-stack-lookup/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;domains&quot;: [&quot;shopify.com&quot;, &quot;wordpress.org&quot;, &quot;bbc.co.uk&quot;]}'
+</code></pre>
+<p>Each site costs one page request plus a few DNS lookups. In a local test on 1 October 2026, 12 well-known sites took 5.9 seconds including DNS. The Actor analyses 10 sites at a time by default (up to 50) and never more than 2 URLs of the same host at once.</p>
+<h3>What you get</h3>
+<p>One row per site, with ready-made summary columns plus the full evidence list:</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>domain</code></td><td><code>porterandyork.com</code></td><td>Registrable domain</td></tr>
+<tr><td><code>cms</code></td><td><code>WordPress</code></td><td>CMS or site builder, with version when known</td></tr>
+<tr><td><code>ecommerce</code></td><td><code>WooCommerce</code></td><td>Ecommerce platform</td></tr>
+<tr><td><code>cdn</code></td><td><code>Cloudflare</code></td><td>CDN in front of the site</td></tr>
+<tr><td><code>hosting</code></td><td><code>WP Engine</code></td><td>Hosting provider or platform</td></tr>
+<tr><td><code>mailProvider</code></td><td><code>Google Workspace</code></td><td>From MX records</td></tr>
+<tr><td><code>spfRecord</code></td><td><code>v=spf1 include:_spf.google.com ~all</code></td><td>SPF record text</td></tr>
+<tr><td><code>dmarcPolicy</code></td><td><code>none</code></td><td>none, quarantine or reject</td></tr>
+<tr><td><code>technologyCount</code></td><td><code>11</code></td><td>Technologies listed</td></tr>
+<tr><td><code>technologies</code></td><td><code>[{&quot;name&quot;: &quot;WooCommerce&quot;, &quot;confidence&quot;: 99, ...}]</code></td><td>Name, category, version, confidence, evidence</td></tr>
+</tbody></table></div>
+<p>Other columns: <code>analytics</code>, <code>tagManager</code>, <code>webServer</code>, <code>jsFramework</code>, <code>programmingLanguage</code>, <code>marketingAutomation</code>, <code>liveChat</code>, <code>payment</code>, <code>dnsProvider</code>, <code>emailServices</code> (sending services from SPF), <code>mxRecords</code>, <code>hasSpf</code>, <code>hasDmarc</code>, <code>title</code>, <code>language</code>, <code>finalUrl</code> and <code>statusCode</code>. Failed sites carry <code>errorReason</code>, for example <code>dns-not-found</code>, <code>timeout</code> or <code>blocked-by-bot-protection</code>, and are not charged.</p>
+<h3>Recipes</h3>
+<h4>Lead list for a Shopify app</h4>
+<p>Run your prospect domains monthly with <code>requireTechnologies: [&quot;Shopify&quot;]</code>. Only Shopify stores are returned and charged; push them into your CRM with <code>marketingAutomation</code> and <code>payment</code> as segmentation fields. Stacks change slowly, so a monthly run is usually enough for a lead list.</p>
+<h4>Email deliverability audit</h4>
+<pre><code>
+import pandas as pd
+
+rows = [s for s in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if s.get(&quot;found&quot;)]
+df = pd.DataFrame(rows)
+
+audit = df[[&quot;domain&quot;, &quot;mailProvider&quot;, &quot;hasSpf&quot;, &quot;hasDmarc&quot;, &quot;dmarcPolicy&quot;, &quot;dnsChecked&quot;]]
+at_risk = audit[(audit[&quot;dnsChecked&quot;] == True) &amp; ((audit[&quot;hasDmarc&quot;] == False) | (audit[&quot;dmarcPolicy&quot;] == &quot;none&quot;))]
+print(at_risk.sort_values(&quot;domain&quot;).to_string(index=False))
+</code></pre>
+<p>Filtering on <code>dnsChecked</code> matters: when a DNS lookup failed, a missing value means &quot;unknown&quot;, not &quot;absent&quot;.</p>
+<h4>Market share in a segment</h4>
+<p>Run a list of competitors' customers or a category of sites, then count <code>cms</code>, <code>ecommerce</code> or <code>cdn</code> values with <code>df[&quot;ecommerce&quot;].value_counts()</code>. For per-technology analysis, explode the <code>technologies</code> column (or use the Actor's &quot;Technologies with evidence&quot; dataset view, which already has one row per technology).</p>
+<h3>Limitations</h3>
+<ul>
+<li><strong>One page per site.</strong> Only the home page or the URL you give is analysed (first 2 MB of HTML). Tools loaded by JavaScript after rendering, or only on inner pages, are not visible.</li>
+<li><strong>Bot protection.</strong> Strictly protected sites may return a challenge page to data center addresses; they get a free <code>found: false</code> row. A residential proxy in <code>proxyConfiguration</code> often gets through. DNS lookups do not use the proxy.</li>
+<li><strong>TXT verifications are historical signals.</strong> A verification record shows the domain was verified with a service at some point, not that it still uses it.</li>
+<li><strong>Fingerprints cover 847 technologies,</strong> not every tool in existence; <code>mailProvider: &quot;Other&quot;</code> means MX records exist but point to a provider the Actor does not recognise.</li>
+<li><strong>Inference, not certainty.</strong> Each detection carries a confidence and evidence so you can judge borderline cases yourself.</li>
+</ul>
+<p>The Actor reads only what a browser or DNS client receives from public websites and public DNS. It does not log in, use cookies or solve captchas. If you use the results for outreach, anti-spam rules still apply.</p>
+<h3>Wrapping up</h3>
+<p>Website stack plus mail and DNS data in one row is usually what lead qualification needs; pricing is pay per analysed website, the Actor is <a href="https://apify.com/datagrit/website-tech-stack-lookup" rel="noopener">on Apify</a>, and the full list of fields and categories is in the <a href="https://getdatagrit.github.io/website-tech-stack-lookup/">documentation</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/website-tech-stack-lookup" rel="noopener">Try Website Tech Stack Lookup - Technology Detector on Apify</a><a class="btn ghost" href="/website-tech-stack-lookup/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/career-site-jobs-aggregator/">How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</a></h3><p>Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/french-company-finder/">How to search French companies by profit and revenue with the Sirene API</a></h3><p>Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

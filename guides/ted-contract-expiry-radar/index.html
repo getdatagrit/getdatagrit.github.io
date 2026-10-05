@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to find EU public contracts that expire in the next 12 months | datagrit</title>
+<meta name="description" content="Pull expiring EU public contracts from TED award notices with Python: incumbent, buyer, value, end date and CPV code, ready for a bid pipeline.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/ted-contract-expiry-radar/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to find EU public contracts that expire in the next 12 months | datagrit">
+<meta property="og:description" content="Pull expiring EU public contracts from TED award notices with Python: incumbent, buyer, value, end date and CPV code, ready for a bid pipeline."><meta property="og:url" content="https://getdatagrit.github.io/guides/ted-contract-expiry-radar/"><meta property="og:image" content="https://getdatagrit.github.io/og/ted-contract-expiry-radar.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to find EU public contracts that expire in the next 12 months | datagrit"><meta name="twitter:description" content="Pull expiring EU public contracts from TED award notices with Python: incumbent, buyer, value, end date and CPV code, ready for a bid pipeline."><meta name="twitter:image" content="https://getdatagrit.github.io/og/ted-contract-expiry-radar.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to find EU public contracts that expire in the next 12 months","description":"Pull expiring EU public contracts from TED award notices with Python: incumbent, buyer, value, end date and CPV code, ready for a bid pipeline.","datePublished":"2026-10-01","dateModified":"2026-10-01","image":"https://getdatagrit.github.io/og/ted-contract-expiry-radar.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/ted-contract-expiry-radar/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"opendata, python, api, govtech","about":{"@type":"SoftwareApplication","name":"TED Contract Expiry Radar - Recompete Leads","url":"https://getdatagrit.github.io/ted-contract-expiry-radar/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to find EU public contracts that expire in the next 12 months","item":"https://getdatagrit.github.io/guides/ted-contract-expiry-radar/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › TED Contract Expiry Radar - Recompete Leads</p>
+<span class="pill">Guide</span>
+<h1>How to find EU public contracts that expire in the next 12 months</h1>
+<p class="lead">Pull expiring EU public contracts from TED award notices with Python: incumbent, buyer, value, end date and CPV code, ready for a bid pipeline.</p>
+<p class="note">Published 2026-10-01 · uses the <a href="/ted-contract-expiry-radar/">TED Contract Expiry Radar - Recompete Leads</a> Actor</p>
+<p>Public buyers in Europe re-tender service contracts every few years. Cleaning, IT support, ticketing software, waste collection: the contract runs its term, then the authority publishes a new call for tenders and the incumbent defends its position.</p>
+<p>The supplier that wins a recompete is rarely the one that reads the new tender on publication day. It is the one that knew a year earlier which contracts were ending and talked to the buyer in time. Bid managers, public-sector sales teams and consultancies that track competitors all need the same list: <em>which contracts in my sector end in the next 6 to 18 months, who holds them and who buys them</em>.</p>
+<p>The data to build that list is public. Getting it into a spreadsheet is the hard part.</p>
+<h3>Where the data comes from</h3>
+<p>Buyers in the EU member states and several other European countries publish <strong>contract award notices</strong> on TED (Tenders Electronic Daily), the EU's official tender portal, which has a public search API at <code>api.ted.europa.eu/v3/notices/search</code>. An award notice names the buyer, the winning supplier, the awarded value, the CPV classification and usually how long the contract runs.</p>
+<p>In practice, building an expiry list from that API runs into several problems:</p>
+<ul>
+<li><strong>Most notices do not state an end date.</strong> They state a duration (&quot;36 months&quot;), so you have to compute the end date yourself, from a start date that is not always there.</li>
+<li><strong>Per-lot fields are lists that do not line up.</strong> End dates, durations, titles and CPV codes come as parallel lists that can differ in order (one notice had results ordered 2-1-4-3) and length (48 results, 46 lots, 45 end dates). Matching by position silently attaches another lot's date.</li>
+<li><strong>Conclusion dates belong to contracts, not lots.</strong> TED lists the date each contract was signed, but does not say which contract covers which lot.</li>
+<li><strong>Query limits.</strong> One query can read at most 15,000 notices, and 11 of the 24 queries of a 12-month window match more, so the window has to be split.</li>
+<li><strong>Rate limits.</strong> TED answers HTTP 429 after roughly a dozen unpaced requests.</li>
+</ul>
+<p>The TED Contract Expiry Radar Actor on Apify handles these. It reads the window in monthly slices, splits any slice above 15,000 notices into shorter date windows, paces requests at about one per second, and matches every per-lot field to its lot by the lot identifier. A list is only used when it has exactly one entry per lot; otherwise the field stays empty rather than guessed. When an end date is missing, it is computed from the lot start date or from an unambiguous conclusion date plus the published duration, and every row says which method was used.</p>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>All fields are optional. A realistic input for an IT services company looking at Germany and France, skipping contracts that end in under three months:</p>
+<pre><code>
+{
+  &quot;queries&quot;: [&quot;software&quot;],
+  &quot;countries&quot;: [&quot;DE&quot;, &quot;FR&quot;],
+  &quot;cpvPrefixes&quot;: [&quot;72&quot;],
+  &quot;incumbents&quot;: [],
+  &quot;expiresAfterMonths&quot;: 3,
+  &quot;expiresBeforeMonths&quot;: 15,
+  &quot;minValue&quot;: 100000,
+  &quot;includeFrameworkAgreements&quot;: true,
+  &quot;estimateMissingEndDates&quot;: true,
+  &quot;maxItems&quot;: 200
+}
+</code></pre>
+<p>Details:</p>
+<ul>
+<li><code>countries</code> takes two-letter codes; the output uses three-letter ISO codes (<code>DEU</code>, <code>FRA</code>).</li>
+<li><code>queries</code> are checked per lot: a lot is returned only if a keyword appears in its own title or description, or in the contract or notice title, in the language of the notice. A German notice will not match <code>software</code> unless the word appears in it, so add local terms when needed.</li>
+<li><code>minValue</code> is compared in the contract's own currency, without conversion.</li>
+<li><code>incumbents</code> matches a word in the winning supplier's name.</li>
+</ul>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run_input = {
+    &quot;queries&quot;: [&quot;software&quot;],
+    &quot;countries&quot;: [&quot;DE&quot;, &quot;FR&quot;],
+    &quot;cpvPrefixes&quot;: [&quot;72&quot;],
+    &quot;expiresAfterMonths&quot;: 3,
+    &quot;expiresBeforeMonths&quot;: 15,
+    &quot;minValue&quot;: 100000,
+    &quot;maxItems&quot;: 200,
+}
+
+run = client.actor(&quot;datagrit/ted-contract-expiry-radar&quot;).call(run_input=run_input)
+
+for item in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    if item.get(&quot;found&quot;):
+        print(item[&quot;contractEnd&quot;], item[&quot;buyerName&quot;], item[&quot;incumbentName&quot;], item[&quot;awardValue&quot;])
+</code></pre>
+<h4>3. Or with cURL</h4>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~ted-contract-expiry-radar/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;queries&quot;: [&quot;software&quot;], &quot;expiresBeforeMonths&quot;: 6, &quot;maxItems&quot;: 50}'
+</code></pre>
+<p>The synchronous endpoint suits small, filtered runs. An unfiltered 12-month window matched about 251,000 notices on 30 September 2026 and took roughly 45 minutes, so start large runs asynchronously, as in the Python example. Results come soonest-expiry first, so a <code>maxItems</code> cap returns the most urgent contracts and stops early.</p>
+<h3>What you get</h3>
+<p>Each row is one awarded lot. The most useful fields:</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>contractEnd</code></td><td><code>2026-12-31</code></td><td>End date, stated or computed</td></tr>
+<tr><td><code>endDateSource</code></td><td><code>start+duration</code></td><td><code>stated</code>, <code>start+duration</code> or <code>award+duration</code></td></tr>
+<tr><td><code>daysToExpiry</code></td><td><code>92</code></td><td>Days from the run date to <code>contractEnd</code></td></tr>
+<tr><td><code>buyerName</code></td><td><code>Tallinna Transpordiamet</code></td><td>Authority that will buy again</td></tr>
+<tr><td><code>buyerCountry</code></td><td><code>EST</code></td><td>Three-letter ISO code</td></tr>
+<tr><td><code>incumbentName</code></td><td><code>AS Connecto Eesti</code></td><td>Current supplier of this lot</td></tr>
+<tr><td><code>awardValue</code> / <code>currency</code></td><td><code>480000</code> / <code>EUR</code></td><td>Awarded value of the lot</td></tr>
+<tr><td><code>contractLengthMonths</code></td><td><code>36</code></td><td>Published duration</td></tr>
+<tr><td><code>renewalOptionsMax</code></td><td><code>1</code></td><td>Renewals the buyer reserved</td></tr>
+<tr><td><code>cpvCode</code></td><td><code>72000000</code></td><td>Main CPV code of the lot</td></tr>
+</tbody></table></div>
+<p>Rows also carry <code>sourceUrl</code>, <code>frameworkAgreement</code>, <code>renewalTerms</code>, <code>lotTitle</code>, <code>lotDescription</code> and <code>allIncumbents</code> (every winner of the notice, when a lot's winner cannot be determined).</p>
+<h3>Recipes</h3>
+<h4>Weekly recompete list in a spreadsheet</h4>
+<p>Schedule the Actor weekly on Apify with a 6–18 month window and your CPV prefixes, then pull the dataset as CSV into Google Sheets or your CRM. Use <code>id</code> (notice number plus lot) as the unique key, so each lot becomes one record you can assign to an account owner and update week after week.</p>
+<h4>Competitor watch</h4>
+<p>Put competitor names into <code>incumbents</code> and widen the window to 24 months. You get a calendar of when each competitor's public contracts end, which buyers they depend on, and which contracts carry renewal options.</p>
+<h4>Market sizing in pandas</h4>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame([i for i in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if i.get(&quot;found&quot;)])
+
+eur = df[df[&quot;currency&quot;] == &quot;EUR&quot;]  # values are not converted between currencies
+summary = (
+    eur.groupby([&quot;buyerCountry&quot;, &quot;cpvCode&quot;])
+       .agg(lots=(&quot;id&quot;, &quot;count&quot;), value_eur=(&quot;awardValue&quot;, &quot;sum&quot;), median_months=(&quot;contractLengthMonths&quot;, &quot;median&quot;))
+       .sort_values(&quot;value_eur&quot;, ascending=False)
+)
+print(summary.head(20))
+
+# Share of rows whose end date was computed rather than stated
+print(df[&quot;endDateSource&quot;].value_counts(normalize=True))
+</code></pre>
+<h3>Limitations</h3>
+<ul>
+<li><strong>Only awarded contracts.</strong> Open tenders and planned procurements are not covered.</li>
+<li><strong>Computed end dates ignore extensions and early termination.</strong> Treat <code>start+duration</code> and <code>award+duration</code> rows as strong leads, and switch <code>estimateMissingEndDates</code> off if you need only dates the buyer stated.</li>
+<li><strong>Some durations are not searched.</strong> For computed dates the Actor queries common durations (3 to 120 months in common steps, 1 to 8 and 10 years). Other lengths, or durations in days or weeks, appear only with a stated end date; in a sample of 2023 notices that left out about 7 percent of notices with a duration.</li>
+<li><strong>Ambiguous lots stay empty.</strong> When winners or per-lot fields cannot be matched safely, <code>incumbentName</code> or the date stays empty instead of guessed, and such a lot may not appear in the window at all.</li>
+<li><strong>Run time on wide windows.</strong> At about one request per second, an unfiltered 12-month window takes tens of minutes. A narrower window, a country or CPV filter, or a <code>maxItems</code> cap shortens it.</li>
+<li>A run where TED returns awarded lots with no end dates or durations at all fails on purpose, so a source change is not mistaken for &quot;no expiring contracts&quot;.</li>
+</ul>
+<p>The data is what the EU publishes openly on TED; the Actor does not log in or bypass access controls.</p>
+<h3>Wrapping up</h3>
+<p>If you already know your sectors and countries, a scheduled run turns TED into a recompete pipeline. Pricing is pay per result; the Actor page is <a href="https://apify.com/datagrit/ted-contract-expiry-radar" rel="noopener">on Apify</a> and the field reference lives in the <a href="https://getdatagrit.github.io/ted-contract-expiry-radar/">documentation</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/ted-contract-expiry-radar" rel="noopener">Try TED Contract Expiry Radar - Recompete Leads on Apify</a><a class="btn ghost" href="/ted-contract-expiry-radar/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/career-site-jobs-aggregator/">How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</a></h3><p>Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/french-company-finder/">How to search French companies by profit and revenue with the Sirene API</a></h3><p>Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

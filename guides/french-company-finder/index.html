@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to search French companies by profit and revenue with the Sirene API | datagrit</title>
+<meta name="description" content="Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/french-company-finder/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to search French companies by profit and revenue with the Sirene API | datagrit">
+<meta property="og:description" content="Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL."><meta property="og:url" content="https://getdatagrit.github.io/guides/french-company-finder/"><meta property="og:image" content="https://getdatagrit.github.io/og/french-company-finder.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to search French companies by profit and revenue with the Sirene API | datagrit"><meta name="twitter:description" content="Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL."><meta name="twitter:image" content="https://getdatagrit.github.io/og/french-company-finder.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to search French companies by profit and revenue with the Sirene API","description":"Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.","datePublished":"2026-10-01","dateModified":"2026-10-01","image":"https://getdatagrit.github.io/og/french-company-finder.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/french-company-finder/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"opendata, python, api, france","about":{"@type":"SoftwareApplication","name":"French Company Finder - Sirene Financials","url":"https://getdatagrit.github.io/french-company-finder/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to search French companies by profit and revenue with the Sirene API","item":"https://getdatagrit.github.io/guides/french-company-finder/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › French Company Finder - Sirene Financials</p>
+<span class="pill">Guide</span>
+<h1>How to search French companies by profit and revenue with the Sirene API</h1>
+<p class="lead">Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.</p>
+<p class="note">Published 2026-10-01 · uses the <a href="/french-company-finder/">French Company Finder - Sirene Financials</a> Actor</p>
+<p>Say you sell accounting software to French SMEs in the Lyon area, or you are an investor looking for loss-making bakery chains that might be open to a deal, or a procurement team checking whether a supplier's SIREN still belongs to an active company. All three questions have the same shape: <em>give me French companies that match an activity, a place, a size and a financial profile, as a table</em>.</p>
+<p>France publishes the raw material for this as open data, including revenue and net result for companies that file public accounts. What it does not give you is a ready-made margin, or a location filter you can trust without checking every row. That gap is what this post walks through: where the data lives, the traps in it, and how to get a clean, filtered company list into Python.</p>
+<h3>Where the data comes from</h3>
+<p>The <strong>Sirene</strong> register identifies French companies by a 9-digit SIREN number and each of their establishments by a 14-digit SIRET number. The state exposes it through a free public search API at <code>recherche-entreprises.api.gouv.fr</code>, and every company has a public page on <code>annuaire-entreprises.data.gouv.fr</code>. For companies that file their accounts publicly, the API also carries the latest revenue and net result, and it accepts revenue and net result ranges as search parameters.</p>
+<p>Working with that API directly, you run into these issues:</p>
+<ul>
+<li><strong>Location matches dead establishments.</strong> A department or postal code filter matches any establishment the company ever had there, including ones closed decades ago. In a sample of 450 companies returned for eight departments on 30 September 2026, 128 had only closed establishments in the requested department.</li>
+<li><strong>The head office is not always in the matching list.</strong> You have to check it separately.</li>
+<li><strong>The matching list is capped.</strong> By default the API returns only 10 matching establishments per company unless you ask for more.</li>
+<li><strong>No employer filter.</strong> The API has no switch for &quot;has employees&quot;; you need to derive it from the head office employer flag and the employee band.</li>
+<li><strong>One year of accounts.</strong> The register exposes only the latest published financial year, so growth rates are not available.</li>
+<li><strong>Hard cap of 10,000 results per search,</strong> plus rate limiting with <code>Retry-After</code>.</li>
+</ul>
+<p>The French Company Finder Actor on Apify wraps the API and handles these. It requests up to 100 matching establishments per company, checks the head office first, and re-checks every filter on every record. With <strong>Only active companies</strong> on (the default), a company is returned only if it has an <em>open</em> establishment in your location. It derives <code>isEmployer</code>, exposes the revenue and net result ranges as input fields and computes the net margin on each row.</p>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>Software companies with an open establishment in the Rhône department, revenue above one million euros, profitable only:</p>
+<pre><code>
+{
+  &quot;queries&quot;: [&quot;logiciel&quot;],
+  &quot;departments&quot;: [&quot;69&quot;],
+  &quot;activityCodes&quot;: [&quot;62.01Z&quot;, &quot;62.02A&quot;],
+  &quot;minRevenue&quot;: 1000000,
+  &quot;minNetResult&quot;: 1,
+  &quot;onlyActive&quot;: true,
+  &quot;employersOnly&quot;: true,
+  &quot;includeDirectors&quot;: false,
+  &quot;maxItems&quot;: 100
+}
+</code></pre>
+<p>Notes on the fields:</p>
+<ul>
+<li><code>queries</code> are searched separately; leave them out to search on filters alone.</li>
+<li><code>sirens</code> accepts SIREN or SIRET numbers. Number lookups ignore the filters and also return closed companies, which is what you want for KYB checks.</li>
+<li><code>minNetResult: 1</code> keeps profitable companies; <code>maxNetResult: 0</code> finds loss-making ones.</li>
+<li><code>companySizes</code> takes <code>PME</code>, <code>ETI</code> or <code>GE</code>; <code>employeeBands</code> and <code>legalForms</code> take INSEE codes (for example <code>5710</code> for SAS).</li>
+<li><code>headOfficeOnly: true</code> requires the head office itself to be in the location.</li>
+<li><code>includeDirectors</code> is off by default because names of directors are personal data.</li>
+</ul>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run_input = {
+    &quot;queries&quot;: [&quot;logiciel&quot;],
+    &quot;departments&quot;: [&quot;69&quot;],
+    &quot;minRevenue&quot;: 1000000,
+    &quot;minNetResult&quot;: 1,
+    &quot;maxItems&quot;: 100,
+}
+
+run = client.actor(&quot;datagrit/french-company-finder&quot;).call(run_input=run_input)
+
+for c in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    if c.get(&quot;found&quot;):
+        print(c[&quot;siren&quot;], c[&quot;name&quot;], c[&quot;revenue&quot;], c[&quot;netMarginPct&quot;], c[&quot;matchedEstablishmentCity&quot;])
+</code></pre>
+<h4>3. Or with cURL</h4>
+<p>A KYB check on one company by SIREN:</p>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~french-company-finder/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;sirens&quot;: [&quot;380059113&quot;]}'
+</code></pre>
+<p>If a number is not in the public register, the run adds a status row for it (not charged) and names it in the status message. If the input has only numbers and none of them exists, the run fails, so a scheduled check cannot pass silently on a typo.</p>
+<h3>What you get</h3>
+<p>One row per company (or per establishment for SIRET lookups). The fields you will use most:</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>siren</code></td><td><code>380059113</code></td><td>Company identifier</td></tr>
+<tr><td><code>name</code></td><td><code>SERVICES LOGICIELS D'INTEGRATION BOURSIERE - SLIB (SLIB)</code></td><td>Display name</td></tr>
+<tr><td><code>activityCode</code></td><td><code>62.02A</code></td><td>Main NAF activity code</td></tr>
+<tr><td><code>companySize</code></td><td><code>GE</code></td><td>PME, ETI or GE</td></tr>
+<tr><td><code>employeeBand</code></td><td><code>100-199 employees</code></td><td>INSEE band label</td></tr>
+<tr><td><code>revenue</code> / <code>revenueYear</code></td><td><code>25256877</code> / <code>2025</code></td><td>Latest published revenue in EUR</td></tr>
+<tr><td><code>netResult</code></td><td><code>897017</code></td><td>Latest net result in EUR</td></tr>
+<tr><td><code>netMarginPct</code></td><td><code>3.6</code></td><td>Net result divided by revenue</td></tr>
+<tr><td><code>city</code></td><td><code>PARIS</code></td><td>Head office city</td></tr>
+<tr><td><code>matchedEstablishmentCity</code></td><td><code>LYON</code></td><td>The open establishment that matched your location</td></tr>
+</tbody></table></div>
+<p>The example shows why the matched establishment matters: the company is headquartered in Paris but was returned for a Rhône search because it runs an open establishment in Lyon. Rows also include <code>vatNumber</code>, coordinates of the head office, <code>establishmentsOpen</code>, <code>creationDate</code>, <code>isActive</code>, <code>isSocialEconomy</code>, <code>isEmployer</code> and a <code>sourceUrl</code> to the public company page.</p>
+<h3>Recipes</h3>
+<h4>Prospect list into a CRM, refreshed monthly</h4>
+<p>Schedule a monthly run per target region and NAF code, export as CSV and upsert into your CRM using <code>siren</code> as the key. Because every run reads the live register, companies that cease activity drop out of the next list when <code>onlyActive</code> is on, and new ones appear.</p>
+<h4>Supplier check before onboarding</h4>
+<p>Pass the supplier's SIREN through the cURL call above in your onboarding flow. Check <code>isActive</code>, <code>closureDate</code>, <code>legalForm</code> and <code>vatNumber</code> against what the supplier gave you. A SIRET lookup returns exactly that establishment, including whether it is still open.</p>
+<h4>Profitability screen in pandas</h4>
+<pre><code>
+import pandas as pd
+
+rows = [c for c in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if c.get(&quot;found&quot;)]
+df = pd.DataFrame(rows)
+
+with_accounts = df.dropna(subset=[&quot;revenue&quot;, &quot;netResult&quot;])
+print(f&quot;{len(with_accounts)} of {len(df)} companies publish accounts&quot;)
+
+by_band = (
+    with_accounts.groupby(&quot;employeeBand&quot;)
+    .agg(companies=(&quot;siren&quot;, &quot;count&quot;), median_margin=(&quot;netMarginPct&quot;, &quot;median&quot;))
+    .sort_values(&quot;companies&quot;, ascending=False)
+)
+print(by_band)
+</code></pre>
+<h3>Limitations</h3>
+<ul>
+<li><strong>Financials only for companies that publish accounts.</strong> Many companies do not publish their accounts, so <code>revenue</code> and <code>netResult</code> are empty for them, and revenue or net result filters exclude them. The status message reports how many returned companies have revenue.</li>
+<li><strong>One financial year.</strong> The register exposes only the latest published year, so there are no growth fields.</li>
+<li><strong>10,000 results per search.</strong> Split very broad searches by department or activity code.</li>
+<li><strong>Establishment count cap.</strong> <code>matchedEstablishmentsListed</code> of 100 means 100 or more.</li>
+<li><strong>Opted-out companies are absent.</strong> Companies that chose not to appear in the public listing are not in the register the API serves.</li>
+<li><strong>Directors are personal data.</strong> They are returned only when you switch <code>includeDirectors</code> on, and their use is your responsibility under data protection law.</li>
+</ul>
+<p>The Actor reads only the open data the French state publishes through its public API; it does not log in or bypass access controls.</p>
+<h3>Wrapping up</h3>
+<p>Profit filters and location checks you can trust turn Sirene into a usable prospecting and KYB source; pricing is pay per result, and the Actor is <a href="https://apify.com/datagrit/french-company-finder" rel="noopener">on Apify</a> with the full field list in the <a href="https://getdatagrit.github.io/french-company-finder/">documentation</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/french-company-finder" rel="noopener">Try French Company Finder - Sirene Financials on Apify</a><a class="btn ghost" href="/french-company-finder/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/career-site-jobs-aggregator/">How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</a></h3><p>Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/greenhouse-salary-scraper/">How to get salary ranges from Greenhouse job boards by pay zone</a></h3><p>Collect Greenhouse job postings with published pay ranges per location zone, annualised and filtered by currency, using Python, cURL or pandas.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

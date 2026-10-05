@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to scrape salary ranges from Ashby job boards with Python | datagrit</title>
+<meta name="description" content="Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/ashby-salary-scraper/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to scrape salary ranges from Ashby job boards with Python | datagrit">
+<meta property="og:description" content="Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed."><meta property="og:url" content="https://getdatagrit.github.io/guides/ashby-salary-scraper/"><meta property="og:image" content="https://getdatagrit.github.io/og/ashby-salary-scraper.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to scrape salary ranges from Ashby job boards with Python | datagrit"><meta name="twitter:description" content="Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed."><meta name="twitter:image" content="https://getdatagrit.github.io/og/ashby-salary-scraper.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to scrape salary ranges from Ashby job boards with Python","description":"Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.","datePublished":"2026-10-01","dateModified":"2026-10-01","image":"https://getdatagrit.github.io/og/ashby-salary-scraper.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/ashby-salary-scraper/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webscraping, python, api, jobs","about":{"@type":"SoftwareApplication","name":"Ashby Salary Scraper - Startup Job Pay Ranges","url":"https://getdatagrit.github.io/ashby-salary-scraper/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to scrape salary ranges from Ashby job boards with Python","item":"https://getdatagrit.github.io/guides/ashby-salary-scraper/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Ashby Salary Scraper - Startup Job Pay Ranges</p>
+<span class="pill">Guide</span>
+<h1>How to scrape salary ranges from Ashby job boards with Python</h1>
+<p class="lead">Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p>
+<p class="note">Published 2026-10-01 · uses the <a href="/ashby-salary-scraper/">Ashby Salary Scraper - Startup Job Pay Ranges</a> Actor</p>
+<p>Many startups, Ramp, OpenAI and Zapier among them, hire through Ashby. Their careers pages at <code>jobs.ashbyhq.com/&lt;company&gt;</code> often show a pay range next to each role, partly because employers in some regions must publish pay. On 30 September 2026, 677 of OpenAI's 838 postings and 148 of Ramp's 155 carried a salary. That makes Ashby boards a useful public source of real salary bands.</p>
+<p>Who needs that data? Compensation analysts benchmarking bands for a new level. Recruiters who want a feed of new roles at a list of target companies. Job seekers who want to know what Ramp or OpenAI pays for a role before an interview. Sales teams who treat a burst of new postings as a buying signal. They all want the same thing: postings as rows, with pay normalised so a monthly range and a yearly range can sit in one column.</p>
+<h3>Where the data comes from</h3>
+<p>Ashby provides a public job board API for employers who publish roles: <code>api.ashbyhq.com/posting-api/job-board/&lt;board&gt;</code>, with <code>includeCompensation=true</code> to get pay data. No login, plain JSON. It looks easy, and for a single board it is. Turning it into a reliable dataset across many boards is where it gets fiddly:</p>
+<ul>
+<li><strong>Mixed pay intervals.</strong> Most ranges are yearly, but some are monthly (on the ramp board, 4 of 148 postings with pay were monthly ranges on 30 September 2026), and others can be weekly, daily or hourly. A minimum salary filter on raw numbers is wrong for those.</li>
+<li><strong>Several pay tiers per role.</strong> A role may list a US tier and a Canadian tier. Which currency counts for filtering?</li>
+<li><strong>&quot;Remote&quot; includes hybrid.</strong> Ashby sets <code>isRemote: true</code> on hybrid roles too. On the openai board, all 524 hybrid postings carried the flag. On that board, filtering on <code>isRemote</code> gives you mostly hybrid jobs.</li>
+<li><strong>Location matching.</strong> A naive substring check for <code>US</code> matches &quot;Australia&quot; and &quot;Houston&quot;.</li>
+<li><strong>Board names.</strong> Some boards have spaces in their name (<code>jobs.ashbyhq.com/the%20browser%20company</code>), and boards that do not exist return &quot;not found&quot; rather than an empty list.</li>
+<li><strong>Incremental feeds.</strong> For a daily feed you need to remember what you already delivered, per company and per filter set, without losing postings that were cut off by a result limit.</li>
+</ul>
+<p>The Ashby Salary Scraper Actor on Apify handles each of these. It annualises pay (monthly × 12, weekly × 52, daily × 260, hourly × 2080), filters on the currency of the headline range while listing every tier currency, decides &quot;remote&quot; by Ashby's <code>workplaceType</code> instead of <code>isRemote</code>, matches locations as whole words, and keeps an only-new memory in a storage on your own Apify account.</p>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>Engineering roles with a published salary at three companies, at least 150,000 per year in USD, US locations:</p>
+<pre><code>
+{
+  &quot;companies&quot;: [&quot;ramp&quot;, &quot;openai&quot;, &quot;zapier&quot;],
+  &quot;keywords&quot;: [&quot;engineer&quot;],
+  &quot;departments&quot;: [&quot;Engineering&quot;],
+  &quot;locations&quot;: [&quot;US&quot;, &quot;New York&quot;, &quot;San Francisco&quot;],
+  &quot;remoteOnly&quot;: false,
+  &quot;onlyWithSalary&quot;: true,
+  &quot;minAnnualSalary&quot;: 150000,
+  &quot;salaryCurrencies&quot;: [&quot;USD&quot;],
+  &quot;publishedWithinDays&quot;: 30,
+  &quot;onlyNewSinceLastRun&quot;: false,
+  &quot;includeDescription&quot;: false,
+  &quot;maxItems&quot;: 500
+}
+</code></pre>
+<p><code>companies</code> accepts board names or full Ashby URLs. Boards that do not exist are skipped and listed in the run status; if none can be read, the run fails rather than returning an empty dataset. <code>keywords</code> match the title only, <code>departments</code> the department and <code>teams</code> the level below it. Department names vary between employers (OpenAI files sales roles under &quot;Go To Market&quot;), so look at a first run before filtering on them.</p>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run_input = {
+    &quot;companies&quot;: [&quot;ramp&quot;, &quot;openai&quot;, &quot;zapier&quot;],
+    &quot;keywords&quot;: [&quot;engineer&quot;],
+    &quot;onlyWithSalary&quot;: True,
+    &quot;minAnnualSalary&quot;: 150000,
+    &quot;salaryCurrencies&quot;: [&quot;USD&quot;],
+    &quot;maxItems&quot;: 500,
+}
+
+run = client.actor(&quot;datagrit/ashby-salary-scraper&quot;).call(run_input=run_input)
+postings = [p for p in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if p.get(&quot;found&quot;)]
+
+for p in postings[:10]:
+    print(p[&quot;company&quot;], p[&quot;title&quot;], p[&quot;salaryAnnualMin&quot;], p[&quot;salaryAnnualMax&quot;], p[&quot;salaryCurrency&quot;])
+</code></pre>
+<h4>3. Or with cURL</h4>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~ashby-salary-scraper/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;companies&quot;: [&quot;ramp&quot;], &quot;onlyWithSalary&quot;: true, &quot;maxItems&quot;: 50}'
+</code></pre>
+<h3>What you get</h3>
+<p>One row per posting. The fields that matter most for pay analysis:</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>company</code></td><td><code>zapier</code></td><td>Ashby board name</td></tr>
+<tr><td><code>title</code></td><td><code>Finance Manager, Marketing</code></td><td>Job title</td></tr>
+<tr><td><code>department</code></td><td><code>Finance</code></td><td>Department set by the employer</td></tr>
+<tr><td><code>workplaceType</code></td><td><code>Remote</code></td><td>Remote, Hybrid or OnSite</td></tr>
+<tr><td><code>salaryMin</code> / <code>salaryMax</code></td><td><code>158300</code> / <code>237500</code></td><td>Headline range as published</td></tr>
+<tr><td><code>salaryInterval</code></td><td><code>1 YEAR</code></td><td>Pay period of the published range</td></tr>
+<tr><td><code>salaryAnnualMax</code></td><td><code>237500</code></td><td>Upper bound converted to a yearly amount</td></tr>
+<tr><td><code>salaryCurrency</code></td><td><code>USD</code></td><td>Currency of the headline range</td></tr>
+<tr><td><code>payTierCurrencies</code></td><td><code>USD, CAD</code></td><td>Currencies of all location pay tiers</td></tr>
+<tr><td><code>equityOffered</code></td><td><code>true</code></td><td>Compensation includes equity</td></tr>
+</tbody></table></div>
+<p>You also get <code>bonusMentioned</code>, <code>commissionMentioned</code>, <code>salarySummary</code> (the text shown on the posting), <code>payTierSummaries</code> when there are several tiers, <code>allLocations</code>, <code>publishedAt</code>, <code>daysSincePublished</code>, <code>jobUrl</code> and <code>applyUrl</code>. <code>descriptionText</code> (cut to 8,000 characters) is added only if you ask for it.</p>
+<h3>Recipes</h3>
+<h4>Daily feed of new roles into Slack or a CRM</h4>
+<p>Set <code>onlyNewSinceLastRun: true</code> and schedule the Actor daily. The first run returns everything that matches; later runs return only postings not delivered before for the same companies and filters. Postings cut off by <code>maxItems</code> are not remembered, so they come back in the next run. If two schedules use identical filters but must each receive every posting (say, two recruiting teams), give them different <code>stateKey</code> values. Hook the run's webhook to Slack, Zapier or n8n and post each new row.</p>
+<h4>Pay benchmark by department in pandas</h4>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(postings)
+usd = df[(df[&quot;hasSalary&quot;]) &amp; (df[&quot;salaryCurrency&quot;] == &quot;USD&quot;)]
+
+bench = (
+    usd.groupby([&quot;company&quot;, &quot;department&quot;])
+       .agg(roles=(&quot;id&quot;, &quot;count&quot;),
+            p50_min=(&quot;salaryAnnualMin&quot;, &quot;median&quot;),
+            p50_max=(&quot;salaryAnnualMax&quot;, &quot;median&quot;),
+            equity_share=(&quot;equityOffered&quot;, &quot;mean&quot;))
+       .sort_values(&quot;roles&quot;, ascending=False)
+)
+print(bench.head(20))
+</code></pre>
+<p>Keep the currency filter in the analysis: amounts are annualised but not converted between currencies.</p>
+<h4>Fully remote roles only</h4>
+<p>Set <code>remoteOnly: true</code>. It keeps workplace type Remote and drops hybrid and on-site roles; when an employer did not set a workplace type, Ashby's <code>isRemote</code> flag decides, and without that the word &quot;remote&quot; in the primary location. On 30 September 2026 this returned 29 of 838 openai postings, while the 524 hybrid postings on that board also carried <code>isRemote</code>.</p>
+<h3>Limitations</h3>
+<ul>
+<li><strong>Only employers that publish pay.</strong> Salary fields are empty when the employer does not show a range, as for 161 of 838 openai postings on 30 September 2026.</li>
+<li><strong>No currency conversion.</strong> <code>salaryAnnualMin</code>/<code>Max</code> stay in the headline currency.</li>
+<li><strong>Annualisation is arithmetic.</strong> Hourly × 2080 assumes full-time hours; it does not know about part-time schedules.</li>
+<li><strong>Only Ashby boards.</strong> Companies on Greenhouse, Lever or other systems are not covered by this Actor, and boards with no open postings return nothing.</li>
+<li><strong>Department and location names are the employer's.</strong> Countries appear as written (<code>USA</code>, <code>United States</code>), so add both spellings to location filters.</li>
+<li><strong>Descriptions may contain personal data</strong> such as a recruiter's name; they are off by default.</li>
+</ul>
+<p>The Actor reads only the public job board API that Ashby offers employers for publishing roles. It does not log in or touch candidate data.</p>
+<h3>Wrapping up</h3>
+<p>If your target companies hire through Ashby, this gives you a clean, comparable pay dataset and a daily new-roles feed; it is priced pay per result, listed <a href="https://apify.com/datagrit/ashby-salary-scraper" rel="noopener">on Apify</a>, with every field documented in the <a href="https://getdatagrit.github.io/ashby-salary-scraper/">documentation</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/ashby-salary-scraper" rel="noopener">Try Ashby Salary Scraper - Startup Job Pay Ranges on Apify</a><a class="btn ghost" href="/ashby-salary-scraper/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/career-site-jobs-aggregator/">How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</a></h3><p>Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/french-company-finder/">How to search French companies by profit and revenue with the Sirene API</a></h3><p>Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/greenhouse-salary-scraper/">How to get salary ranges from Greenhouse job boards by pay zone</a></h3><p>Collect Greenhouse job postings with published pay ranges per location zone, annualised and filtered by currency, using Python, cURL or pandas.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

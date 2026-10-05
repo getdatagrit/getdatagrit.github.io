@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to list Kalshi markets that settle in the next 24 hours with Python | datagrit</title>
+<meta name="description" content="Build a Kalshi settlement calendar with bid, ask, spread, volume and order book depth near the touch, filtered by liquidity, using Python or cURL.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/kalshi-settlement-calendar/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to list Kalshi markets that settle in the next 24 hours with Python | datagrit">
+<meta property="og:description" content="Build a Kalshi settlement calendar with bid, ask, spread, volume and order book depth near the touch, filtered by liquidity, using Python or cURL."><meta property="og:url" content="https://getdatagrit.github.io/guides/kalshi-settlement-calendar/"><meta property="og:image" content="https://getdatagrit.github.io/og/kalshi-settlement-calendar.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to list Kalshi markets that settle in the next 24 hours with Python | datagrit"><meta name="twitter:description" content="Build a Kalshi settlement calendar with bid, ask, spread, volume and order book depth near the touch, filtered by liquidity, using Python or cURL."><meta name="twitter:image" content="https://getdatagrit.github.io/og/kalshi-settlement-calendar.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to list Kalshi markets that settle in the next 24 hours with Python","description":"Build a Kalshi settlement calendar with bid, ask, spread, volume and order book depth near the touch, filtered by liquidity, using Python or cURL.","datePublished":"2026-10-01","dateModified":"2026-10-01","image":"https://getdatagrit.github.io/og/kalshi-settlement-calendar.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/kalshi-settlement-calendar/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"python, api, trading, datascience","about":{"@type":"SoftwareApplication","name":"Kalshi Settlement Calendar & Order Book Depth","url":"https://getdatagrit.github.io/kalshi-settlement-calendar/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to list Kalshi markets that settle in the next 24 hours with Python","item":"https://getdatagrit.github.io/guides/kalshi-settlement-calendar/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Kalshi Settlement Calendar &amp; Order Book Depth</p>
+<span class="pill">Guide</span>
+<h1>How to list Kalshi markets that settle in the next 24 hours with Python</h1>
+<p class="lead">Build a Kalshi settlement calendar with bid, ask, spread, volume and order book depth near the touch, filtered by liquidity, using Python or cURL.</p>
+<p class="note">Published 2026-10-01 · uses the <a href="/kalshi-settlement-calendar/">Kalshi Settlement Calendar &amp; Order Book Depth</a> Actor</p>
+<p>On a prediction market, time to settlement shapes how you trade. A contract that resolves tonight is a different position from one that resolves in March, and close to settlement the data feed that decides the outcome matters more than any opinion.</p>
+<p>If you trade on Kalshi, build bots for it or study its markets, the question you keep asking is: <em>which open markets settle in the next N hours, which of them are actually quoted, and how much can I trade near the best price?</em> Kalshi's public API holds all the pieces. It just does not give them to you as one table.</p>
+<p>This post shows what the API offers, the traps in combining it, and how to get a settlement calendar with liquidity attached in one call.</p>
+<h3>Where the data comes from</h3>
+<p>Kalshi exposes a public market data API at <code>api.elections.kalshi.com/trade-api/v2</code> that needs no account for reading. It has markets (with quotes, volume, open interest and timing fields), a series catalog (with categories, frequency and settlement sources) and order books per market.</p>
+<p>Building a settlement calendar on top of it involves more than one endpoint and several surprises:</p>
+<ul>
+<li><strong>The right time field.</strong> Markets have a close time, a latest settlement time and an <em>expected</em> settlement time (<code>expected_expiration_time</code>). Many markets can close early, so the close time is often far later than when the market actually resolves. The Kalshi Settlement Calendar Actor on Apify filters and sorts on the expected settlement time.</li>
+<li><strong>Scale.</strong> The exchange had 126,003 open markets when the Actor's memory use was last measured. Scanning them all and keeping a sorted window without exhausting memory needs care; the Actor keeps only the best <code>maxItems</code> candidates while it scans.</li>
+<li><strong>Series matching.</strong> Settlement sources live on the series, not the market. Series tickers can contain dashes (<code>KXBTCD-B</code> versus <code>KXBTCD</code>), so splitting an event ticker at the first dash attaches the wrong series. The Actor matches the longest event ticker prefix present in the catalog.</li>
+<li><strong>Category membership.</strong> A series can be listed under several categories. 1,041 of 14,527 series were, so filtering on the single <code>category</code> field silently drops markets. The Actor uses the full membership list.</li>
+<li><strong>Combination markets.</strong> Multivariate &quot;combo&quot; markets can flood results if the exclusion filter is not applied. The Actor checks every row against the series catalog and the market fields, skips combination markets, and fails the run before billing if they make up more than 1% of the scan.</li>
+<li><strong>Order book depth.</strong> The raw book lists every level. What a trader usually needs is how many contracts sit within a few cents of the best bid and ask.</li>
+</ul>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>Crypto and financial markets settling within the next 24 hours, with at least some activity and a spread of 3 cents or less:</p>
+<pre><code>
+{
+  &quot;settlesWithinHours&quot;: 24,
+  &quot;settlesAfterHours&quot;: 0,
+  &quot;categories&quot;: [&quot;Crypto&quot;, &quot;Financials&quot;],
+  &quot;seriesTickers&quot;: [],
+  &quot;keywords&quot;: [],
+  &quot;minVolume24h&quot;: 100,
+  &quot;minOpenInterest&quot;: 0,
+  &quot;requireTwoSidedQuote&quot;: true,
+  &quot;maxSpreadCents&quot;: 3,
+  &quot;sortBy&quot;: &quot;settlement&quot;,
+  &quot;includeOrderbook&quot;: true,
+  &quot;depthCents&quot;: 5,
+  &quot;includeRules&quot;: false,
+  &quot;maxItems&quot;: 50
+}
+</code></pre>
+<p><code>sortBy</code> accepts <code>settlement</code>, <code>volume24h</code>, <code>openInterest</code> or <code>spread</code>. A negative <code>settlesAfterHours</code> (for example <code>-6</code>) also lists markets whose expected settlement time has passed but which have not settled yet. Naming <code>seriesTickers</code> such as <code>KXBTCD</code> is much faster than scanning the whole exchange: a run without named series scans the full catalog, which takes about a minute and a half.</p>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run_input = {
+    &quot;settlesWithinHours&quot;: 24,
+    &quot;seriesTickers&quot;: [&quot;KXBTCD&quot;],
+    &quot;maxSpreadCents&quot;: 3,
+    &quot;includeOrderbook&quot;: True,
+    &quot;depthCents&quot;: 5,
+    &quot;maxItems&quot;: 50,
+}
+
+run = client.actor(&quot;datagrit/kalshi-settlement-calendar&quot;).call(run_input=run_input)
+markets = [m for m in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if m.get(&quot;found&quot;)]
+
+for m in markets:
+    print(f'{m[&quot;hoursToSettle&quot;]:&gt;6}h  {m[&quot;ticker&quot;]:&lt;32} bid {m[&quot;yesBid&quot;]} ask {m[&quot;yesAsk&quot;]} '
+          f'depth {m[&quot;yesBidDepth&quot;]}/{m[&quot;yesAskDepth&quot;]}')
+</code></pre>
+<h4>3. Or with cURL</h4>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~kalshi-settlement-calendar/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;settlesWithinHours&quot;: 48, &quot;seriesTickers&quot;: [&quot;KXBTCD&quot;], &quot;maxItems&quot;: 20}'
+</code></pre>
+<h3>What you get</h3>
+<p>One row per open market. Prices are in dollars (0.58 = 58 cents, read as a 58% implied probability); volume, open interest and depth are in contracts.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>ticker</code></td><td><code>KXBTCD-26OCT0117-T83249.99</code></td><td>Market ticker</td></tr>
+<tr><td><code>title</code></td><td><code>Bitcoin price on Oct 1, 2026?</code></td><td>What the market asks</td></tr>
+<tr><td><code>expectedSettlementTime</code></td><td><code>2026-10-01T21:00:00.000Z</code></td><td>When Kalshi expects it to settle</td></tr>
+<tr><td><code>hoursToSettle</code></td><td><code>18.26</code></td><td>Hours from run start; negative = overdue</td></tr>
+<tr><td><code>settlementSources</code></td><td><code>CF Benchmarks</code></td><td>Who decides the outcome</td></tr>
+<tr><td><code>yesBid</code> / <code>yesAsk</code></td><td><code>0.58</code> / <code>0.59</code></td><td>Best YES quotes</td></tr>
+<tr><td><code>spreadCents</code></td><td><code>1</code></td><td>Ask minus bid in cents</td></tr>
+<tr><td><code>volume24h</code></td><td><code>29185.23</code></td><td>Contracts traded in 24 hours</td></tr>
+<tr><td><code>openInterest</code></td><td><code>17101.47</code></td><td>Contracts outstanding</td></tr>
+<tr><td><code>yesBidDepth</code> / <code>yesAskDepth</code></td><td><code>16839.01</code> / <code>19022.45</code></td><td>Contracts within <code>depthCents</code> of the touch</td></tr>
+</tbody></table></div>
+<p>Rows also carry <code>seriesTicker</code>, <code>seriesTitle</code>, <code>category</code>, <code>categories</code>, <code>frequency</code>, <code>outcome</code>, <code>closeTime</code>, <code>latestSettlementTime</code>, <code>canCloseEarly</code>, <code>settlementSourceUrls</code>, <code>midPrice</code>, NO-side quotes, sizes at the touch, whole-book levels and totals, and, if requested, the rules text.</p>
+<h3>Recipes</h3>
+<h4>Hourly &quot;settling next&quot; sheet</h4>
+<p>Schedule the Actor hourly with <code>settlesWithinHours: 6</code> and <code>sortBy: &quot;settlement&quot;</code>, and write the dataset to Google Sheets through an Apify integration or a short script. The sheet always shows what resolves next, with the spread and depth needed to judge whether it is tradable.</p>
+<h4>Liquidity screen before sizing an order</h4>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(markets)
+tradable = df[(df[&quot;spreadCents&quot;] &lt;= 2) &amp; (df[&quot;yesAskDepth&quot;] &gt;= 500)]
+print(tradable.sort_values(&quot;hoursToSettle&quot;)[[&quot;ticker&quot;, &quot;hoursToSettle&quot;, &quot;midPrice&quot;, &quot;spreadCents&quot;, &quot;yesAskDepth&quot;]])
+</code></pre>
+<p><code>yesAskDepth</code> counts contracts you can buy within the depth window above the best ask, so it is a direct answer to &quot;can I get 500 contracts without walking the book more than 5 cents?&quot;.</p>
+<h4>Grouping by settlement source</h4>
+<p>Run with a one-week window (<code>settlesWithinHours: 168</code>), then group by <code>settlementSources</code>. That shows which data feeds (for example CF Benchmarks for the Bitcoin series) decide the most markets this week, which helps when you build source-specific models or alerts.</p>
+<h3>Limitations</h3>
+<ul>
+<li><strong>Expected settlement time is a schedule, not a guarantee.</strong> Some markets close early once the outcome is known; a few settle later.</li>
+<li><strong>Only single-outcome, active markets.</strong> Combination markets and markets with another status are excluded.</li>
+<li><strong>Full-exchange scans take time.</strong> About a minute and a half without named series; name series or categories to shorten it.</li>
+<li><strong>Depth can be missing for a market</strong> if its order book could not be read or depth is off. If no order book can be read at all, the run fails instead of returning empty depth.</li>
+<li><strong>The run fails on source changes.</strong> If Kalshi stops publishing a field a filter or sort depends on (expected settlement time, 24h volume, open interest, settlement sources), the run stops and bills nothing, rather than returning rows that look valid.</li>
+<li>Read-only: the Actor uses the public market data API, does not log in and does not place orders.</li>
+</ul>
+<h3>Wrapping up</h3>
+<p>A settlement-sorted view with depth near the touch is a small thing that saves a lot of glue code; pricing is pay per result, the Actor is <a href="https://apify.com/datagrit/kalshi-settlement-calendar" rel="noopener">on Apify</a>, and every field is described in the <a href="https://getdatagrit.github.io/kalshi-settlement-calendar/">documentation</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/kalshi-settlement-calendar" rel="noopener">Try Kalshi Settlement Calendar &amp; Order Book Depth on Apify</a><a class="btn ghost" href="/kalshi-settlement-calendar/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/career-site-jobs-aggregator/">How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</a></h3><p>Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/french-company-finder/">How to search French companies by profit and revenue with the Sirene API</a></h3><p>Build lists of French companies from the official Sirene register, filtered by net result, revenue, NAF code and location, using Python or cURL.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
