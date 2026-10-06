@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product Hunt Launches with Pricing &amp; Website API | datagrit</title>
+<meta name="description" content="Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price. Daily to yearly, topic and vote filters.">
+<link rel="canonical" href="https://getdatagrit.github.io/product-hunt-launch-pricing-intel/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="Product Hunt Launches with Pricing &amp; Website API | datagrit">
+<meta property="og:description" content="Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price. Daily to yearly, topic and vote filters."><meta property="og:url" content="https://getdatagrit.github.io/product-hunt-launch-pricing-intel/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Product Hunt Launches with Pricing &amp; Website API | datagrit"><meta name="twitter:description" content="Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price. Daily to yearly, topic and vote filters."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Product Hunt Launch Pricing & Website Intel","description":"Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price. Daily to yearly, topic and vote filters.","url":"https://getdatagrit.github.io/product-hunt-launch-pricing-intel/","image":"https://getdatagrit.github.io/og/default.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Data","operatingSystem":"Web, Apify platform","softwareVersion":"0.1","dateModified":"2026-10-06T05:14:48.391Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/product-hunt-launch-pricing-intel","priceCurrency":"USD","price":0.0028,"description":"from $2.80 per 1,000 results + $10 per run. The price per result depends on your Apify plan."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/product-hunt-launch-pricing-intel"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Data","item":"https://getdatagrit.github.io/#marketing"},{"@type":"ListItem","position":3,"name":"Product Hunt Launch Pricing & Website Intel","item":"https://getdatagrit.github.io/product-hunt-launch-pricing-intel/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How fresh is the data?","acceptedAnswer":{"@type":"Answer","text":"Every run reads Product Hunt and the product websites live."}},{"@type":"Question","name":"Can I schedule runs?","acceptedAnswer":{"@type":"Answer","text":"Yes, use Apify schedules with the \"only new\" option to get each launch once."}},{"@type":"Question","name":"Why is pricingStatus not \"parsed\" for some launches?","acceptedAnswer":{"@type":"Answer","text":"The website may be unreachable, may block automated requests, or may show prices only after a click. The row still has the website and the reason."}},{"@type":"Question","name":"Something looks wrong.","acceptedAnswer":{"@type":"Answer","text":"Open an issue with the input you used; layout changes at the source are fixed quickly."}}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#marketing">Data</a> › Product Hunt Launch Pricing &amp; Website Intel</p>
+<span class="pill">Data</span>
+<h1>Product Hunt Launch Pricing &amp; Website Intel</h1>
+<p class="lead">Top Product Hunt launches with the product's resolved website, live pricing page, plan tiers and lowest paid price.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/product-hunt-launch-pricing-intel" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">from $2.80 per 1,000 results + $10 per run · no code needed</span></div>
+<div class="facts"><div class="fact"><b>from $2.80 per 1,000 results + $10 per run</b><span>pay only for launch records you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.1</b><span>updated 2026-10-06</span></div></div>
+<p>Product Hunt Launch Pricing &amp; Website Intel reads Product Hunt leaderboards and goes one step further than a launch list: for every launch it follows the Product Hunt link to the product's real website, finds the pricing page and extracts the plans, prices, billing periods, free tier or trial, and the lowest paid price. You get clean, structured records you can export as JSON, CSV or Excel, call through the Apify API, or plug into n8n, Make and AI agents through MCP.</p>
+<p>Pick a period, set a limit and run. With no dates it reads the latest finished day.</p>
+<h2>Why use Product Hunt Launch Pricing &amp; Website Intel?</h2>
+<ul>
+<li><strong>Competitor and market research.</strong> See what every new product in your category charges, whether it has a free tier, and how it positions its plans, without opening hundreds of pages.</li>
+<li><strong>Lead lists for B2B sales.</strong> Each row has the product website and its domain, so you can feed fresh launches into enrichment and outreach, and filter by topic, votes or pricing model first.</li>
+<li><strong>Pricing benchmarks.</strong> Collect lowest paid price and pricing model (freemium, paid, free, usage based, contact sales) across a week, a month or a year of launches.</li>
+<li><strong>Launch monitoring.</strong> Schedule a daily run with the &quot;only new&quot; option and receive each launch once.</li>
+</ul>
+<h2>Output fields</h2>
+<p>Each record contains the launch (<code>rank</code>, <code>productName</code>, <code>tagline</code>, <code>topics</code>, <code>votes</code>, <code>comments</code>, <code>featuredAt</code>, <code>productHuntUrl</code>), the website (<code>websiteUrl</code>, <code>websiteDomain</code>, <code>websiteStatus</code>, <code>websiteTitle</code>) and the pricing (<code>pricingStatus</code>, <code>pricingPageUrl</code>, <code>pricingModel</code>, <code>hasFreeTier</code>, <code>hasFreeTrial</code>, <code>contactSales</code>, <code>currency</code>, <code>lowestPaidPrice</code>, <code>lowestPaidPeriod</code>, <code>pricingConfidence</code>, <code>plans</code>).</p>
+<p>When a run finds nothing you get one row with <code>found: false</code> (not billed) and the run status explains why.</p>
+<h4>How reliable is the pricing data?</h4>
+<p>Pricing pages have no common format, so prices are read from the visible text of the page. <code>pricingConfidence</code> tells you how clear the page was: <code>high</code>, <code>medium</code> or <code>low</code>. Treat <code>low</code> as a pointer to the pricing page, not as a final price. Pages that render prices only with JavaScript, hide them behind a login or block automated requests return <code>pricingStatus</code> other than <code>parsed</code>, and the website URL stays in the row.</p>
+<h4>Product Hunt page coverage</h4>
+<p>A leaderboard page lists the launches Product Hunt shows on its first page, about 15 to 20 per day, week, month or year. To cover more days, pass several dates.</p>
+<h2>Is it legal to scrape this data?</h2>
+<p>The Actor reads only publicly available pages and does not log in or bypass access controls. You are responsible for using the data in line with applicable laws</p>
+<p>(including data protection rules) and the source's terms. If you find an issue, open it in the Issues tab; problems are answered within one business day.</p>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>source</code></td><td>string</td><td>Where the row came from: leaderboard (a Product Hunt leaderboard page) or product (a product page you listed in the input). Null on the status row.</td><td><code>leaderboard</code></td></tr><tr><td><code>period</code></td><td>string</td><td>Leaderboard period the launch was read from: daily, weekly, monthly or yearly. Null for rows read from a product page.</td><td><code>daily</code></td></tr><tr><td><code>periodLabel</code></td><td>string</td><td>The leaderboard page as a readable label, for example 2026-10-04 for a day, 2026-W40 for a week, 2026-09 for a month or 2025 for a year.</td><td><code>2026-10-04</code></td></tr><tr><td><code>rank</code></td><td>integer</td><td>Position on the leaderboard page, 1 is the top launch. Product Hunt orders the page by its own ranking, so this is the rank Product Hunt shows. Null for product page rows.</td><td><code>1</code></td></tr><tr><td><code>postId</code></td><td>string</td><td>Product Hunt launch (post) ID. Stable across runs and used for the only-new memory. Null for product page rows.</td><td><code>1259946</code></td></tr><tr><td><code>productName</code></td><td>string</td><td>Name of the launched product.</td><td><code>CoreSpeed</code></td></tr><tr><td><code>tagline</code></td><td>string</td><td>One-line tagline from the launch.</td><td><code>Ship AI agents faster</code></td></tr><tr><td><code>topics</code></td><td>array</td><td>Product Hunt topics of the launch, for example Artificial Intelligence or Developer Tools. Empty for product page rows and the status row.</td><td><code>[&quot;Artificial Intelligence&quot;,&quot;Developer Tools&quot;]</code></td></tr><tr><td><code>votes</code></td><td>integer</td><td>Upvotes on the launch at the time of the run. Null for product page rows.</td><td><code>412</code></td></tr><tr><td><code>comments</code></td><td>integer</td><td>Comments on the launch at the time of the run. Null for product page rows.</td><td><code>37</code></td></tr><tr><td><code>featuredAt</code></td><td>string</td><td>When Product Hunt featured the launch, ISO 8601 in UTC. Null for product page rows.</td><td><code>2026-10-04T07:01:00.000Z</code></td></tr><tr><td><code>productHuntUrl</code></td><td>string</td><td>Link to the launch page, or to the product page for rows read from a product page.</td><td><code>https://www.producthunt.com/posts/corespeed</code></td></tr><tr><td><code>websiteUrl</code></td><td>string</td><td>The product website the Product Hunt link redirects to, without tracking parameters (ref, utm_*), after following the site's own redirects. Null when the link did not resolve.</td><td><code>https://corespeed.io/</code></td></tr><tr><td><code>websiteDomain</code></td><td>string</td><td>Host of the website without www.</td><td><code>corespeed.io</code></td></tr><tr><td><code>websiteStatus</code></td><td>string</td><td>ok when the website answered with an HTML page; blocked (HTTP 401, 403 or 429), unreachable (no HTML page, DNS or connection error), unresolved (the Product Hunt link could not be followed), noWebsite (Product Hunt has no website for the launch) or notChecked (pricing check switched off). Null on the status row.</td><td><code>ok</code></td></tr><tr><td><code>websiteTitle</code></td><td>string</td><td>The title of the website home page.</td><td><code>CoreSpeed - AI agents</code></td></tr><tr><td><code>pricingStatus</code></td><td>string</td><td>parsed when plan prices were found; noPrices when a page was read but showed no prices (usage or quote-only pricing, or prices drawn by scripts); blocked, notFound or unreachable when no pricing page could be read; notRequested when the pricing check is switched off. Null when the website itself could not be read.</td><td><code>parsed</code></td></tr><tr><td><code>pricingPageUrl</code></td><td>string</td><td>The page the prices were read from when pricingSource is pricingPage.</td><td><code>https://corespeed.io/pricing</code></td></tr><tr><td><code>pricingSource</code></td><td>string</td><td>pricingPage when the prices come from a pricing page linked from the home page or found at /pricing; homepage when the home page itself shows plan prices.</td><td><code>pricingPage</code></td></tr><tr><td><code>pricingModel</code></td><td>string</td><td>freemium (a free plan and a paid plan), paid (paid plans only), free (no paid price found), usageBased (priced per use or credit), contactSales (a quote is needed for the paid plans) or unknown. Derived from the text and prices of the page, so check pricingConfidence.</td><td><code>freemium</code></td></tr><tr><td><code>hasFreeTier</code></td><td>boolean</td><td>True when the pricing page shows a free plan or a $0 price.</td><td><code>true</code></td></tr><tr><td><code>hasFreeTrial</code></td><td>boolean</td><td>True when the pricing page offers a free trial.</td><td><code>false</code></td></tr><tr><td><code>contactSales</code></td><td>boolean</td><td>True when a plan asks you to contact sales or request a quote.</td><td><code>false</code></td></tr><tr><td><code>currency</code></td><td>string</td><td>Currency of the prices, ISO 4217 code.</td><td><code>USD</code></td></tr><tr><td><code>lowestPaidPrice</code></td><td>number</td><td>Price of the cheapest paid plan in the currency, per lowestPaidPeriod. Null when no paid price was found.</td><td><code>20</code></td></tr><tr><td><code>lowestPaidPeriod</code></td><td>string</td><td>Billing period of the lowest paid price: month, year, week, day, one-time, usage (priced per unit or credit) or null when the page does not say.</td><td><code>month</code></td></tr><tr><td><code>pricingConfidence</code></td><td>string</td><td>high when named plans with prices and billing periods were found, medium when some of that was missing, low when plans had no names or the price came from loose text. Treat low as a hint to check the page. Null when no prices were found.</td><td><code>high</code></td></tr><tr><td><code>plans</code></td><td>array</td><td>Plans found on the page, in page order. Empty when no prices were found.</td><td><code>[{&quot;name&quot;:&quot;Starter&quot;,&quot;price&quot;:20,&quot;currency&quot;</code></td></tr><tr><td><code>sourceUrl</code></td><td>string</td><td>The Product Hunt page the row was read from.</td><td><code>https://www.producthunt.com/leaderboard/daily/2026/10/4</code></td></tr><tr><td><code>found</code></td><td>boolean</td><td>True for a launch row, false on the single status row returned when nothing matched.</td><td><code>true</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>When the run read the data, ISO 8601 in UTC.</td><td><code>2026-10-06T12:00:00.000Z</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;source&quot;: &quot;leaderboard&quot;,
+  &quot;period&quot;: &quot;daily&quot;,
+  &quot;periodLabel&quot;: &quot;2026-10-04&quot;,
+  &quot;rank&quot;: 1,
+  &quot;postId&quot;: &quot;1259946&quot;,
+  &quot;productName&quot;: &quot;CoreSpeed&quot;,
+  &quot;tagline&quot;: &quot;Ship AI agents faster&quot;,
+  &quot;topics&quot;: [
+    &quot;Artificial Intelligence&quot;,
+    &quot;Developer Tools&quot;
+  ],
+  &quot;votes&quot;: 412,
+  &quot;comments&quot;: 37,
+  &quot;featuredAt&quot;: &quot;2026-10-04T07:01:00.000Z&quot;,
+  &quot;productHuntUrl&quot;: &quot;https://www.producthunt.com/posts/corespeed&quot;,
+  &quot;websiteUrl&quot;: &quot;https://corespeed.io/&quot;,
+  &quot;websiteDomain&quot;: &quot;corespeed.io&quot;,
+  &quot;websiteStatus&quot;: &quot;ok&quot;,
+  &quot;websiteTitle&quot;: &quot;CoreSpeed - AI agents&quot;,
+  &quot;pricingStatus&quot;: &quot;parsed&quot;,
+  &quot;pricingPageUrl&quot;: &quot;https://corespeed.io/pricing&quot;,
+  &quot;pricingSource&quot;: &quot;pricingPage&quot;,
+  &quot;pricingModel&quot;: &quot;freemium&quot;,
+  &quot;hasFreeTier&quot;: true,
+  &quot;hasFreeTrial&quot;: false,
+  &quot;contactSales&quot;: false,
+  &quot;currency&quot;: &quot;USD&quot;,
+  &quot;lowestPaidPrice&quot;: 20,
+  &quot;lowestPaidPeriod&quot;: &quot;month&quot;,
+  &quot;pricingConfidence&quot;: &quot;high&quot;,
+  &quot;plans&quot;: [
+    {
+      &quot;name&quot;: &quot;Starter&quot;,
+      &quot;price&quot;: 20,
+      &quot;currency&quot;: &quot;USD&quot;,
+      &quot;period&quot;: &quot;month&quot;,
+      &quot;perSeat&quot;: false,
+      &quot;priceText&quot;: &quot;$20&quot;
+    }
+  ],
+  &quot;sourceUrl&quot;: &quot;https://www.producthunt.com/leaderboard/daily/2026/10/4&quot;,
+  &quot;found&quot;: true,
+  &quot;scrapedAt&quot;: &quot;2026-10-06T12:00:00.000Z&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>period</code></td><td>Leaderboard period</td><td>string</td><td>Which Product Hunt leaderboard to read: daily, weekly, monthly or yearly. With no dates the latest finished period is read (yesterday for daily, last week, last month, last year). Each leaderboard page lists the launches Product Hunt shows on its first page, about 15 to 20.</td></tr><tr><td><code>dates</code></td><td>Dates</td><td>array</td><td>Optional periods to read, one per line, in the format of the chosen period: 2026-10-04 for daily, 2026-W40 for weekly, 2026-09 for monthly, 2025 for yearly. Leave empty for the latest finished period. At most 60 pages and products per run; entries that do not fit the period are skipped and named in the run status.</td></tr><tr><td><code>productUrls</code></td><td>Product pages</td><td>array</td><td>Optional Product Hunt product links or slugs to look up directly, one per line, for example https://www.producthunt.com/products/notion or notion. Each is returned as one row with its website and pricing, without leaderboard fields.</td></tr><tr><td><code>fetchPricing</code></td><td>Read pricing pages</td><td>boolean</td><td>Open each product website, find its pricing page and extract plans, the lowest paid price and the pricing model. Switch off to return only the Product Hunt data and the website URL, which is faster.</td></tr><tr><td><code>minVotes</code></td><td>Minimum votes</td><td>integer</td><td>Keep only launches with at least this many votes. Launches with no vote count are kept.</td></tr><tr><td><code>topics</code></td><td>Topics</td><td>array</td><td>Keep only launches in at least one of these Product Hunt topics, one per line, for example Artificial Intelligence or Developer Tools. Matching ignores case and accepts part of a topic name.</td></tr><tr><td><code>pricingModel</code></td><td>Pricing model</td><td>string</td><td>Keep only products with this pricing model: freemium, paid, free, usageBased or contactSales. Any keeps all. Needs Read pricing pages switched on; products whose pricing could not be read do not match a specific model.</td></tr><tr><td><code>onlyNew</code></td><td>Only launches new since the last run</td><td>boolean</td><td>Return only launches that an earlier run with the same period, dates, products, topics, minimum votes and pricing model has not returned yet. The memory is kept per combination of those settings in your account, so two monitors never hide each other's launches, and only returned launches are remembered. Use it with a schedule to get a stream of new launches.</td></tr><tr><td><code>maxItems</code></td><td>Maximum launches</td><td>integer</td><td>Most launches to return in one run, in leaderboard order across all pages and products.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Proxy used for requests to Product Hunt only (it blocks datacenter addresses); product websites are always fetched directly. The default is the Apify residential proxy, which keeps the run working. Switch it off only if you run from your own residential address.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~product-hunt-launch-pricing-intel/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;period&quot;:&quot;daily&quot;,&quot;fetchPricing&quot;:true,&quot;maxItems&quot;:20}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/product-hunt-launch-pricing-intel').call({
+  &quot;period&quot;: &quot;daily&quot;,
+  &quot;fetchPricing&quot;: true,
+  &quot;maxItems&quot;: 20
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/product-hunt-launch-pricing-intel&quot;).call(run_input={
+  &quot;period&quot;: &quot;daily&quot;,
+  &quot;fetchPricing&quot;: True,
+  &quot;maxItems&quot;: 20
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>How fresh is the data?</summary><p>Every run reads Product Hunt and the product websites live.</p></details>
+<details><summary>Can I schedule runs?</summary><p>Yes, use Apify schedules with the &quot;only new&quot; option to get each launch once.</p></details>
+<details><summary>Why is pricingStatus not &quot;parsed&quot; for some launches?</summary><p>The website may be unreachable, may block automated requests, or may show prices only after a click. The row still has the website and the reason.</p></details>
+<details><summary>Something looks wrong.</summary><p>Open an issue with the input you used; layout changes at the source are fixed quickly.</p></details>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/product-hunt-launch-pricing-intel" rel="noopener">Try Product Hunt Launch Pricing &amp; Website Intel on Apify</a></div>
+<h2>Guide</h2><p><a href="/guides/product-hunt-launch-pricing-intel/">How to track Product Hunt launches and what each product charges</a> — Pull Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price, from Python or cURL.</p>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Public procurement</span><h3><a href="/ted-contract-expiry-radar/">TED Contract Expiry Radar - Recompete Leads</a></h3><p>Find EU public contracts approaching expiry from TED award notices: incumbent, buyer, value, end date and renewal options.</p><div class="meta">from $7.00 / 1,000 results</div></article><article class="card"><span class="pill">Public procurement</span><h3><a href="/uk-contract-expiry-radar/">UK Contract Expiry Radar - Recompete Leads</a></h3><p>UK public contracts ending soon with incumbent supplier, buyer, value and contact - recompete leads from Contracts Finder award notices.</p><div class="meta">from $3.50 / 1,000 results</div></article><article class="card"><span class="pill">Company data</span><h3><a href="/french-company-finder/">French Company Finder - Sirene Financials</a></h3><p>French company lead lists from Sirene screened by net result and revenue, with net margin, size, matching establishment and optional directors.</p><div class="meta">from $5.60 / 1,000 results</div></article><article class="card"><span class="pill">Company data</span><h3><a href="/gleif-lei-ownership-tree/">GLEIF LEI Lookup - Parents And Subsidiaries</a></h3><p>GLEIF legal entity records with direct and ultimate parents, reporting exceptions and direct subsidiaries.</p><div class="meta">from $2.80 / 1,000 results · first 10 free</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

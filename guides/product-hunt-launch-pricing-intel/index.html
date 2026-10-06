@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to track Product Hunt launches and what each product charges | datagrit</title>
+<meta name="description" content="Pull Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price, from Python or cURL.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/product-hunt-launch-pricing-intel/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to track Product Hunt launches and what each product charges | datagrit">
+<meta property="og:description" content="Pull Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price, from Python or cURL."><meta property="og:url" content="https://getdatagrit.github.io/guides/product-hunt-launch-pricing-intel/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to track Product Hunt launches and what each product charges | datagrit"><meta name="twitter:description" content="Pull Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price, from Python or cURL."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to track Product Hunt launches and what each product charges","description":"Pull Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price, from Python or cURL.","datePublished":"2026-10-06","dateModified":"2026-10-06","image":"https://getdatagrit.github.io/og/default.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/product-hunt-launch-pricing-intel/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webscraping, python, api, startups","about":{"@type":"SoftwareApplication","name":"Product Hunt Launch Pricing & Website Intel","url":"https://getdatagrit.github.io/product-hunt-launch-pricing-intel/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to track Product Hunt launches and what each product charges","item":"https://getdatagrit.github.io/guides/product-hunt-launch-pricing-intel/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Product Hunt Launch Pricing &amp; Website Intel</p>
+<span class="pill">Guide</span>
+<h1>How to track Product Hunt launches and what each product charges</h1>
+<p class="lead">Pull Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price, from Python or cURL.</p>
+<p class="note">Published 2026-10-06 · uses the <a href="/product-hunt-launch-pricing-intel/">Product Hunt Launch Pricing &amp; Website Intel</a> Actor</p>
+<p>Every day Product Hunt shows a dozen or two new products, and the question that follows is rarely &quot;what is it called&quot;. It is &quot;who is this for, and what does it cost?&quot; Founders want to know what competitors charge. Sales teams want the website of every fresh launch in their category. Analysts want a benchmark: how many launches this month are freemium, and what is the usual first paid tier?</p>
+<p>Product Hunt answers the first half. The second half lives on each product's own website, one pricing page at a time. This post shows what it takes to connect the two, where a homemade version breaks, and how to run the whole thing through the Apify API.</p>
+<h3>Where the data comes from</h3>
+<p>Two public sources, no login:</p>
+<ol>
+<li><strong>The leaderboard page.</strong> Product Hunt renders the daily, weekly, monthly and yearly leaderboards on the server, so rank, name, tagline, topics, votes, comment count and launch time are embedded in the page. It lists only the launches of its first page, about 15 to 20, so a &quot;top 100 of the month&quot; is not available this way. To cover more, ask for several dates.</li>
+<li><strong>The product's own website.</strong> Product Hunt links every launch through a short redirect (<code>/r/p/&lt;id&gt;</code>). Following it, without staying on Product Hunt, gives the real website. The Product Hunt Launch Pricing &amp; Website Intel Actor then opens that site, looks for a pricing link in the page, falls back to <code>/pricing</code>, and reads the prices from the visible text.</li>
+</ol>
+<p>The traps this removes:</p>
+<ul>
+<li><strong>Tracking parameters.</strong> The redirect target carries <code>ref=producthunt</code> and <code>utm_*</code> parameters. The Actor strips them so <code>websiteUrl</code> and <code>websiteDomain</code> are clean keys for joins and deduplication.</li>
+<li><strong>Markdown instead of HTML.</strong> Product Hunt can answer a plain request with markdown. The Actor sends an HTML <code>Accept</code> header and treats a leaderboard without embedded data as a failure of the run, not as an empty day.</li>
+<li><strong>Pricing pages are not a format.</strong> Some list <code>$20/month</code>, some <code>$199/year</code>, some <code>Free</code>, some <code>Contact sales</code>, some price by usage. The Actor returns every plan it finds with name, price, currency and period, plus a summary: <code>pricingModel</code> (freemium, paid, free, usageBased or contactSales), <code>hasFreeTier</code>, <code>hasFreeTrial</code>, <code>lowestPaidPrice</code> and its period.</li>
+<li><strong>Prices you cannot read.</strong> When a site blocks automated requests, renders prices only after JavaScript, or has no pricing page, the row says so in <code>pricingStatus</code> and still carries the website.</li>
+</ul>
+<h3>Step by step</h3>
+<h4>1. Define the input</h4>
+<p>Yesterday's launches, keeping only products with at least 100 votes, a freemium model and a developer topic:</p>
+<pre><code>
+{
+  &quot;period&quot;: &quot;daily&quot;,
+  &quot;fetchPricing&quot;: true,
+  &quot;minVotes&quot;: 100,
+  &quot;topics&quot;: [&quot;Developer Tools&quot;],
+  &quot;pricingModel&quot;: &quot;freemium&quot;,
+  &quot;maxItems&quot;: 20
+}
+</code></pre>
+<p>With no <code>dates</code>, the latest finished period is read: yesterday in Pacific time for <code>daily</code>, last week, last month or last year for the other periods. To read specific pages, list them in the format of the period: <code>2026-10-04</code>, <code>2026-W40</code>, <code>2026-09</code> or <code>2025</code>. To look up single products, put Product Hunt links or slugs in <code>productUrls</code>.</p>
+<h4>2. Run it from Python</h4>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run = client.actor(&quot;datagrit/product-hunt-launch-pricing-intel&quot;).call(run_input={
+    &quot;period&quot;: &quot;weekly&quot;,
+    &quot;dates&quot;: [&quot;2026-W38&quot;, &quot;2026-W39&quot;, &quot;2026-W40&quot;],
+    &quot;fetchPricing&quot;: True,
+    &quot;maxItems&quot;: 60,
+})
+
+for row in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items():
+    if row[&quot;found&quot;]:
+        print(row[&quot;rank&quot;], row[&quot;productName&quot;], row[&quot;pricingModel&quot;], row[&quot;lowestPaidPrice&quot;], row[&quot;lowestPaidPeriod&quot;])
+</code></pre>
+<h4>3. Or with cURL</h4>
+<pre><code>
+curl -s -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~product-hunt-launch-pricing-intel/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;period&quot;:&quot;daily&quot;,&quot;maxItems&quot;:20}'
+</code></pre>
+<h3>The fields that matter</h3>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>rank</code>, <code>votes</code></td><td><code>1</code>, <code>334</code></td><td>Position and votes on the leaderboard page</td></tr>
+<tr><td><code>topics</code></td><td><code>[&quot;Productivity&quot;, &quot;Developer Tools&quot;]</code></td><td>Product Hunt topics of the launch</td></tr>
+<tr><td><code>websiteUrl</code>, <code>websiteDomain</code></td><td><code>https://corespeed.io/</code>, <code>corespeed.io</code></td><td>Real site behind the launch, without tracking parameters</td></tr>
+<tr><td><code>pricingStatus</code></td><td><code>parsed</code></td><td><code>parsed</code>, <code>notFound</code>, <code>blocked</code>, <code>noPrices</code>, or <code>notRequested</code> when pricing is off</td></tr>
+<tr><td><code>pricingModel</code></td><td><code>freemium</code></td><td>freemium, paid, free, usageBased or contactSales</td></tr>
+<tr><td><code>lowestPaidPrice</code>, <code>lowestPaidPeriod</code></td><td><code>20</code>, <code>month</code></td><td>Cheapest paid plan and its billing period</td></tr>
+<tr><td><code>pricingConfidence</code></td><td><code>medium</code></td><td><code>high</code>, <code>medium</code> or <code>low</code>: how clear the page was</td></tr>
+<tr><td><code>plans</code></td><td><code>[{&quot;name&quot;: &quot;Pro&quot;, &quot;price&quot;: 20, &quot;period&quot;: &quot;month&quot;}]</code></td><td>Every plan found, with <code>perSeat</code> and the original <code>priceText</code></td></tr>
+</tbody></table></div>
+<h3>Three recipes</h3>
+<p><strong>A daily sheet for competitor watching.</strong> Schedule the Actor every morning with <code>onlyNew: true</code> and the topics you care about. The Actor remembers which launches it returned for that exact combination of period, products, topics, votes and pricing model, so each launch arrives once. Send the dataset to Google Sheets or a Slack channel through an Apify integration.</p>
+<p><strong>A pricing benchmark in pandas.</strong> Read a month of weekly pages and group by model:</p>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items)
+df = df[df[&quot;found&quot;] &amp; (df[&quot;pricingStatus&quot;] == &quot;parsed&quot;)]
+print(df[&quot;pricingModel&quot;].value_counts(normalize=True))
+print(df[df[&quot;lowestPaidPeriod&quot;] == &quot;month&quot;][&quot;lowestPaidPrice&quot;].describe())
+</code></pre>
+<p><strong>A lead list.</strong> Use <code>fetchPricing: false</code> for a faster run that returns only the launch and the website, then enrich <code>websiteDomain</code> in the tool you already use for outreach.</p>
+<h3>Limits, honestly</h3>
+<ul>
+<li>One leaderboard page holds about 15 to 20 launches. Weekly, monthly and yearly pages are equally short; cover a range by passing several dates.</li>
+<li>Prices are read from visible text over plain HTTP, with no browser. Pages that need JavaScript to show prices come back as <code>noPrices</code> or <code>notFound</code>. On a live run of the latest daily page, 13 of 17 launches had a parsed pricing page and 4 had none, so expect gaps.</li>
+<li><code>pricingConfidence: low</code> means the page was ambiguous. Use the <code>pricingPageUrl</code> to check by hand before you put a figure in a report.</li>
+<li>Usage-based and per-seat prices are returned as they appear, with <code>perSeat</code> and the original <code>priceText</code>; the Actor does not convert currencies.</li>
+<li>The Actor reads public pages and does not log in. If you use the data for outreach, anti-spam and data protection rules still apply.</li>
+</ul>
+<h3>Wrapping up</h3>
+<p>If you need what launched and what it costs in one row, billing is pay per result, the Actor is <a href="https://apify.com/datagrit/product-hunt-launch-pricing-intel" rel="noopener">on Apify</a>, and the full field list is in the <a href="https://getdatagrit.github.io/product-hunt-launch-pricing-intel/">documentation</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/product-hunt-launch-pricing-intel" rel="noopener">Try Product Hunt Launch Pricing &amp; Website Intel on Apify</a><a class="btn ghost" href="/product-hunt-launch-pricing-intel/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/bilibili-anime-series-tracker/">How to track Bilibili anime rankings, follower counts and release dates with Python</a></h3><p>Pull Bilibili's Top 100 anime ranking, a filterable catalog with follower and rating counts, and the release calendar as clean JSON using Python or cURL.</p><div class="meta">2026-10-05</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/tiktok-top-ads-monitor/">How to track new TikTok Top Ads by industry and country with Python</a></h3><p>Pull TikTok Creative Center Top Ads for several countries and industries, merge the lists, and get only the ads that are new since your last run.</p><div class="meta">2026-10-05</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
