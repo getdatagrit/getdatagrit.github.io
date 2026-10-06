@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to track Bilibili anime rankings, follower counts and release dates with Python | datagrit</title>
+<meta name="description" content="Pull Bilibili's Top 100 anime ranking, a filterable catalog with follower and rating counts, and the release calendar as clean JSON using Python or cURL.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/bilibili-anime-series-tracker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to track Bilibili anime rankings, follower counts and release dates with Python | datagrit">
+<meta property="og:description" content="Pull Bilibili's Top 100 anime ranking, a filterable catalog with follower and rating counts, and the release calendar as clean JSON using Python or cURL."><meta property="og:url" content="https://getdatagrit.github.io/guides/bilibili-anime-series-tracker/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to track Bilibili anime rankings, follower counts and release dates with Python | datagrit"><meta name="twitter:description" content="Pull Bilibili's Top 100 anime ranking, a filterable catalog with follower and rating counts, and the release calendar as clean JSON using Python or cURL."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to track Bilibili anime rankings, follower counts and release dates with Python","description":"Pull Bilibili's Top 100 anime ranking, a filterable catalog with follower and rating counts, and the release calendar as clean JSON using Python or cURL.","datePublished":"2026-10-05","dateModified":"2026-10-05","image":"https://getdatagrit.github.io/og/default.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/bilibili-anime-series-tracker/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webscraping, python, api, anime","about":{"@type":"SoftwareApplication","name":"Bilibili Anime Catalog, Rankings & Calendar","url":"https://getdatagrit.github.io/bilibili-anime-series-tracker/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to track Bilibili anime rankings, follower counts and release dates with Python","item":"https://getdatagrit.github.io/guides/bilibili-anime-series-tracker/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Bilibili Anime Catalog, Rankings &amp; Calendar</p>
+<span class="pill">Guide</span>
+<h1>How to track Bilibili anime rankings, follower counts and release dates with Python</h1>
+<p class="lead">Pull Bilibili's Top 100 anime ranking, a filterable catalog with follower and rating counts, and the release calendar as clean JSON using Python or cURL.</p>
+<p class="note">Published 2026-10-05 · uses the <a href="/bilibili-anime-series-tracker/">Bilibili Anime Catalog, Rankings &amp; Calendar</a> Actor</p>
+<p>Bilibili is where a large share of anime and Chinese animation (&quot;donghua&quot;, called guochuang on the site) is watched and talked about. Its numbers matter to licensors, streaming analysts, fan sites and studios: how many people follow a series, how many plays it has, how it is rated, and which episode comes out tomorrow. Most Bilibili tooling targets videos, comments and creator profiles. The series layer, the section Bilibili calls &quot;bangumi&quot; or PGC, is rarely covered.</p>
+<p>This guide shows how to read that layer as data: a Top 100 ranking, a filtered catalog with statistics, a release calendar, and a full record for single series. The examples use the Bilibili Anime Catalog, Rankings &amp; Calendar Actor, but the field notes apply to anything you build on the same public endpoints.</p>
+<h3>Where the data comes from</h3>
+<p>Bilibili serves its series pages from public JSON endpoints that need no login and no request signature. The Actor reads four families of them:</p>
+<ul>
+<li>the ranking list (3 or 7 day window, up to 100 entries per content type),</li>
+<li>the catalog index with its filter and sort options,</li>
+<li>the timeline that powers the release calendar,</li>
+<li>the season record and its statistics.</li>
+</ul>
+<p>Each endpoint reports counts in a different shape. The catalog index gives only the number you sorted by, as text like <code>552.9万追番</code> (5.529 million followers, where 万 means ten thousand and 亿 a hundred million). The statistics endpoint gives exact integers. The calendar reports <code>-</code> for series that have no count yet. The Actor converts all of this to plain numbers and leaves a field <code>null</code> when the source has no value, so a missing count never turns into a zero.</p>
+<h3>Pitfalls the Actor handles</h3>
+<ul>
+<li><strong>Filters Bilibili does not offer.</strong> Each content type has its own filter set. The anime section offers the regions Japan, USA and other; movies have no follower sort; documentaries have no region filter. If you request a combination that does not exist, the Actor skips that slice and logs which options Bilibili does offer, instead of returning rows that ignore your filter. Every row carries <code>sortedBy</code> and <code>matchedFilters</code> so you can see how it was selected.</li>
+<li><strong>Unknown IDs return zeros.</strong> Bilibili answers a statistics request for a non-existent season with a valid response full of zeros. The Actor looks the season up first and reports a missing ID as one unbilled status row with <code>found: false</code>.</li>
+<li><strong>Rate limits.</strong> Bilibili answers bursts with HTTP 412. The Actor spaces its requests, backs off and respects <code>Retry-After</code>.</li>
+<li><strong>Regions.</strong> The catalog depends on the region of the request. From outside mainland China you see a smaller catalog than a browser in China does.</li>
+</ul>
+<h3>Step 1: choose the input</h3>
+<p>A catalog run for anime, sorted by followers, with statistics:</p>
+<pre><code>
+{
+  &quot;mode&quot;: &quot;catalog&quot;,
+  &quot;contentTypes&quot;: [&quot;anime&quot;],
+  &quot;sortBy&quot;: &quot;follows&quot;,
+  &quot;isFinished&quot;: &quot;any&quot;,
+  &quot;includeStats&quot;: true,
+  &quot;maxItems&quot;: 20
+}
+</code></pre>
+<p><code>mode</code> is one of <code>ranking</code>, <code>catalog</code>, <code>calendar</code> or <code>details</code>. In <code>catalog</code> mode you can add <code>access</code> (free or paid members), <code>year</code>, <code>quarter</code>, <code>area</code> and <code>genres</code> (English names such as <code>comedy</code> or <code>isekai</code>, or the Chinese names shown on Bilibili). For a ranking, use <code>&quot;mode&quot;: &quot;ranking&quot;</code> with <code>rankingWindowDays</code> of <code>&quot;3&quot;</code> or <code>&quot;7&quot;</code>. For one or more specific titles, use <code>&quot;mode&quot;: &quot;details&quot;</code> with <code>seasons</code> set to IDs such as <code>ss33415</code>, <code>ep323085</code>, <code>md28228813</code> or full Bilibili URLs.</p>
+<h3>Step 2: run it from Python</h3>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run = client.actor(&quot;datagrit/bilibili-anime-series-tracker&quot;).call(run_input={
+    &quot;mode&quot;: &quot;catalog&quot;,
+    &quot;contentTypes&quot;: [&quot;anime&quot;],
+    &quot;sortBy&quot;: &quot;follows&quot;,
+    &quot;includeStats&quot;: True,
+    &quot;maxItems&quot;: 20,
+})
+
+rows = [r for r in client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items() if r.get(&quot;found&quot;)]
+for r in rows[:10]:
+    print(r[&quot;follows&quot;], r[&quot;ratingScore&quot;], r[&quot;ratingCount&quot;], r[&quot;title&quot;])
+</code></pre>
+<h3>Step 3: or with cURL</h3>
+<pre><code>
+curl -X POST \
+  &quot;https://api.apify.com/v2/acts/datagrit~bilibili-anime-series-tracker/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;mode&quot;:&quot;ranking&quot;,&quot;contentTypes&quot;:[&quot;anime&quot;,&quot;guochuang&quot;],&quot;rankingWindowDays&quot;:&quot;7&quot;,&quot;maxItems&quot;:100}'
+</code></pre>
+<h3>The fields you will use most</h3>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>recordType</code></td><td><code>catalog</code></td><td>ranking, catalog, calendar or season</td></tr>
+<tr><td><code>seasonId</code></td><td><code>835</code></td><td>Bilibili season ID, the <code>ss</code> number in the play URL</td></tr>
+<tr><td><code>follows</code></td><td><code>5529108</code></td><td>followers of this season</td></tr>
+<tr><td><code>seriesFollows</code></td><td><code>5803863</code></td><td>followers across all seasons of the series</td></tr>
+<tr><td><code>views</code></td><td><code>97780235</code></td><td>play count</td></tr>
+<tr><td><code>ratingScore</code> / <code>ratingCount</code></td><td><code>9.6</code> / <code>53783</code></td><td>score and number of ratings; <code>null</code> when there are no ratings yet</td></tr>
+<tr><td><code>danmaku</code></td><td><code>4710640</code></td><td>on-screen comment count</td></tr>
+<tr><td><code>isFinished</code></td><td><code>true</code></td><td>finished or still airing</td></tr>
+<tr><td><code>accessLevel</code></td><td><code>member</code></td><td><code>free</code> or <code>member</code> (paid Bilibili membership)</td></tr>
+<tr><td><code>areas</code></td><td><code>[&quot;日本&quot;]</code></td><td>production regions</td></tr>
+</tbody></table></div>
+<p>Ranking rows add <code>rank</code> and <code>rankingWindowDays</code>. Calendar rows add <code>calendarDate</code>, <code>episodeId</code>, <code>episodeLabel</code>, <code>episodePublishAt</code>, <code>episodePublished</code> and <code>episodeDelayed</code>.</p>
+<h3>Recipes</h3>
+<p><strong>A weekly follower snapshot in a sheet.</strong> Schedule a ranking run every Monday and append the rows to a spreadsheet with a date column. Because the ranking carries <code>follows</code> and <code>views</code> per season, the difference between two weeks shows which series are gaining followers fastest.</p>
+<p><strong>A release alert.</strong> Schedule a calendar run once a day with <code>calendarDaysAfter</code> set to 2. Filter the rows where <code>episodeDelayed</code> is true and send those to Slack or email; the <code>delayReason</code> field carries Bilibili's own explanation when one exists.</p>
+<p><strong>A quick look at a genre in pandas.</strong> Pull the free comedy titles sorted by plays and see how rating relates to follower count:</p>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items)
+df = df[df[&quot;found&quot;] == True]
+print(df[[&quot;title&quot;, &quot;views&quot;, &quot;follows&quot;, &quot;ratingScore&quot;, &quot;ratingCount&quot;]]
+      .sort_values(&quot;follows&quot;, ascending=False).head(15))
+</code></pre>
+<p>For a run like this, set <code>access</code> to <code>free</code> and <code>genres</code> to <code>[&quot;comedy&quot;]</code> in the input.</p>
+<h3>Limits, honestly</h3>
+<ul>
+<li>The catalog reflects the region of the request. If you need titles that only mainland China sees, this approach will not list them; the ranking and the calendar are not affected in the same way, but check your own region first.</li>
+<li>The calendar covers anime and guochuang only, up to seven days before and after today. Movies, documentaries and TV have rankings and a catalog but no calendar.</li>
+<li>Variety shows are in the catalog but have no ranking.</li>
+<li>Titles and subtitles come back in the language Bilibili shows, which is usually Chinese. Genre and region names in the input can be English; the output keeps Bilibili's names.</li>
+<li>The Actor reads public pages only. It does not log in and does not download video.</li>
+</ul>
+<h3>Get it</h3>
+<p>The Actor is on the Apify Store as <a href="https://apify.com/datagrit/bilibili-anime-series-tracker" rel="noopener">Bilibili Anime Catalog, Rankings &amp; Calendar</a>, and the full input and output reference is on the <a href="https://getdatagrit.github.io/bilibili-anime-series-tracker/">documentation page</a>. It is priced per result, and a maximum spend on the run caps what a run can cost.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/bilibili-anime-series-tracker" rel="noopener">Try Bilibili Anime Catalog, Rankings &amp; Calendar on Apify</a><a class="btn ghost" href="/bilibili-anime-series-tracker/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/tiktok-top-ads-monitor/">How to track new TikTok Top Ads by industry and country with Python</a></h3><p>Pull TikTok Creative Center Top Ads for several countries and industries, merge the lists, and get only the ads that are new since your last run.</p><div class="meta">2026-10-05</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/ashby-salary-scraper/">How to scrape salary ranges from Ashby job boards with Python</a></h3><p>Pull startup job postings with pay ranges from Ashby boards, annualised to yearly amounts, with currency and remote filters and an only-new feed.</p><div class="meta">2026-10-01</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/career-site-jobs-aggregator/">How to scrape jobs from Greenhouse, Lever, Workday and 5 more ATS at once</a></h3><p>Monitor open roles at a list of companies across 8 applicant tracking systems in one schema, with numeric salaries and a daily only-new feed.</p><div class="meta">2026-10-01</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

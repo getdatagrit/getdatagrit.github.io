@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bilibili Anime Rankings, Catalog &amp; Calendar API | datagrit</title>
+<meta name="description" content="Bilibili anime, donghua, film and TV: Top 100 rankings, filterable catalog, release calendar and season details with follower, play and rating counts.">
+<link rel="canonical" href="https://getdatagrit.github.io/bilibili-anime-series-tracker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="Bilibili Anime Rankings, Catalog &amp; Calendar API | datagrit">
+<meta property="og:description" content="Bilibili anime, donghua, film and TV: Top 100 rankings, filterable catalog, release calendar and season details with follower, play and rating counts."><meta property="og:url" content="https://getdatagrit.github.io/bilibili-anime-series-tracker/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Bilibili Anime Rankings, Catalog &amp; Calendar API | datagrit"><meta name="twitter:description" content="Bilibili anime, donghua, film and TV: Top 100 rankings, filterable catalog, release calendar and season details with follower, play and rating counts."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bilibili Anime Catalog, Rankings & Calendar","description":"Bilibili anime, donghua, film and TV: Top 100 rankings, filterable catalog, release calendar and season details with follower, play and rating counts.","url":"https://getdatagrit.github.io/bilibili-anime-series-tracker/","image":"https://getdatagrit.github.io/og/default.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Data","operatingSystem":"Web, Apify platform","softwareVersion":"0.1","dateModified":"2026-10-05T20:13:59.064Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/bilibili-anime-series-tracker","priceCurrency":"USD","price":0.0035,"description":"from $3.50 per 1,000 results + $10 per run. The price per result depends on your Apify plan."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/bilibili-anime-series-tracker"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Data","item":"https://getdatagrit.github.io/#social"},{"@type":"ListItem","position":3,"name":"Bilibili Anime Catalog, Rankings & Calendar","item":"https://getdatagrit.github.io/bilibili-anime-series-tracker/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How fresh is the data?","acceptedAnswer":{"@type":"Answer","text":"Every run reads Bilibili live; counts are the ones shown on the site at that moment."}},{"@type":"Question","name":"Why are some play or follower counts missing?","acceptedAnswer":{"@type":"Answer","text":"The release calendar reports \"-\" for series without a count yet. Those fields are `null`. The status message at the end of a run states on how many results both counts were present."}},{"@type":"Question","name":"Why was a filter combination skipped?","acceptedAnswer":{"@type":"Answer","text":"Bilibili offers different filters per content type. For example the anime section has the regions Japan, USA and other, and the movie section cannot be sorted by followers (it is sorted by plays and `sortedBy` says so). The log lists what was skipped and the options Bilibili does offer."}},{"@type":"Question","name":"Does the catalog contain every title I see on bilibili.com?","acceptedAnswer":{"@type":"Answer","text":"Bilibili decides which titles it lists for the region a request comes from. A run from outside mainland China sees a smaller catalog than a browser in China (about 950 anime titles in our test from Southeast Asia), and very recent mainland-only releases can be missing. A filter that matches nothing returns one row with `found: false`."}},{"@type":"Question","name":"Do I need a proxy?","acceptedAnswer":{"@type":"Answer","text":"Usually not. If Bilibili answers with errors from datacenter addresses, enable the proxy option and pick an Asian country; the Actor retries throttled requests and respects the wait time Bilibili sends."}},{"@type":"Question","name":"Can I schedule runs?","acceptedAnswer":{"@type":"Answer","text":"Yes. A daily ranking or calendar run gives you a time series of follower growth and upcoming releases."}}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#social">Data</a> › Bilibili Anime Catalog, Rankings &amp; Calendar</p>
+<span class="pill">Data</span>
+<h1>Bilibili Anime Catalog, Rankings &amp; Calendar</h1>
+<p class="lead">Bilibili anime, Chinese animation, film, documentary and TV series: filterable catalog, Top 100 rankings, release calendar and season details with ratings and follower counts.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/bilibili-anime-series-tracker" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">from $3.50 per 1,000 results + $10 per run · no code needed</span></div>
+<div class="facts"><div class="fact"><b>from $3.50 per 1,000 results + $10 per run</b><span>pay only for results you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.1</b><span>updated 2026-10-05</span></div></div>
+<p>Bilibili Anime Catalog, Rankings &amp; Calendar reads the licensed-series section of Bilibili (anime, Chinese animation &quot;guochuang&quot;, films, documentaries and TV) and returns one clean row per series, ranking entry or episode release. You get play, follower, danmaku (comment), coin, like and share counts, the rating with its vote count, production regions, release status and paid-membership flag. No login and no cookies are needed. Use it for anime market research, licensing and streaming analysis, fan-community trackers and AI agents that need to know what is popular on Bilibili right now.</p>
+<h2>Why use this Actor?</h2>
+<ul>
+<li><strong>Anime and donghua market research</strong>: see which titles lead the Top 100 by follower growth in the last 3 or 7 days, and how a series compares with its sequels through the series follower total.</li>
+<li><strong>Licensing and streaming teams</strong>: filter the whole catalog by release year, quarter, region, genre, airing status and free versus paid-member access, sorted by followers, plays, rating, latest update or danmaku count.</li>
+<li><strong>Release trackers and fan sites</strong>: pull the release calendar for the next seven days with episode numbers, publish times and delay flags, and schedule the Actor to keep a calendar fresh.</li>
+<li><strong>Analysts and data pipelines</strong>: one flat, typed row per record, ready for Google Sheets, n8n, Make, Zapier or MCP-connected agents.</li>
+<li><strong>Single-title lookups</strong>: paste season, episode or media IDs, or full Bilibili URLs, and get the complete record with rating count, statistics, synopsis, cast and episode count.</li>
+</ul>
+<h2>What is different here?</h2>
+<p>Most Bilibili scrapers collect videos, comments or creator profiles. This one covers the series layer: Top 100 rankings, a filterable catalog of every licensed title, the release calendar and season details with the real rating count. Filters are applied by Bilibili itself, so every row really matches the filters you set; a combination that Bilibili does not offer for a content type is skipped with a log line instead of being silently ignored. Every row says how it was sorted (<code>sortedBy</code>) and which filters matched (<code>matchedFilters</code>).</p>
+<h2>Sample output</h2>
+<div class="table"><table><thead><tr><th>recordType</th><th>title</th><th>seasonId</th><th>ratingScore</th><th>ratingCount</th><th>follows</th><th>views</th><th>areas</th></tr></thead><tbody>
+<tr><td>catalog</td><td>我们仍未知道那天所看见的花的名字。</td><td>835</td><td>9.6</td><td>53783</td><td>5529108</td><td>97780235</td><td>日本</td></tr>
+</tbody></table></div>
+<pre><code>
+{
+  &quot;recordType&quot;: &quot;catalog&quot;,
+  &quot;contentType&quot;: &quot;anime&quot;,
+  &quot;seasonId&quot;: 835,
+  &quot;mediaId&quot;: 835,
+  &quot;title&quot;: &quot;我们仍未知道那天所看见的花的名字。&quot;,
+  &quot;subtitle&quot;: &quot;难忘的催泪夏天&quot;,
+  &quot;url&quot;: &quot;https://www.bilibili.com/bangumi/play/ss835&quot;,
+  &quot;sortedBy&quot;: &quot;follows&quot;,
+  &quot;matchedFilters&quot;: [&quot;contentType=anime&quot;, &quot;sortedBy=follows&quot;],
+  &quot;ratingScore&quot;: 9.6,
+  &quot;ratingCount&quot;: 53783,
+  &quot;views&quot;: 97780235,
+  &quot;follows&quot;: 5529108,
+  &quot;seriesFollows&quot;: 5803863,
+  &quot;danmaku&quot;: 4710640,
+  &quot;coins&quot;: 884981,
+  &quot;likes&quot;: 907862,
+  &quot;shares&quot;: 244868,
+  &quot;episodeText&quot;: &quot;全11话&quot;,
+  &quot;isFinished&quot;: true,
+  &quot;accessLevel&quot;: &quot;member&quot;,
+  &quot;areas&quot;: [&quot;日本&quot;],
+  &quot;found&quot;: true,
+  &quot;scrapedAt&quot;: &quot;2026-10-05T20:27:51.725Z&quot;
+}
+</code></pre>
+<p>Titles and subtitles are returned in the language Bilibili shows them in, usually Chinese.</p>
+<h2>Output fields</h2>
+<p>Every record carries <code>recordType</code> (ranking, catalog, calendar or season), <code>contentType</code>, <code>seasonId</code>, <code>title</code>, <code>url</code>, the count fields above, <code>scrapedAt</code> and <code>found</code>. Ranking rows add <code>rank</code> and <code>rankingWindowDays</code>; calendar rows add <code>calendarDate</code>, <code>episodeId</code>, <code>episodeLabel</code>, <code>episodePublishAt</code>, <code>episodePublished</code> and <code>episodeDelayed</code>; season rows add the synopsis, cast, staff, genres, series, publish time and episode count. Fields a source does not provide for a record are <code>null</code>, never zero. When a query has no results you get one row with <code>found: false</code>.</p>
+<h2>Is it legal to scrape this data?</h2>
+<p>The Actor reads public series information that Bilibili shows to every visitor, without logging in or bypassing access controls. It does not download or stream video. You are responsible for using the data in line with applicable laws and the terms of the source. Found an issue? Open it in the Issues tab and it will be answered.</p>
+<h2>Support</h2>
+<p>Found a bug or a missing field? Open an issue on the Actor page and describe the input you used. Issues are answered in English, usually within a day.</p>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>recordType</code></td><td>string</td><td>What the row is: ranking, catalog, calendar or season. Rows for IDs that were not found carry found = false.</td><td><code>catalog</code></td></tr><tr><td><code>contentType</code></td><td>string</td><td>Bilibili section: anime, guochuang (Chinese animation), movie, documentary, tv or variety.</td><td><code>anime</code></td></tr><tr><td><code>seasonId</code></td><td>integer</td><td>Bilibili season ID (the number after ss in the play-page URL). Stable key for a series season.</td><td><code>33415</code></td></tr><tr><td><code>mediaId</code></td><td>integer</td><td>Bilibili media ID (the number after md in the media-page URL). Empty in ranking and calendar rows.</td><td><code>28228813</code></td></tr><tr><td><code>episodeId</code></td><td>integer</td><td>Bilibili episode ID (the number after ep). Set on calendar rows, empty elsewhere.</td><td><code>6291972</code></td></tr><tr><td><code>title</code></td><td>string</td><td>Series or season title as shown on Bilibili, usually Chinese.</td><td><code>Detective Conan</code></td></tr><tr><td><code>subtitle</code></td><td>string</td><td>Short tagline shown under the title in catalog lists.</td><td><code>Unforgettable summer</code></td></tr><tr><td><code>url</code></td><td>string</td><td>Bilibili page of the series, season or episode.</td><td><code>https://www.bilibili.com/bangumi/play/ss33415</code></td></tr><tr><td><code>coverUrl</code></td><td>string</td><td>Poster image on Bilibili's image host.</td><td><code>https://i0.hdslb.com/bfs/bangumi/image/38e2a273f528fd01c34f1fc4df0f69c64487efad.</code></td></tr><tr><td><code>rank</code></td><td>integer</td><td>Position in the Top 100 ranking (1 = best). Ranking rows only.</td><td><code>1</code></td></tr><tr><td><code>rankingWindowDays</code></td><td>integer</td><td>Length of the ranking window, 3 or 7 days. Ranking rows only.</td><td><code>7</code></td></tr><tr><td><code>sortedBy</code></td><td>string</td><td>Sort order actually used for a catalog row (follows, views, rating, updated, airDate, danmaku); differs from your choice only when the content type does not offer it.</td><td><code>follows</code></td></tr><tr><td><code>sortMetricText</code></td><td>string</td><td>The figure Bilibili shows for the sort order, for example 552.9万追番 (5.529 million followers).</td><td><code>552.9万追番</code></td></tr><tr><td><code>matchedFilters</code></td><td>array</td><td>The filters that were applied to produce this catalog row, such as contentType=anime or isFinished=finished.</td><td><code>[&quot;contentType=anime&quot;,&quot;sortedBy=follows&quot;]</code></td></tr><tr><td><code>ratingScore</code></td><td>number</td><td>Bilibili audience rating out of 10. Empty when the title has too few ratings.</td><td><code>9.6</code></td></tr><tr><td><code>ratingCount</code></td><td>integer</td><td>Number of audience ratings behind the score. Catalog rows with statistics and season rows only.</td><td><code>53783</code></td></tr><tr><td><code>views</code></td><td>integer</td><td>Total plays across the season. Catalog rows without statistics hold it only when sorted by play count.</td><td><code>97780233</code></td></tr><tr><td><code>follows</code></td><td>integer</td><td>Number of users following the season (追番 / 追剧).</td><td><code>5529108</code></td></tr><tr><td><code>seriesFollows</code></td><td>integer</td><td>Followers of the whole series across all its seasons.</td><td><code>5803863</code></td></tr><tr><td><code>danmaku</code></td><td>integer</td><td>Number of on-screen danmaku comments.</td><td><code>4710640</code></td></tr><tr><td><code>coins</code></td><td>integer</td><td>Bilibili coins viewers gave to the season.</td><td><code>884981</code></td></tr><tr><td><code>likes</code></td><td>integer</td><td>Number of likes.</td><td><code>907862</code></td></tr><tr><td><code>shares</code></td><td>integer</td><td>Number of shares.</td><td><code>244868</code></td></tr><tr><td><code>replies</code></td><td>integer</td><td>Number of comment replies. Season rows only.</td><td><code>1203456</code></td></tr><tr><td><code>episodeText</code></td><td>string</td><td>Latest-episode text, for example &quot;Updated to episode 1275&quot; or &quot;11 episodes&quot;.</td><td><code>全11话</code></td></tr><tr><td><code>isFinished</code></td><td>boolean</td><td>True when the series has finished airing.</td><td><code>true</code></td></tr><tr><td><code>accessLevel</code></td><td>string</td><td>free when everyone can watch, member when a paid Bilibili membership is required. Empty for other states.</td><td><code>member</code></td></tr><tr><td><code>accessBadge</code></td><td>string</td><td>Badge text on the poster, for example 大会员 (members only).</td><td><code>大会员</code></td></tr><tr><td><code>seasonStatus</code></td><td>integer</td><td>Raw Bilibili status code of the season (2 = free, 13 = members only).</td><td><code>13</code></td></tr><tr><td><code>copyright</code></td><td>string</td><td>Rights label published by Bilibili, bilibili or dujia. Ranking and season rows.</td><td><code>bilibili</code></td></tr><tr><td><code>publishedAt</code></td><td>string</td><td>Premiere date and time in ISO 8601 (Beijing time). Season rows only.</td><td><code>2011-04-16T00:00:00+08:00</code></td></tr><tr><td><code>areas</code></td><td>array</td><td>Production regions as named by Bilibili, for example 日本 (Japan).</td><td><code>[&quot;日本&quot;]</code></td></tr><tr><td><code>genres</code></td><td>array</td><td>Genre tags of the season. Season rows only.</td><td><code>[&quot;推理&quot;,&quot;热血&quot;]</code></td></tr><tr><td><code>synopsis</code></td><td>string</td><td>Plot summary as published on Bilibili. Season rows only.</td><td><code>A high school detective is shrunk to a child by a mysterious drug.</code></td></tr><tr><td><code>cast</code></td><td>string</td><td>Voice cast, one role per line. Season rows only.</td><td><code>Conan Edogawa: Li Shirong</code></td></tr><tr><td><code>staff</code></td><td>string</td><td>Production staff, one role per line. Season rows only.</td><td><code>Director: Kenji Kodama</code></td></tr><tr><td><code>seriesId</code></td><td>integer</td><td>ID of the series the season belongs to. Season rows only.</td><td><code>1273</code></td></tr><tr><td><code>seriesTitle</code></td><td>string</td><td>Title of the whole series. Season rows only.</td><td><code>Detective Conan</code></td></tr><tr><td><code>totalEpisodes</code></td><td>integer</td><td>Number of episodes in the season listing. Season rows only.</td><td><code>1275</code></td></tr><tr><td><code>seasonsInSeries</code></td><td>integer</td><td>How many seasons the series has on Bilibili. Season rows only.</td><td><code>4</code></td></tr><tr><td><code>calendarDate</code></td><td>string</td><td>Release date (Beijing time, YYYY-MM-DD). Calendar rows only.</td><td><code>2026-10-06</code></td></tr><tr><td><code>episodeLabel</code></td><td>string</td><td>Label of the episode that is released, for example 第15话. Calendar rows only.</td><td><code>第15话</code></td></tr><tr><td><code>episodePublishAt</code></td><td>string</td><td>Scheduled release time in ISO 8601 UTC. Calendar rows only.</td><td><code>2026-10-06T02:00:00.000Z</code></td></tr><tr><td><code>episodePublished</code></td><td>boolean</td><td>True when the episode is already available. Calendar rows only.</td><td><code>false</code></td></tr><tr><td><code>episodeDelayed</code></td><td>boolean</td><td>True when Bilibili marked the release as delayed. Calendar rows only.</td><td><code>false</code></td></tr><tr><td><code>delayReason</code></td><td>string</td><td>Reason Bilibili gives for a delayed release. Empty when not delayed.</td><td><code>Broadcaster schedule change</code></td></tr><tr><td><code>found</code></td><td>boolean</td><td>False only for rows that mark a requested ID that does not exist or an empty result.</td><td><code>true</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>ISO 8601 timestamp of extraction.</td><td><code>2026-10-06T03:00:00.000Z</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;recordType&quot;: &quot;catalog&quot;,
+  &quot;contentType&quot;: &quot;anime&quot;,
+  &quot;seasonId&quot;: 33415,
+  &quot;mediaId&quot;: 28228813,
+  &quot;episodeId&quot;: 6291972,
+  &quot;title&quot;: &quot;Detective Conan&quot;,
+  &quot;subtitle&quot;: &quot;Unforgettable summer&quot;,
+  &quot;url&quot;: &quot;https://www.bilibili.com/bangumi/play/ss33415&quot;,
+  &quot;coverUrl&quot;: &quot;https://i0.hdslb.com/bfs/bangumi/image/38e2a273f528fd01c34f1fc4df0f69c64487efad.png&quot;,
+  &quot;rank&quot;: 1,
+  &quot;rankingWindowDays&quot;: 7,
+  &quot;sortedBy&quot;: &quot;follows&quot;,
+  &quot;sortMetricText&quot;: &quot;552.9万追番&quot;,
+  &quot;matchedFilters&quot;: [
+    &quot;contentType=anime&quot;,
+    &quot;sortedBy=follows&quot;
+  ],
+  &quot;ratingScore&quot;: 9.6,
+  &quot;ratingCount&quot;: 53783,
+  &quot;views&quot;: 97780233,
+  &quot;follows&quot;: 5529108,
+  &quot;seriesFollows&quot;: 5803863,
+  &quot;danmaku&quot;: 4710640,
+  &quot;coins&quot;: 884981,
+  &quot;likes&quot;: 907862,
+  &quot;shares&quot;: 244868,
+  &quot;replies&quot;: 1203456,
+  &quot;episodeText&quot;: &quot;全11话&quot;,
+  &quot;isFinished&quot;: true,
+  &quot;accessLevel&quot;: &quot;member&quot;,
+  &quot;accessBadge&quot;: &quot;大会员&quot;,
+  &quot;seasonStatus&quot;: 13,
+  &quot;copyright&quot;: &quot;bilibili&quot;,
+  &quot;publishedAt&quot;: &quot;2011-04-16T00:00:00+08:00&quot;,
+  &quot;areas&quot;: [
+    &quot;日本&quot;
+  ],
+  &quot;genres&quot;: [
+    &quot;推理&quot;,
+    &quot;热血&quot;
+  ],
+  &quot;synopsis&quot;: &quot;A high school detective is shrunk to a child by a mysterious drug.&quot;,
+  &quot;cast&quot;: &quot;Conan Edogawa: Li Shirong&quot;,
+  &quot;staff&quot;: &quot;Director: Kenji Kodama&quot;,
+  &quot;seriesId&quot;: 1273,
+  &quot;seriesTitle&quot;: &quot;Detective Conan&quot;,
+  &quot;totalEpisodes&quot;: 1275,
+  &quot;seasonsInSeries&quot;: 4,
+  &quot;calendarDate&quot;: &quot;2026-10-06&quot;,
+  &quot;episodeLabel&quot;: &quot;第15话&quot;,
+  &quot;episodePublishAt&quot;: &quot;2026-10-06T02:00:00.000Z&quot;,
+  &quot;episodePublished&quot;: false,
+  &quot;episodeDelayed&quot;: false,
+  &quot;delayReason&quot;: &quot;Broadcaster schedule change&quot;,
+  &quot;found&quot;: true,
+  &quot;scrapedAt&quot;: &quot;2026-10-06T03:00:00.000Z&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>mode</code></td><td>Mode</td><td>string</td><td>ranking = Top 100 charts (follower and play counts); catalog = filterable list of all titles with statistics; calendar = upcoming and recent episode releases; details = full record for the season IDs or URLs you list.</td></tr><tr><td><code>contentTypes</code></td><td>Content types</td><td>array</td><td>Which Bilibili sections to read. Allowed values: anime, guochuang (Chinese animation), movie, documentary, tv, variety. Rankings exist for all but variety; the calendar only for anime and guochuang. Not used in details mode.</td></tr><tr><td><code>rankingWindowDays</code></td><td>Ranking window</td><td>string</td><td>Ranking mode: rank by the last 3 days or the last 7 days.</td></tr><tr><td><code>sortBy</code></td><td>Sort catalog by</td><td>string</td><td>Catalog mode: sort order. If a content type does not offer the chosen order, the Actor sorts by play count and records this in the sortedBy field.</td></tr><tr><td><code>isFinished</code></td><td>Airing status</td><td>string</td><td>Catalog mode: only finished series, only series still airing, or both.</td></tr><tr><td><code>access</code></td><td>Access</td><td>string</td><td>Catalog mode: titles free to watch, or titles that need a paid Bilibili membership.</td></tr><tr><td><code>year</code></td><td>Release year</td><td>string</td><td>Catalog mode: premiere year (anime and guochuang from 2015, movies, documentaries and TV from 2016), a multi-year range or decade for older titles, or any. Years a content type does not offer are skipped with a log warning.</td></tr><tr><td><code>quarter</code></td><td>Season of the year</td><td>string</td><td>Catalog mode: premiere quarter (winter = January, spring = April, summer = July, fall = October).</td></tr><tr><td><code>area</code></td><td>Country or region</td><td>string</td><td>Catalog mode: production region. Each content type offers its own regions (anime: Japan, USA, other); combinations Bilibili does not offer are skipped with a log warning.</td></tr><tr><td><code>genres</code></td><td>Genres</td><td>array</td><td>Catalog mode: one or more genre names in English (for example comedy, isekai, mecha, romance, slice of life, school, sports, idol) or in Chinese as shown on Bilibili. Each genre is read separately and a title is listed once.</td></tr><tr><td><code>includeStats</code></td><td>Add statistics to catalog and details rows</td><td>boolean</td><td>Catalog mode: add play, follower, danmaku, coin, like and share counts, the rating count and the production regions to every row (two extra requests per title). Details mode: use the dedicated statistics endpoint. Turn off for the fastest listing.</td></tr><tr><td><code>calendarDaysBefore</code></td><td>Calendar: days before today</td><td>integer</td><td>Calendar mode: how many past days to include (0 to 7).</td></tr><tr><td><code>calendarDaysAfter</code></td><td>Calendar: days after today</td><td>integer</td><td>Calendar mode: how many upcoming days to include (0 to 7).</td></tr><tr><td><code>seasons</code></td><td>Seasons (details mode)</td><td>array</td><td>Details mode: Bilibili season IDs, episode IDs or media IDs, or full URLs. Accepted forms: 33415, ss33415, ep323085, md28228813, https://www.bilibili.com/bangumi/play/ss33415.</td></tr><tr><td><code>maxItems</code></td><td>Maximum results</td><td>integer</td><td>Stop after this many results in total. This also caps what a run can cost.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Optional proxy. Leave disabled unless Bilibili answers with errors from datacenter addresses; an Apify proxy in Asia raises the platform cost of the run.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~bilibili-anime-series-tracker/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;mode&quot;:&quot;catalog&quot;,&quot;contentTypes&quot;:[&quot;anime&quot;],&quot;sortBy&quot;:&quot;follows&quot;,&quot;includeStats&quot;:true,&quot;maxItems&quot;:20}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/bilibili-anime-series-tracker').call({
+  &quot;mode&quot;: &quot;catalog&quot;,
+  &quot;contentTypes&quot;: [
+    &quot;anime&quot;
+  ],
+  &quot;sortBy&quot;: &quot;follows&quot;,
+  &quot;includeStats&quot;: true,
+  &quot;maxItems&quot;: 20
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/bilibili-anime-series-tracker&quot;).call(run_input={
+  &quot;mode&quot;: &quot;catalog&quot;,
+  &quot;contentTypes&quot;: [
+    &quot;anime&quot;
+  ],
+  &quot;sortBy&quot;: &quot;follows&quot;,
+  &quot;includeStats&quot;: True,
+  &quot;maxItems&quot;: 20
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>How fresh is the data?</summary><p>Every run reads Bilibili live; counts are the ones shown on the site at that moment.</p></details>
+<details><summary>Why are some play or follower counts missing?</summary><p>The release calendar reports &quot;-&quot; for series without a count yet. Those fields are `null`. The status message at the end of a run states on how many results both counts were present.</p></details>
+<details><summary>Why was a filter combination skipped?</summary><p>Bilibili offers different filters per content type. For example the anime section has the regions Japan, USA and other, and the movie section cannot be sorted by followers (it is sorted by plays and `sortedBy` says so). The log lists what was skipped and the options Bilibili does offer.</p></details>
+<details><summary>Does the catalog contain every title I see on bilibili.com?</summary><p>Bilibili decides which titles it lists for the region a request comes from. A run from outside mainland China sees a smaller catalog than a browser in China (about 950 anime titles in our test from Southeast Asia), and very recent mainland-only releases can be missing. A filter that matches nothing returns one row with `found: false`.</p></details>
+<details><summary>Do I need a proxy?</summary><p>Usually not. If Bilibili answers with errors from datacenter addresses, enable the proxy option and pick an Asian country; the Actor retries throttled requests and respects the wait time Bilibili sends.</p></details>
+<details><summary>Can I schedule runs?</summary><p>Yes. A daily ranking or calendar run gives you a time series of follower growth and upcoming releases.</p></details>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/bilibili-anime-series-tracker" rel="noopener">Try Bilibili Anime Catalog, Rankings &amp; Calendar on Apify</a></div>
+<h2>Guide</h2><p><a href="/guides/bilibili-anime-series-tracker/">How to track Bilibili anime rankings, follower counts and release dates with Python</a> — Pull Bilibili's Top 100 anime ranking, a filterable catalog with follower and rating counts, and the release calendar as clean JSON using Python or cURL.</p>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Data</span><h3><a href="/bluesky-community-finder/">Bluesky Community Finder: Starter Packs &amp; Feeds</a></h3><p>Find Bluesky starter packs, custom feeds and curated lists by topic, with join counts, feed likes and full member lists with follower counts.</p><div class="meta">from $3.50 / 1,000 results</div></article><article class="card"><span class="pill">Data</span><h3><a href="/substack-sponsor-prospector/">Substack Newsletter Sponsorship Prospect Finder</a></h3><p>Substack publications ranked for sponsorship: subscriber count, paid-tier size, plan prices, posting cadence and engagement per 1,000 subscribers.</p><div class="meta">from $3.15 / 1,000 results</div></article><article class="card"><span class="pill">Public procurement</span><h3><a href="/ted-contract-expiry-radar/">TED Contract Expiry Radar - Recompete Leads</a></h3><p>Find EU public contracts approaching expiry from TED award notices: incumbent, buyer, value, end date and renewal options.</p><div class="meta">from $7.00 / 1,000 results</div></article><article class="card"><span class="pill">Public procurement</span><h3><a href="/uk-contract-expiry-radar/">UK Contract Expiry Radar - Recompete Leads</a></h3><p>UK public contracts ending soon with incumbent supplier, buyer, value and contact - recompete leads from Contracts Finder award notices.</p><div class="meta">from $3.50 / 1,000 results</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
