@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Medium Publications: Subscribers, Cadence, Claps | datagrit</title>
+<meta name="description" content="Find Medium publications by keyword and rank them by subscribers, posting cadence, claps per post and paywalled share. No login, no API key.">
+<link rel="canonical" href="https://getdatagrit.github.io/medium-publication-finder/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="Medium Publications: Subscribers, Cadence, Claps | datagrit">
+<meta property="og:description" content="Find Medium publications by keyword and rank them by subscribers, posting cadence, claps per post and paywalled share. No login, no API key."><meta property="og:url" content="https://getdatagrit.github.io/medium-publication-finder/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Medium Publications: Subscribers, Cadence, Claps | datagrit"><meta name="twitter:description" content="Find Medium publications by keyword and rank them by subscribers, posting cadence, claps per post and paywalled share. No login, no API key."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Medium Publication Finder: Subscribers & Activity","description":"Find Medium publications by keyword and rank them by subscribers, posting cadence, claps per post and paywalled share. No login, no API key.","url":"https://getdatagrit.github.io/medium-publication-finder/","image":"https://getdatagrit.github.io/og/default.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Data","operatingSystem":"Web, Apify platform","softwareVersion":"0.2","dateModified":"2026-10-07T10:06:48.478Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/medium-publication-finder","priceCurrency":"USD","price":0.0035,"description":"from $3.50 per 1,000 results + $10 per run. The price per result depends on your Apify plan."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/medium-publication-finder"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Data","item":"https://getdatagrit.github.io/#social"},{"@type":"ListItem","position":3,"name":"Medium Publication Finder: Subscribers & Activity","item":"https://getdatagrit.github.io/medium-publication-finder/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is a publication missing from my results?","acceptedAnswer":{"@type":"Answer","text":"Either Medium search did not return it for your keyword, or it was removed by your subscriber or activity filters. If every publication is removed you get one `filteredOut` row explaining it."}},{"@type":"Question","name":"Why are median claps zero?","acceptedAnswer":{"@type":"Answer","text":"Many publications get few claps. Look at `averageClaps` and `bestPost` to see whether a few stories carry the engagement. A missing value is never reported as zero: if Medium returns no clap count for any post, the field is `null` and the status message shows the clap-count coverage."}},{"@type":"Question","name":"Does it return articles?","acceptedAnswer":{"@type":"Answer","text":"No. It scores publications. Use an article scraper when you need story text."}},{"@type":"Question","name":"How fresh is the data?","acceptedAnswer":{"@type":"Answer","text":"Every run reads Medium live."}},{"@type":"Question","name":"Can I schedule runs?","acceptedAnswer":{"@type":"Answer","text":"Yes, use Apify schedules to track how follower counts and cadence change."}},{"@type":"Question","name":"Something looks wrong.","acceptedAnswer":{"@type":"Answer","text":"Open an issue with the input you used; layout changes at Medium are fixed quickly."}}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#social">Data</a> › Medium Publication Finder: Subscribers &amp; Activity</p>
+<span class="pill">Data</span>
+<h1>Medium Publication Finder: Subscribers &amp; Activity</h1>
+<p class="lead">Find Medium publications by keyword and score each one: subscribers, posting cadence, claps per post, paywalled share and top authors.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/medium-publication-finder" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">from $3.50 per 1,000 results + $10 per run · no code needed</span></div>
+<div class="facts"><div class="fact"><b>from $3.50 per 1,000 results + $10 per run</b><span>pay only for publication scoreds you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.2</b><span>updated 2026-10-07</span></div></div>
+<p>Medium Publication Finder turns a keyword (or a list of publication names) into one scorecard row per Medium publication: how many people follow it, how often it posts, when it last posted, how many claps a typical story gets, how much of it sits behind the paywall, and who writes for it.</p>
+<p>It reads the public data Medium serves to any visitor, so there is no login, no API key and no Medium account involved. Export the rows as JSON, CSV or Excel, call the Actor through the Apify API, or connect it to n8n, Make and AI agents through MCP.</p>
+<h2>Why use Medium Publication Finder?</h2>
+<p>Medium search lists publications by relevance and shows nothing about whether they are alive. This Actor adds the part you need to decide where to spend time: cadence and engagement computed from the latest 25 posts of each publication.</p>
+<ul>
+<li><strong>Build a pitch list.</strong> Search a topic, keep publications with a few hundred to a few thousand followers that posted this month, and rank them by claps per 1,000 subscribers.</li>
+<li><strong>Drop dormant giants.</strong> A publication with 800,000 followers and no post for a year is a bad target. Set &quot;Posted within the last (days)&quot; and it disappears.</li>
+<li><strong>Benchmark competitors and sponsors.</strong> Compare posts per week, median claps, responses and member-only share across a shortlist of publications in your niche.</li>
+<li><strong>Find the editors.</strong> Each row carries the creator, the editors and the most frequent authors with their usernames.</li>
+<li><strong>Feed dashboards and agents.</strong> One flat row per publication, stable field names, no article dumps to post-process.</li>
+</ul>
+<h2>Output fields</h2>
+<p>Each row has the publication identity (<code>id</code>, <code>slug</code>, <code>name</code>, <code>url</code>, <code>customDomain</code>, <code>tagline</code>, <code>description</code>), people (<code>creatorUsername</code>, <code>creatorName</code>, <code>editorsCount</code>, <code>editors</code>, <code>twitterUsername</code>, <code>newsletterSlug</code>), size (<code>subscribers</code>), cadence (<code>postsSampled</code>, <code>sampleSpanDays</code>, <code>lastPostAt</code>, <code>daysSinceLastPost</code>, <code>postsPerWeek</code>, <code>activityStatus</code>), engagement (<code>medianClaps</code>, <code>averageClaps</code>, <code>medianClapsPer1kSubscribers</code>, <code>medianResponses</code>), content (<code>medianReadingMinutes</code>, <code>medianWords</code>, <code>memberOnlySharePct</code>, <code>distinctAuthors</code>, <code>topAuthors</code>, <code>topTags</code>, <code>bestPost</code>) and the run context (<code>query</code>, <code>found</code>, <code>sourceUrl</code>, <code>scrapedAt</code>).</p>
+<p>When nothing can be returned for an input you get one row with <code>found: false</code>, a <code>reason</code> and a <code>message</code>: <code>noMatches</code> (the keyword found no publications), <code>filteredOut</code> (publications were found but none passed your filters), <code>notFound</code> (no such slug or domain) or <code>fetchFailed</code> (Medium did not answer after retries).</p>
+<h2>How the metrics are computed</h2>
+<p>Medium serves at most 25 recent posts per publication, so all cadence and engagement figures describe that sample. <code>postsPerWeek</code> is the number of sampled posts divided by the time between the oldest sampled post and now, and <code>sampleSpanDays</code> tells you how long that window is. <code>activityStatus</code> is <code>active</code> when the newest post is at most 14 days old, <code>slowing</code> up to 60 days and <code>dormant</code> beyond that. <code>medianClapsPer1kSubscribers</code> divides the median claps of the sample by followers, which makes small and large publications comparable.</p>
+<h2>Limits</h2>
+<ul>
+<li>The sample is the latest 25 posts; the Actor cannot page further back.</li>
+<li>Medium does not publish submission guidelines or acceptance rates, so the rows do not say whether a publication takes pitches. They tell you whether it is alive and how its stories perform.</li>
+<li>Clap counts are Medium's public totals and can be zero for publications whose readers rarely clap.</li>
+<li>Subscriber counts are Medium's follower numbers at the time of the run.</li>
+</ul>
+<h2>Is it legal to scrape Medium publications?</h2>
+<p>The Actor reads only public publication data that Medium serves to anyone without logging in. It does not read member-only story text, private data or anything behind a login, and it does not bypass access controls. You are responsible for using the data in line with applicable laws, including data protection rules, and Medium's terms. If you find an issue, open it in the Issues tab; problems are answered within one business day.</p>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>query</code></td><td>string</td><td>The search keyword or publication entry this row belongs to.</td><td><code>startup</code></td></tr><tr><td><code>id</code></td><td>string</td><td>Medium identifier of the publication. Empty only on the status row.</td><td><code>f5af2b715248</code></td></tr><tr><td><code>slug</code></td><td>string</td><td>Publication slug as used in medium.com/&lt;slug&gt;. Empty only on the status row.</td><td><code>swlh</code></td></tr><tr><td><code>name</code></td><td>string</td><td>Publication name. Empty only on the status row.</td><td><code>The Startup</code></td></tr><tr><td><code>url</code></td><td>string</td><td>Public address of the publication: its custom domain when it has one, otherwise medium.com/&lt;slug&gt;.</td><td><code>https://medium.com/swlh</code></td></tr><tr><td><code>customDomain</code></td><td>string</td><td>Custom domain the publication is served from, or null when it lives on medium.com.</td><td><code>uxdesign.cc</code></td></tr><tr><td><code>tagline</code></td><td>string</td><td>One-line tagline shown on the publication page.</td><td><code>Get smarter at building your thing.</code></td></tr><tr><td><code>description</code></td><td>string</td><td>Full description written by the publication owners.</td><td><code>Get smarter at building your thing. Follow to join The Startup’s +8 million mont</code></td></tr><tr><td><code>subscribers</code></td><td>integer</td><td>Number of Medium users following the publication.</td><td><code>894499</code></td></tr><tr><td><code>creatorUsername</code></td><td>string</td><td>Medium username of the account that created the publication.</td><td><code>meseali</code></td></tr><tr><td><code>creatorName</code></td><td>string</td><td>Display name of the account that created the publication.</td><td><code>Ali Mese</code></td></tr><tr><td><code>editorsCount</code></td><td>integer</td><td>Number of editors listed for the publication. Editors are the people who accept or reject submissions.</td><td><code>2</code></td></tr><tr><td><code>editors</code></td><td>array</td><td>Editors with their Medium username and display name.</td><td><code>[{&quot;username&quot;:&quot;meseali&quot;,&quot;name&quot;:&quot;Ali Mese&quot;</code></td></tr><tr><td><code>twitterUsername</code></td><td>string</td><td>Twitter/X handle the publication lists, or null.</td><td><code>GrowthSupply</code></td></tr><tr><td><code>newsletterSlug</code></td><td>string</td><td>Slug of the publication newsletter on Medium, or null when it has none.</td><td><code>top-stories</code></td></tr><tr><td><code>postsSampled</code></td><td>integer</td><td>Number of recent posts that feed the metrics below; 0 means the publication has no posts, null means Medium did not return the list.</td><td><code>25</code></td></tr><tr><td><code>sampleSpanDays</code></td><td>number</td><td>Days between the oldest analysed post and the time of the run.</td><td><code>175.3</code></td></tr><tr><td><code>lastPostAt</code></td><td>string</td><td>ISO 8601 date of the newest analysed post.</td><td><code>2026-05-25T19:56:00.532Z</code></td></tr><tr><td><code>daysSinceLastPost</code></td><td>number</td><td>Days between the newest analysed post and the time of the run.</td><td><code>134.6</code></td></tr><tr><td><code>postsPerWeek</code></td><td>number</td><td>Posts per week over the analysed sample, measured up to the time of the run, so a publication that stopped posting scores low.</td><td><code>1</code></td></tr><tr><td><code>activityStatus</code></td><td>string</td><td>active when the newest post is at most 14 days old, slowing up to 60 days, dormant beyond that, empty when the publication has no posts.</td><td><code>dormant</code></td></tr><tr><td><code>medianClaps</code></td><td>number</td><td>Median clap count per analysed post.</td><td><code>412</code></td></tr><tr><td><code>averageClaps</code></td><td>number</td><td>Mean clap count per analysed post.</td><td><code>380.5</code></td></tr><tr><td><code>medianClapsPer1kSubscribers</code></td><td>number</td><td>Median claps divided by subscribers, times 1,000; compares engagement between publications of different sizes.</td><td><code>0.46</code></td></tr><tr><td><code>medianResponses</code></td><td>number</td><td>Median number of responses (comments) per analysed post.</td><td><code>8</code></td></tr><tr><td><code>medianReadingMinutes</code></td><td>number</td><td>Median reading time in minutes of the analysed posts.</td><td><code>5.6</code></td></tr><tr><td><code>medianWords</code></td><td>integer</td><td>Median word count of the analysed posts.</td><td><code>1024</code></td></tr><tr><td><code>memberOnlySharePct</code></td><td>number</td><td>Share of analysed posts that sit behind the Medium paywall, in percent.</td><td><code>68</code></td></tr><tr><td><code>distinctAuthors</code></td><td>integer</td><td>Number of different authors among the analysed posts; 1 means a one-person publication.</td><td><code>22</code></td></tr><tr><td><code>topAuthors</code></td><td>array</td><td>Up to three authors with the most analysed posts: username, name and post count.</td><td><code>[{&quot;username&quot;:&quot;aldric-chen&quot;,&quot;name&quot;:&quot;Aldric Che</code></td></tr><tr><td><code>topTags</code></td><td>array</td><td>Up to five tags used most often across the analysed posts, with post counts.</td><td><code>[{&quot;tag&quot;:&quot;productivity&quot;,&quot;posts&quot;:6}]</code></td></tr><tr><td><code>bestPost</code></td><td>object</td><td>The analysed post with the most claps: title, URL and clap count.</td><td><code>{&quot;title&quot;:&quot;These Countries Offer Real Estate Visas&quot;,&quot;url</code></td></tr><tr><td><code>found</code></td><td>boolean</td><td>False only for status rows (no match, publication not found, request failed, filtered out).</td><td><code>true</code></td></tr><tr><td><code>reason</code></td><td>string</td><td>Present on status rows only: noMatches, filteredOut, notFound or fetchFailed.</td><td><code>filteredOut</code></td></tr><tr><td><code>message</code></td><td>string</td><td>Present on status rows only: what happened and what to change.</td><td><code>Publications were found but none passed the subscriber and activity filters.</code></td></tr><tr><td><code>sourceUrl</code></td><td>string</td><td>Public page of the publication the row was read from.</td><td><code>https://medium.com/swlh</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>ISO 8601 timestamp of extraction.</td><td><code>2026-10-07T08:00:00.000Z</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;query&quot;: &quot;startup&quot;,
+  &quot;id&quot;: &quot;f5af2b715248&quot;,
+  &quot;slug&quot;: &quot;swlh&quot;,
+  &quot;name&quot;: &quot;The Startup&quot;,
+  &quot;url&quot;: &quot;https://medium.com/swlh&quot;,
+  &quot;customDomain&quot;: &quot;uxdesign.cc&quot;,
+  &quot;tagline&quot;: &quot;Get smarter at building your thing.&quot;,
+  &quot;description&quot;: &quot;Get smarter at building your thing. Follow to join The Startup’s +8 million monthly readers.&quot;,
+  &quot;subscribers&quot;: 894499,
+  &quot;creatorUsername&quot;: &quot;meseali&quot;,
+  &quot;creatorName&quot;: &quot;Ali Mese&quot;,
+  &quot;editorsCount&quot;: 2,
+  &quot;editors&quot;: [
+    {
+      &quot;username&quot;: &quot;meseali&quot;,
+      &quot;name&quot;: &quot;Ali Mese&quot;
+    }
+  ],
+  &quot;twitterUsername&quot;: &quot;GrowthSupply&quot;,
+  &quot;newsletterSlug&quot;: &quot;top-stories&quot;,
+  &quot;postsSampled&quot;: 25,
+  &quot;sampleSpanDays&quot;: 175.3,
+  &quot;lastPostAt&quot;: &quot;2026-05-25T19:56:00.532Z&quot;,
+  &quot;daysSinceLastPost&quot;: 134.6,
+  &quot;postsPerWeek&quot;: 1,
+  &quot;activityStatus&quot;: &quot;dormant&quot;,
+  &quot;medianClaps&quot;: 412,
+  &quot;averageClaps&quot;: 380.5,
+  &quot;medianClapsPer1kSubscribers&quot;: 0.46,
+  &quot;medianResponses&quot;: 8,
+  &quot;medianReadingMinutes&quot;: 5.6,
+  &quot;medianWords&quot;: 1024,
+  &quot;memberOnlySharePct&quot;: 68,
+  &quot;distinctAuthors&quot;: 22,
+  &quot;topAuthors&quot;: [
+    {
+      &quot;username&quot;: &quot;aldric-chen&quot;,
+      &quot;name&quot;: &quot;Aldric Chen&quot;,
+      &quot;posts&quot;: 3
+    }
+  ],
+  &quot;topTags&quot;: [
+    {
+      &quot;tag&quot;: &quot;productivity&quot;,
+      &quot;posts&quot;: 6
+    }
+  ],
+  &quot;bestPost&quot;: {
+    &quot;title&quot;: &quot;These Countries Offer Real Estate Visas&quot;,
+    &quot;url&quot;: &quot;https://medium.com/swlh/example-396cb0c83ba2&quot;,
+    &quot;claps&quot;: 474
+  },
+  &quot;found&quot;: true,
+  &quot;reason&quot;: &quot;filteredOut&quot;,
+  &quot;message&quot;: &quot;Publications were found but none passed the subscriber and activity filters.&quot;,
+  &quot;sourceUrl&quot;: &quot;https://medium.com/swlh&quot;,
+  &quot;scrapedAt&quot;: &quot;2026-10-07T08:00:00.000Z&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>queries</code></td><td>Search keywords</td><td>array</td><td>Keywords to search Medium publications for, one per line (for example &quot;startup&quot; or &quot;machine learning&quot;). Each keyword is searched separately and the publications it returns are scored.</td></tr><tr><td><code>publications</code></td><td>Publications to look up</td><td>array</td><td>Specific publications to score: a slug (better-programming), a link (https://medium.com/swlh) or a custom domain (uxdesign.cc). Profiles of people (@name) are not publications and are ignored.</td></tr><tr><td><code>maxPublicationsPerQuery</code></td><td>Publications per keyword</td><td>integer</td><td>How many publications to score for each search keyword, in the order Medium ranks them. Publications outside the subscriber range do not count toward this number.</td></tr><tr><td><code>postsSample</code></td><td>Recent posts to analyse</td><td>integer</td><td>How many of a publication's most recent posts feed the cadence and engagement figures, 5 to 25. Medium serves at most 25 per publication.</td></tr><tr><td><code>minSubscribers</code></td><td>Minimum subscribers</td><td>integer</td><td>Skip publications with fewer followers than this. 0 means no minimum. Skipped publications are not charged.</td></tr><tr><td><code>maxSubscribers</code></td><td>Maximum subscribers</td><td>integer</td><td>Skip publications with more followers than this, which is useful for finding smaller publications that answer pitches. 0 means no maximum.</td></tr><tr><td><code>activeWithinDays</code></td><td>Posted within the last (days)</td><td>integer</td><td>Keep only publications whose newest post is at most this many days old, which drops dormant publications with large follower counts. 0 means no limit. Publications without posts are skipped when this is set.</td></tr><tr><td><code>maxItems</code></td><td>Maximum publications</td><td>integer</td><td>Stop after this many publication rows in total across all keywords and direct lookups.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Optional proxy. Leave disabled unless Medium refuses requests from your region; residential proxy raises the platform cost of the run.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~medium-publication-finder/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;queries&quot;:[&quot;startup&quot;,&quot;machine learning&quot;],&quot;maxPublicationsPerQuery&quot;:8,&quot;maxItems&quot;:16}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/medium-publication-finder').call({
+  &quot;queries&quot;: [
+    &quot;startup&quot;,
+    &quot;machine learning&quot;
+  ],
+  &quot;maxPublicationsPerQuery&quot;: 8,
+  &quot;maxItems&quot;: 16
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/medium-publication-finder&quot;).call(run_input={
+  &quot;queries&quot;: [
+    &quot;startup&quot;,
+    &quot;machine learning&quot;
+  ],
+  &quot;maxPublicationsPerQuery&quot;: 8,
+  &quot;maxItems&quot;: 16
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>Why is a publication missing from my results?</summary><p>Either Medium search did not return it for your keyword, or it was removed by your subscriber or activity filters. If every publication is removed you get one `filteredOut` row explaining it.</p></details>
+<details><summary>Why are median claps zero?</summary><p>Many publications get few claps. Look at `averageClaps` and `bestPost` to see whether a few stories carry the engagement. A missing value is never reported as zero: if Medium returns no clap count for any post, the field is `null` and the status message shows the clap-count coverage.</p></details>
+<details><summary>Does it return articles?</summary><p>No. It scores publications. Use an article scraper when you need story text.</p></details>
+<details><summary>How fresh is the data?</summary><p>Every run reads Medium live.</p></details>
+<details><summary>Can I schedule runs?</summary><p>Yes, use Apify schedules to track how follower counts and cadence change.</p></details>
+<details><summary>Something looks wrong.</summary><p>Open an issue with the input you used; layout changes at Medium are fixed quickly.</p></details>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/medium-publication-finder" rel="noopener">Try Medium Publication Finder: Subscribers &amp; Activity on Apify</a></div>
+<h2>Guide</h2><p><a href="/guides/medium-publication-finder/">How to find active Medium publications and rank them by engagement</a> — Find Medium publications by keyword and score each by followers, posting cadence, claps per 1,000 followers and paywalled share, in Python or cURL.</p>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Data</span><h3><a href="/bilibili-anime-series-tracker/">Bilibili Anime Catalog, Rankings &amp; Calendar</a></h3><p>Bilibili anime, Chinese animation, film, documentary and TV series: filterable catalog, Top 100 rankings, release calendar and season details with ratings and follower counts.</p><div class="meta">from $3.50 / 1,000 results</div></article><article class="card"><span class="pill">Data</span><h3><a href="/bluesky-community-finder/">Bluesky Community Finder: Starter Packs &amp; Feeds</a></h3><p>Find Bluesky starter packs, custom feeds and curated lists by topic, with join counts, feed likes and full member lists with follower counts.</p><div class="meta">from $3.50 / 1,000 results</div></article><article class="card"><span class="pill">Data</span><h3><a href="/substack-sponsor-prospector/">Substack Newsletter Sponsorship Prospect Finder</a></h3><p>Substack publications ranked for sponsorship: subscriber count, paid-tier size, plan prices, posting cadence and engagement per 1,000 subscribers.</p><div class="meta">from $3.15 / 1,000 results</div></article><article class="card"><span class="pill">Public procurement</span><h3><a href="/ted-contract-expiry-radar/">TED Contract Expiry Radar - Recompete Leads</a></h3><p>Find EU public contracts approaching expiry from TED award notices: incumbent, buyer, value, end date and renewal options.</p><div class="meta">from $7.00 / 1,000 results</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

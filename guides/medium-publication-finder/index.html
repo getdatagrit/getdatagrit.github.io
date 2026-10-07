@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to find active Medium publications and rank them by engagement | datagrit</title>
+<meta name="description" content="Find Medium publications by keyword and score each by followers, posting cadence, claps per 1,000 followers and paywalled share, in Python or cURL.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/medium-publication-finder/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to find active Medium publications and rank them by engagement | datagrit">
+<meta property="og:description" content="Find Medium publications by keyword and score each by followers, posting cadence, claps per 1,000 followers and paywalled share, in Python or cURL."><meta property="og:url" content="https://getdatagrit.github.io/guides/medium-publication-finder/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to find active Medium publications and rank them by engagement | datagrit"><meta name="twitter:description" content="Find Medium publications by keyword and score each by followers, posting cadence, claps per 1,000 followers and paywalled share, in Python or cURL."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to find active Medium publications and rank them by engagement","description":"Find Medium publications by keyword and score each by followers, posting cadence, claps per 1,000 followers and paywalled share, in Python or cURL.","datePublished":"2026-10-07","dateModified":"2026-10-07","image":"https://getdatagrit.github.io/og/default.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/medium-publication-finder/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webscraping, python, api, marketing","about":{"@type":"SoftwareApplication","name":"Medium Publication Finder: Subscribers & Activity","url":"https://getdatagrit.github.io/medium-publication-finder/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to find active Medium publications and rank them by engagement","item":"https://getdatagrit.github.io/guides/medium-publication-finder/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Medium Publication Finder: Subscribers &amp; Activity</p>
+<span class="pill">Guide</span>
+<h1>How to find active Medium publications and rank them by engagement</h1>
+<p class="lead">Find Medium publications by keyword and score each by followers, posting cadence, claps per 1,000 followers and paywalled share, in Python or cURL.</p>
+<p class="note">Published 2026-10-07 · uses the <a href="/medium-publication-finder/">Medium Publication Finder: Subscribers &amp; Activity</a> Actor</p>
+<p>Anyone who writes for an audience on Medium eventually asks the same question: which publications are worth pitching? Founders want a place to publish a launch story, agencies build outreach lists for clients, newsletter writers look for cross-promotion, and analysts compare the publications in a niche. Medium search answers &quot;which publications match this keyword&quot; but not the questions that decide where to spend time. Is it still publishing? How many followers does it have? Do its stories get any claps?</p>
+<p>This guide shows how to turn a keyword into a ranked table of publications with those answers, using the Medium Publication Finder Actor. The same field notes apply if you build the pipeline yourself on Medium's public data.</p>
+<h3>Where the data comes from</h3>
+<p>Medium's web pages sit behind a bot filter, and scraping the HTML of a publication page is fragile. The Actor does not parse pages. It asks the same public GraphQL endpoint that Medium's own site uses, which returns structured records: the publication (name, slug, optional custom domain, tagline, description, follower count, creator, editors) and its most recent posts (publication timestamp, claps, responses, reading time, word count, member-only flag, tags, author).</p>
+<p>Two properties of that source shape the output:</p>
+<ul>
+<li>Search returns publications in Medium's relevance order, and each result carries a follower count. That is enough to apply a subscriber range before spending a request on the details.</li>
+<li>Medium serves at most 25 recent posts per publication, with no way to page back. Every cadence and engagement figure is therefore computed from the latest 25 posts, and the row says how many posts were used (<code>postsSampled</code>) and how long that window is (<code>sampleSpanDays</code>).</li>
+</ul>
+<h3>Step 1: run a keyword search</h3>
+<p>The input needs at least one keyword in <code>queries</code> or one publication in <code>publications</code>. This input searches two topics, keeps up to ten publications per topic, and drops everything below 200 followers or without a post in the last 90 days:</p>
+<pre><code>
+{
+  &quot;queries&quot;: [&quot;startup&quot;, &quot;machine learning&quot;],
+  &quot;maxPublicationsPerQuery&quot;: 10,
+  &quot;minSubscribers&quot;: 200,
+  &quot;activeWithinDays&quot;: 90,
+  &quot;maxItems&quot;: 50
+}
+</code></pre>
+<p>Call it from Python with <code>apify-client</code>:</p>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+run = client.actor(&quot;datagrit/medium-publication-finder&quot;).call(run_input={
+    &quot;queries&quot;: [&quot;startup&quot;, &quot;machine learning&quot;],
+    &quot;maxPublicationsPerQuery&quot;: 10,
+    &quot;minSubscribers&quot;: 200,
+    &quot;activeWithinDays&quot;: 90,
+    &quot;maxItems&quot;: 50,
+})
+rows = list(client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items())
+</code></pre>
+<p>Or with cURL, which returns the rows directly:</p>
+<pre><code>
+curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~medium-publication-finder/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;queries&quot;:[&quot;startup&quot;],&quot;maxPublicationsPerQuery&quot;:10,&quot;activeWithinDays&quot;:90}'
+</code></pre>
+<p>You can also look up publications you already know. The <code>publications</code> field accepts a slug (<code>better-programming</code>), a link (<code>https://medium.com/swlh</code>) or a custom domain (<code>uxdesign.cc</code>). Profiles of people (<code>@name</code>) are not publications, so they are ignored and listed in the run message.</p>
+<h3>Step 2: read the fields that matter</h3>
+<div class="table"><table><thead><tr><th>Field</th><th>Example</th><th>What it tells you</th></tr></thead><tbody>
+<tr><td><code>subscribers</code></td><td><code>389</code></td><td>Followers of the publication.</td></tr>
+<tr><td><code>postsPerWeek</code></td><td><code>0.2</code></td><td>Sampled posts divided by the window they span.</td></tr>
+<tr><td><code>daysSinceLastPost</code></td><td><code>4.4</code></td><td>Whether anyone is still publishing.</td></tr>
+<tr><td><code>activityStatus</code></td><td><code>active</code></td><td><code>active</code> up to 14 days, <code>slowing</code> up to 60, <code>dormant</code> beyond.</td></tr>
+<tr><td><code>medianClaps</code></td><td><code>2</code></td><td>A typical story, not one viral outlier.</td></tr>
+<tr><td><code>medianClapsPer1kSubscribers</code></td><td><code>5.14</code></td><td>Engagement normalised by size.</td></tr>
+<tr><td><code>memberOnlySharePct</code></td><td><code>0</code></td><td>Share of sampled stories behind Medium's paywall.</td></tr>
+<tr><td><code>topAuthors</code></td><td><code>[{&quot;username&quot;: &quot;midweststartups&quot;, &quot;posts&quot;: 22}]</code></td><td>Who actually writes there.</td></tr>
+<tr><td><code>bestPost</code></td><td><code>{&quot;title&quot;: &quot;...&quot;, &quot;claps&quot;: 139}</code></td><td>The standout story of the sample.</td></tr>
+</tbody></table></div>
+<p>The numbers in that table are a real row. The Midwest Startups publication has 389 followers, posts about once every five weeks and earns a median of two claps per story, which works out to 5.14 claps per 1,000 followers. The Startup publication has 894,499 followers and a median of 269 claps, but its newest sampled post was more than four months old when we checked, so it is <code>dormant</code> and its engagement per follower is 0.3. Size alone would have ranked the two the other way round.</p>
+<h3>Step 3: three ways to use the table</h3>
+<p><strong>A pitch list in pandas.</strong> Rank the publications that are alive and small enough to answer:</p>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(rows)
+df = df[df[&quot;found&quot;] == True]
+shortlist = df[(df[&quot;activityStatus&quot;].isin([&quot;active&quot;, &quot;slowing&quot;])) &amp; (df[&quot;subscribers&quot;] &lt; 20000)]
+print(shortlist.sort_values(&quot;medianClapsPer1kSubscribers&quot;, ascending=False)
+      [[&quot;name&quot;, &quot;subscribers&quot;, &quot;postsPerWeek&quot;, &quot;medianClapsPer1kSubscribers&quot;, &quot;url&quot;]].head(15))
+</code></pre>
+<p><strong>A weekly competitor sheet.</strong> Put your own publication and three competitors in <code>publications</code>, schedule the Actor weekly in Apify, and append the rows to a spreadsheet or a database. Because every row carries <code>scrapedAt</code>, you can chart follower counts and <code>postsPerWeek</code> over time without storing anything in the Actor.</p>
+<p><strong>An editor lookup for outreach.</strong> Each row has <code>creatorUsername</code>, an <code>editors</code> list and <code>topAuthors</code>. Take the publications on your shortlist and read the usernames to find whom to address, then check the public profile pages yourself before writing to anyone.</p>
+<h3>Status rows and failures</h3>
+<p>The Actor never returns silent empty results. When nothing can be returned for an input, you get one row with <code>found: false</code> and a <code>reason</code>:</p>
+<ul>
+<li><code>noMatches</code>: the keyword found no publications.</li>
+<li><code>filteredOut</code>: publications were found, but none passed your subscriber and activity filters.</li>
+<li><code>notFound</code>: no publication with that slug or domain exists.</li>
+<li><code>fetchFailed</code>: Medium did not answer after several retries.</li>
+</ul>
+<p>Status rows are not charged, and neither are publications removed by your filters. If Medium changes its response format so that follower counts, post lists or post dates stop appearing, the run fails with a message that says what is missing, instead of delivering rows full of nulls.</p>
+<h3>Limits to know about</h3>
+<ul>
+<li><strong>The sample is 25 posts.</strong> For a publication that posts several times a day, 25 posts can span only a few days, so <code>postsPerWeek</code> describes recent activity rather than the long-run average. Check <code>sampleSpanDays</code>.</li>
+<li><strong>No submission rules.</strong> Medium does not expose whether a publication accepts pitches, its guidelines or its acceptance rate. The rows tell you whether a publication is alive and how its stories perform; the submission page still needs a human.</li>
+<li><strong>Claps are noisy.</strong> Some publications have readers who rarely clap, so a low median is not proof of a small audience. Compare <code>averageClaps</code> and <code>bestPost</code> before ruling a publication out.</li>
+<li><strong>Search depth.</strong> Medium ranks search results by its own relevance, and the Actor reads them in that order up to your <code>maxPublicationsPerQuery</code>. A narrow keyword gives a better list than a broad one.</li>
+<li><strong>Proxy.</strong> The proxy option is off by default. If Medium refuses requests from your region or network, the run says so; enable the proxy option in the input and retry.</li>
+</ul>
+<h3>Wrapping up</h3>
+<p>Search gives you names, and the scorecard tells you which of those names deserve an email. The Actor is on the Apify Store as <a href="https://apify.com/datagrit/medium-publication-finder" rel="noopener">Medium Publication Finder: Subscribers &amp; Activity</a>, and the full input and output reference is on the <a href="https://getdatagrit.github.io/medium-publication-finder/">documentation page</a>. It is priced per result, and a maximum spend on the run caps what a run can cost.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/medium-publication-finder" rel="noopener">Try Medium Publication Finder: Subscribers &amp; Activity on Apify</a><a class="btn ghost" href="/medium-publication-finder/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/product-hunt-launch-pricing-intel/">How to track Product Hunt launches and what each product charges</a></h3><p>Pull Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price, from Python or cURL.</p><div class="meta">2026-10-06</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/bilibili-anime-series-tracker/">How to track Bilibili anime rankings, follower counts and release dates with Python</a></h3><p>Pull Bilibili's Top 100 anime ranking, a filterable catalog with follower and rating counts, and the release calendar as clean JSON using Python or cURL.</p><div class="meta">2026-10-05</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/tiktok-top-ads-monitor/">How to track new TikTok Top Ads by industry and country with Python</a></h3><p>Pull TikTok Creative Center Top Ads for several countries and industries, merge the lists, and get only the ads that are new since your last run.</p><div class="meta">2026-10-05</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
