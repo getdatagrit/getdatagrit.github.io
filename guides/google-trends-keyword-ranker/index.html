@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to compare more than 5 keywords on Google Trends with one scale | datagrit</title>
+<meta name="description" content="Rank up to 100 keywords on one comparable Google Trends scale, per country, with regions and related queries, in Python or cURL and without a browser.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/google-trends-keyword-ranker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to compare more than 5 keywords on Google Trends with one scale | datagrit">
+<meta property="og:description" content="Rank up to 100 keywords on one comparable Google Trends scale, per country, with regions and related queries, in Python or cURL and without a browser."><meta property="og:url" content="https://getdatagrit.github.io/guides/google-trends-keyword-ranker/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to compare more than 5 keywords on Google Trends with one scale | datagrit"><meta name="twitter:description" content="Rank up to 100 keywords on one comparable Google Trends scale, per country, with regions and related queries, in Python or cURL and without a browser."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to compare more than 5 keywords on Google Trends with one scale","description":"Rank up to 100 keywords on one comparable Google Trends scale, per country, with regions and related queries, in Python or cURL and without a browser.","datePublished":"2026-10-08","dateModified":"2026-10-08","image":"https://getdatagrit.github.io/og/default.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/google-trends-keyword-ranker/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"webscraping, python, seo, api","about":{"@type":"SoftwareApplication","name":"Google Trends Keyword Ranker and Compare Tool","url":"https://getdatagrit.github.io/google-trends-keyword-ranker/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to compare more than 5 keywords on Google Trends with one scale","item":"https://getdatagrit.github.io/guides/google-trends-keyword-ranker/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Google Trends Keyword Ranker and Compare Tool</p>
+<span class="pill">Guide</span>
+<h1>How to compare more than 5 keywords on Google Trends with one scale</h1>
+<p class="lead">Rank up to 100 keywords on one comparable Google Trends scale, per country, with regions and related queries, in Python or cURL and without a browser.</p>
+<p class="note">Published 2026-10-08 · uses the <a href="/google-trends-keyword-ranker/">Google Trends Keyword Ranker and Compare Tool</a> Actor</p>
+<p>Anyone who has tried to choose between a dozen keywords on Google Trends has hit the same wall. The comparison box accepts five terms. Every chart is rescaled so that its own highest point is 100. If you read the first five keywords in one chart and the next five in another, a 60 in the first chart and a 60 in the second mean different things, and the two lists cannot be sorted together. Content teams, SEO analysts, product marketers and researchers who need a ranking of 30 or 50 candidates end up screenshotting charts and guessing.</p>
+<p>This guide shows how to get one ranked table for a long keyword list, per country, using the Google Trends Keyword Ranker Actor, and explains the method so you can judge how far to trust the numbers.</p>
+<h3>Why long lists break on Google Trends</h3>
+<p>Google Trends returns relative interest, not search counts. The value of a point is the share of searches for the term in the chosen location and time, divided by the highest such share in the chart, times 100. Two properties follow from that:</p>
+<ul>
+<li>A chart with five terms always contains a 100. Change one term and every other value in the chart moves.</li>
+<li>Values from different charts are not comparable unless the charts share at least one term whose level you can use to convert between them.</li>
+</ul>
+<p>That second point is the way out. If keyword <code>rust</code> appears in both chart A and chart B, the ratio between its two averages tells you how to rescale chart B onto the scale of chart A. The Actor automates exactly that.</p>
+<h3>How the Actor builds one scale</h3>
+<p>Keywords are read in groups of five. The first group is the reference. For every later group, the Actor repeats one keyword from the first group as an anchor, reads the group together with the anchor, and rescales the group by the ratio between the anchor's readings in the reference chart and in the new chart. The anchor is the keyword at the median level of the first group, so it is neither the strongest term, which would squash the others in the new chart, nor the weakest, which would be noisy.</p>
+<p>The weak link in such a chain is the anchor's volume. When the anchor has little search interest, rounding to whole numbers makes the ratio unreliable. So every row carries <code>scaleQuality</code>:</p>
+<ul>
+<li><code>exact</code> for the first group, which needs no conversion.</li>
+<li><code>good</code> when the anchor had enough volume in both charts for a stable ratio.</li>
+<li><code>coarse</code> when it was thin, or when the keyword's own values average below 3 on the 0 to 100 scale, so the placement is approximate.</li>
+<li><code>unlinked</code> when it was too thin to link at all. These keywords keep their own 0 to 100 values but get no <code>rank</code>.</li>
+</ul>
+<p>The run message adds the counts, for example <code>Scale quality: 3 exact, 1 good, 3 coarse, 0 unlinked</code>, so a job that fails to link anything is visible without reading rows.</p>
+<h3>Step 1: run a ranking</h3>
+<p>The input needs a <code>keywords</code> list. This one ranks seven programming languages in the United States over the last 12 months and also returns related queries:</p>
+<pre><code>
+{
+  &quot;keywords&quot;: [&quot;python&quot;, &quot;java&quot;, &quot;rust&quot;, &quot;golang&quot;, &quot;kotlin&quot;, &quot;swift&quot;, &quot;typescript&quot;],
+  &quot;geos&quot;: [&quot;US&quot;],
+  &quot;timeRange&quot;: &quot;today 12-m&quot;,
+  &quot;dataTypes&quot;: [&quot;keywordSummary&quot;, &quot;relatedQueries&quot;],
+  &quot;maxRelatedPerKeyword&quot;: 5
+}
+</code></pre>
+<p>From Python with <code>apify-client</code>:</p>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+run = client.actor(&quot;datagrit/google-trends-keyword-ranker&quot;).call(run_input={
+    &quot;keywords&quot;: [&quot;python&quot;, &quot;java&quot;, &quot;rust&quot;, &quot;golang&quot;, &quot;kotlin&quot;, &quot;swift&quot;, &quot;typescript&quot;],
+    &quot;geos&quot;: [&quot;US&quot;],
+    &quot;timeRange&quot;: &quot;today 12-m&quot;,
+    &quot;dataTypes&quot;: [&quot;keywordSummary&quot;, &quot;relatedQueries&quot;],
+    &quot;maxRelatedPerKeyword&quot;: 5,
+})
+rows = list(client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items())
+</code></pre>
+<p>Or with cURL, which returns the rows directly:</p>
+<pre><code>
+curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~google-trends-keyword-ranker/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;keywords&quot;:[&quot;python&quot;,&quot;rust&quot;,&quot;golang&quot;],&quot;geos&quot;:[&quot;US&quot;,&quot;DE&quot;],&quot;dataTypes&quot;:[&quot;keywordSummary&quot;]}'
+</code></pre>
+<p>Locations are country codes such as <code>US</code> or <code>DE</code>, sub-regions such as <code>US-CA</code>, or <code>WORLDWIDE</code>. Several locations in one run give you one ranking per location, which is the quickest way to see where a keyword is strongest.</p>
+<h3>Step 2: read the ranking</h3>
+<p>For the seven languages above the keyword summary rows came back like this:</p>
+<div class="table"><table><thead><tr><th>keyword</th><th>rank</th><th>normalizedAverage</th><th>scaleQuality</th></tr></thead><tbody>
+<tr><td>swift</td><td>1</td><td>31.6</td><td>good</td></tr>
+<tr><td>python</td><td>2</td><td>30.5</td><td>exact</td></tr>
+<tr><td>java</td><td>3</td><td>15.1</td><td>exact</td></tr>
+<tr><td>rust</td><td>4</td><td>15</td><td>exact</td></tr>
+<tr><td>typescript</td><td>5</td><td>1.8</td><td>coarse</td></tr>
+<tr><td>golang</td><td>6</td><td>1</td><td>coarse</td></tr>
+<tr><td>kotlin</td><td>7</td><td>0.8</td><td>coarse</td></tr>
+</tbody></table></div>
+<p><code>normalizedAverage</code> is the average interest on the shared scale, where the strongest point of any keyword in the location is 100. The other fields that matter in a summary row are:</p>
+<div class="table"><table><thead><tr><th>Field</th><th>What it tells you</th></tr></thead><tbody>
+<tr><td><code>peakValue</code>, <code>peakDate</code></td><td>The highest point on the shared scale and when it happened.</td></tr>
+<tr><td><code>latestValue</code></td><td>The last complete point, so an unfinished week does not distort it.</td></tr>
+<tr><td><code>changePct</code></td><td>Change between the first and last third of the range.</td></tr>
+<tr><td><code>trendDirection</code></td><td><code>rising</code>, <code>falling</code> or <code>steady</code>, with 10 percent as the threshold. A keyword that starts from zero has no <code>changePct</code> but is <code>rising</code>.</td></tr>
+<tr><td><code>anchorKeyword</code></td><td>The keyword that linked this one to the reference group.</td></tr>
+</tbody></table></div>
+<p>A ranking is only the start of the work. Swift tops the list because the word also names a singer and a bird, which Google Trends cannot separate in a plain search. Related queries make that visible, and the <code>category</code> input lets you restrict a search to a Google Trends category when a word has several meanings.</p>
+<h3>Step 3: three ways to use it</h3>
+<p><strong>Shortlist keywords in pandas.</strong> Keep the ones that are both established and growing:</p>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(rows)
+summary = df[(df[&quot;type&quot;] == &quot;keywordSummary&quot;) &amp; (df[&quot;found&quot;] == True)]
+shortlist = summary[(summary[&quot;trendDirection&quot;] == &quot;rising&quot;) &amp; (summary[&quot;scaleQuality&quot;].isin([&quot;exact&quot;, &quot;good&quot;]))]
+print(shortlist.sort_values(&quot;normalizedAverage&quot;, ascending=False)[[&quot;keyword&quot;, &quot;normalizedAverage&quot;, &quot;changePct&quot;]])
+</code></pre>
+<p><strong>Spot new topics early.</strong> Ask for <code>relatedQueryKind: &quot;rising&quot;</code> and schedule the run weekly. Related query rows carry <code>isBreakout</code>, which is true when Google reports growth of more than 5,000 percent. Append each week's rows to a sheet and alert on new breakout queries for your seed keywords.</p>
+<p><strong>Compare markets.</strong> Put three countries in <code>geos</code> and the same keywords in <code>keywords</code>, then pivot <code>normalizedAverage</code> by <code>geo</code>. Because each location has its own ranking, a keyword that is 12th in one country and 2nd in another stands out immediately. For a finer split, add <code>interestByRegion</code> to <code>dataTypes</code>, and use <code>regionResolution</code> to switch between states, metro areas and cities.</p>
+<h3>What a failed read looks like</h3>
+<p>The Actor does not return silent empty results. A keyword without enough search volume in a location, or one that rounds to 0 on every point next to much stronger keywords, gives one row with <code>found: false</code> and <code>reason: &quot;noData&quot;</code>, and a location code Google rejects gives <code>reason: &quot;badLocation&quot;</code>. A temporary failure gives <code>reason: &quot;fetchFailed&quot;</code>. These status rows are not charged. When Google changes its response format so that a required part is missing, the run fails with a message that names it, instead of delivering rows full of nulls.</p>
+<h3>Limits to know about</h3>
+<ul>
+<li><strong>Relative, not absolute.</strong> The numbers are relative interest. They rank keywords and show direction, but they are not search counts.</li>
+<li><strong>Chained placements are estimates.</strong> A <code>good</code> placement is reliable for ordering; a <code>coarse</code> one is approximate; an <code>unlinked</code> keyword has no rank. Check <code>scaleQuality</code> before using small differences.</li>
+<li><strong>Low-volume keywords.</strong> Google Trends reports nothing for terms with too little volume, so long-tail phrases often come back as <code>noData</code>. A rare term in the same list as a very popular one can also round to 0; run it on its own to see its curve.</li>
+<li><strong>Rate limits.</strong> Google Trends slows down heavy use. The Actor waits and retries, and the run message reports how many retries it needed. Large lists take longer for that reason.</li>
+<li><strong>Related topics are not included.</strong> Only related queries are returned.</li>
+<li><strong>Limits of the Actor.</strong> Up to 100 keywords and 10 locations per run; the <code>maxItems</code> input stops a run at the row count you set.</li>
+</ul>
+<h3>Wrapping up</h3>
+<p>The method is simple enough to build yourself: read groups of five, repeat an anchor, rescale by the ratio, and keep track of how thin the anchor was. The Actor does it for lists up to 100 keywords and several countries at once. It is on the Apify Store as <a href="https://apify.com/datagrit/google-trends-keyword-ranker" rel="noopener">Google Trends Keyword Ranker and Compare Tool</a>, and the full input and output reference is on the <a href="https://getdatagrit.github.io/google-trends-keyword-ranker/">documentation page</a>. It is priced per result, and a maximum spend on the run caps what a run can cost.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/google-trends-keyword-ranker" rel="noopener">Try Google Trends Keyword Ranker and Compare Tool on Apify</a><a class="btn ghost" href="/google-trends-keyword-ranker/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/medium-publication-finder/">How to find active Medium publications and rank them by engagement</a></h3><p>Find Medium publications by keyword and score each by followers, posting cadence, claps per 1,000 followers and paywalled share, in Python or cURL.</p><div class="meta">2026-10-07</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/product-hunt-launch-pricing-intel/">How to track Product Hunt launches and what each product charges</a></h3><p>Pull Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price, from Python or cURL.</p><div class="meta">2026-10-06</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/bilibili-anime-series-tracker/">How to track Bilibili anime rankings, follower counts and release dates with Python</a></h3><p>Pull Bilibili's Top 100 anime ranking, a filterable catalog with follower and rating counts, and the release calendar as clean JSON using Python or cURL.</p><div class="meta">2026-10-05</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>

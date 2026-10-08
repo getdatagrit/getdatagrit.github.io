@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google Trends Keyword Ranker: Compare 100 Keywords | datagrit</title>
+<meta name="description" content="Rank and compare up to 100 keywords on one Google Trends scale: average, peak, trend, regions and related queries per location. No browser, no API key.">
+<link rel="canonical" href="https://getdatagrit.github.io/google-trends-keyword-ranker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="Google Trends Keyword Ranker: Compare 100 Keywords | datagrit">
+<meta property="og:description" content="Rank and compare up to 100 keywords on one Google Trends scale: average, peak, trend, regions and related queries per location. No browser, no API key."><meta property="og:url" content="https://getdatagrit.github.io/google-trends-keyword-ranker/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Google Trends Keyword Ranker: Compare 100 Keywords | datagrit"><meta name="twitter:description" content="Rank and compare up to 100 keywords on one Google Trends scale: average, peak, trend, regions and related queries per location. No browser, no API key."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Google Trends Keyword Ranker and Compare Tool","description":"Rank and compare up to 100 keywords on one Google Trends scale: average, peak, trend, regions and related queries per location. No browser, no API key.","url":"https://getdatagrit.github.io/google-trends-keyword-ranker/","image":"https://getdatagrit.github.io/og/default.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Data","operatingSystem":"Web, Apify platform","softwareVersion":"0.2","dateModified":"2026-10-08T02:14:28.578Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/google-trends-keyword-ranker","priceCurrency":"USD","price":0.00175,"description":"from $1.75 per 1,000 results + $10 per run. The price per result depends on your Apify plan."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/google-trends-keyword-ranker"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Data","item":"https://getdatagrit.github.io/#marketing"},{"@type":"ListItem","position":3,"name":"Google Trends Keyword Ranker and Compare Tool","item":"https://getdatagrit.github.io/google-trends-keyword-ranker/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#marketing">Data</a> › Google Trends Keyword Ranker and Compare Tool</p>
+<span class="pill">Data</span>
+<h1>Google Trends Keyword Ranker and Compare Tool</h1>
+<p class="lead">Rank up to 100 keywords on one comparable Google Trends scale, with interest by region and related queries, for many locations in one run.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/google-trends-keyword-ranker" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">from $1.75 per 1,000 results + $10 per run · no code needed</span></div>
+<div class="facts"><div class="fact"><b>from $1.75 per 1,000 results + $10 per run</b><span>pay only for trends rows you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.2</b><span>updated 2026-10-08</span></div></div>
+<p>Google Trends Keyword Ranker and Compare Tool takes a list of up to 100 keywords and ranks them against each other on one Google Trends scale, per location. Google Trends itself compares five terms at a time and rescales every chart to its own peak, so two charts cannot be compared. This Actor links the groups through a repeated anchor keyword and returns average interest, peak, trend direction, top regions and related queries as structured rows you can export as JSON, CSV or Excel, call through the Apify API, or plug into n8n, Make and AI agents through MCP. No browser and no API key are needed.</p>
+<h2>Why use Google Trends Keyword Ranker and Compare Tool?</h2>
+<ul>
+<li><strong>Keyword research and content planning.</strong> Take 50 candidate topics, see which ones have real search interest and which are rising, and sort the list by one comparable number instead of eyeballing five charts at a time.</li>
+<li><strong>Market and product comparison.</strong> Compare brands, tools, programming languages or products in several countries in one run and see where each one is strongest.</li>
+<li><strong>Seasonality and trend alerts.</strong> Schedule the Actor weekly, store the rows and track <code>changePct</code> and <code>trendDirection</code> per keyword over time.</li>
+<li><strong>Finding what is breaking out.</strong> The related queries output flags breakout queries, which are search terms that grew by more than 5,000 percent.</li>
+<li><strong>Regional targeting.</strong> Rank countries, states, metro areas or cities by share of searches for a keyword to decide where to run ads or open a market.</li>
+</ul>
+<h2>What data does it return?</h2>
+<p>Pick the row types in <strong>Data to return</strong>. Every row has a <code>type</code>, the <code>keyword</code>, the <code>geo</code> it was measured in and a <code>scrapedAt</code> timestamp.</p>
+<ul>
+<li><strong>keywordSummary</strong> is one ranked row per keyword and location: <code>rank</code>, <code>normalizedAverage</code>, <code>peakValue</code>, <code>peakDate</code>, <code>latestValue</code>, <code>changePct</code>, <code>trendDirection</code> and <code>scaleQuality</code>.</li>
+<li><strong>interestOverTime</strong> is one row per keyword and location with the whole <code>timeline</code> in one field: date, raw 0 to 100 value, value on the shared scale and a flag for the period still running.</li>
+<li><strong>interestByRegion</strong> returns the top regions for each keyword at country, state, metro or city level.</li>
+<li><strong>relatedQuery</strong> returns the top and rising related queries with their score and a breakout flag.</li>
+</ul>
+<h4>How the shared scale works</h4>
+<p>Keywords are read in groups of five. From the second group on, the middle keyword of the first group is repeated as an anchor, and the ratio between its two readings rescales the whole group. Each row says how reliable its placement is in <code>scaleQuality</code>: <code>exact</code> for the first group, <code>good</code> when the anchor had plenty of search volume, <code>coarse</code> when it was thin or when the keyword's own values average below 3 on Google's 0 to 100 scale (whole-number rounding then dominates), and <code>unlinked</code> when it was too thin to link at all. Unlinked keywords keep their own 0 to 100 values but get no rank. The run message lists how many keywords fell into each class, so you know how far to trust the ranking.</p>
+<h2>How to use the Actor</h2>
+<ol>
+<li>Enter your keywords in <strong>Keywords</strong>, one per line. Phrases work as well as single words.</li>
+<li>Choose <strong>Locations</strong> as country codes such as <code>US</code>, <code>DE</code> or <code>GB</code>, regions such as <code>US-CA</code>, or <code>WORLDWIDE</code>. Up to 10 locations can be compared in one run.</li>
+<li>Set the <strong>Time range</strong> from the last hour to all time, or give a <strong>Custom date range</strong> as two dates.</li>
+<li>Select the <strong>Data to return</strong> and run the Actor. Open the Overview view of the dataset for the ranking, or use the Regions, Related and Series views for the other row types.</li>
+</ol>
+<p>Searches can be limited to web, images, news, YouTube or shopping, and to a Google Trends <strong>Category ID</strong>, for example to separate the fruit from the phone brand.</p>
+<h4>Input example</h4>
+<pre><code>
+{
+  &quot;keywords&quot;: [&quot;python&quot;, &quot;rust&quot;, &quot;golang&quot;],
+  &quot;geos&quot;: [&quot;US&quot;, &quot;DE&quot;],
+  &quot;timeRange&quot;: &quot;today 12-m&quot;,
+  &quot;dataTypes&quot;: [&quot;keywordSummary&quot;, &quot;relatedQueries&quot;],
+  &quot;relatedQueryKind&quot;: &quot;rising&quot;,
+  &quot;maxRelatedPerKeyword&quot;: 5,
+  &quot;maxItems&quot;: 100
+}
+</code></pre>
+<h2>Output fields</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>type</code></td><td>keywordSummary, interestOverTime, interestByRegion, relatedQuery or status</td></tr>
+<tr><td><code>keyword</code>, <code>geo</code></td><td>The keyword and the location the row was measured in</td></tr>
+<tr><td><code>rank</code></td><td>Position among all keywords of the location, 1 is the most searched</td></tr>
+<tr><td><code>normalizedAverage</code></td><td>Average interest on the shared scale, where the strongest keyword peaks at 100</td></tr>
+<tr><td><code>averageValue</code></td><td>Average of the raw 0 to 100 points of the keyword in its own group</td></tr>
+<tr><td><code>peakValue</code>, <code>peakDate</code></td><td>Highest point on the shared scale and when it happened</td></tr>
+<tr><td><code>changePct</code>, <code>trendDirection</code></td><td>Change between the first and last third of the range, and rising, falling or steady. A keyword that starts from zero has no percentage but is rising</td></tr>
+<tr><td><code>scaleQuality</code>, <code>anchorKeyword</code></td><td>How the keyword was placed on the shared scale, and the anchor that linked it</td></tr>
+<tr><td><code>timeline</code></td><td>Interest over time rows: date, value, normalizedValue, isPartial for every point</td></tr>
+<tr><td><code>regionName</code>, <code>regionCode</code>, <code>regionValue</code>, <code>regionRank</code></td><td>Interest by region rows</td></tr>
+<tr><td><code>relatedQuery</code>, <code>relatedKind</code>, <code>relatedValue</code>, <code>relatedLabel</code>, <code>isBreakout</code></td><td>Related query rows</td></tr>
+<tr><td><code>found</code>, <code>reason</code>, <code>message</code></td><td>Status rows that explain why a keyword or location returned no data</td></tr>
+</tbody></table></div>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>type</code></td><td>string</td><td>Kind of row: keywordSummary, interestOverTime, interestByRegion, relatedQuery or status.</td><td><code>keywordSummary</code></td></tr><tr><td><code>found</code></td><td>boolean</td><td>False only on status rows that explain why a keyword or location produced no data.</td><td><code>true</code></td></tr><tr><td><code>keyword</code></td><td>string</td><td>The keyword the row describes.</td><td><code>python</code></td></tr><tr><td><code>geo</code></td><td>string</td><td>Location code the row was measured in, or WORLDWIDE.</td><td><code>US</code></td></tr><tr><td><code>timeRange</code></td><td>string</td><td>Time range the row was measured over.</td><td><code>today 12-m</code></td></tr><tr><td><code>searchType</code></td><td>string</td><td>Google property the searches come from: web, images, news, youtube or shopping.</td><td><code>web</code></td></tr><tr><td><code>category</code></td><td>integer</td><td>Google Trends category the searches were limited to; 0 means all.</td><td><code>0</code></td></tr><tr><td><code>rank</code></td><td>integer</td><td>Position of the keyword among all keywords of this location by normalized average, 1 is the most searched. Empty when the scale could not be linked.</td><td><code>1</code></td></tr><tr><td><code>averageValue</code></td><td>number</td><td>Average of the 0 to 100 points Google returned for this keyword in its own comparison group.</td><td><code>54.2</code></td></tr><tr><td><code>normalizedAverage</code></td><td>number</td><td>Average interest on the single scale shared by all keywords of the run, where the strongest keyword peaks at 100.</td><td><code>63.4</code></td></tr><tr><td><code>peakValue</code></td><td>number</td><td>Highest point of the keyword on the shared scale.</td><td><code>100</code></td></tr><tr><td><code>peakDate</code></td><td>string</td><td>Date, or timestamp for ranges up to 7 days, of the highest point.</td><td><code>2025-12-14</code></td></tr><tr><td><code>latestValue</code></td><td>number</td><td>Last complete point of the keyword on the shared scale.</td><td><code>58.1</code></td></tr><tr><td><code>changePct</code></td><td>number</td><td>Change of the average between the first and last third of the range, in percent. Null when the first third averages 0.</td><td><code>-12.5</code></td></tr><tr><td><code>trendDirection</code></td><td>string</td><td>rising, falling or steady, with 10 percent as the threshold. For a keyword that starts from zero it follows the sign of the change.</td><td><code>steady</code></td></tr><tr><td><code>dataPoints</code></td><td>integer</td><td>Number of points Google returned for the keyword.</td><td><code>53</code></td></tr><tr><td><code>pointsWithData</code></td><td>integer</td><td>Number of points that had enough search volume to be reported.</td><td><code>53</code></td></tr><tr><td><code>scaleQuality</code></td><td>string</td><td>How the keyword was placed on the shared scale: exact (first group), good or coarse (linked through the anchor keyword with enough or little volume, or a keyword whose own values average below 3) or unlinked.</td><td><code>exact</code></td></tr><tr><td><code>anchorKeyword</code></td><td>string</td><td>Keyword that was repeated in each group to link the scale. Empty for the first group.</td><td><code>golang</code></td></tr><tr><td><code>timeline</code></td><td>array</td><td>Interest over time rows only: every data point of the range with its date (or UTC timestamp for ranges up to 7 days), the raw 0 to 100 value Google returned, the value on the shared scale of the run and a flag for the period still running.</td><td><code>[{&quot;date&quot;:&quot;2025-10-05&quot;,&quot;value&quot;:61,&quot;normalizedV</code></td></tr><tr><td><code>regionCode</code></td><td>string</td><td>Code of the region, such as US-CA or a country code. Empty for cities without a code.</td><td><code>US-WA</code></td></tr><tr><td><code>regionName</code></td><td>string</td><td>Name of the country, state, metro area or city.</td><td><code>Washington</code></td></tr><tr><td><code>regionValue</code></td><td>integer</td><td>Interest in the region on a 0 to 100 scale, where 100 is the region with the highest share of searches for this keyword.</td><td><code>100</code></td></tr><tr><td><code>regionRank</code></td><td>integer</td><td>Position of the region among the returned regions for this keyword.</td><td><code>1</code></td></tr><tr><td><code>latitude</code></td><td>number</td><td>Latitude of the region centre when Google returns it.</td><td><code>47.6</code></td></tr><tr><td><code>longitude</code></td><td>number</td><td>Longitude of the region centre when Google returns it.</td><td><code>-122.3</code></td></tr><tr><td><code>relatedQuery</code></td><td>string</td><td>Search query people used together with the keyword.</td><td><code>python tutorial</code></td></tr><tr><td><code>relatedKind</code></td><td>string</td><td>top for the most searched queries, rising for the fastest growing ones.</td><td><code>top</code></td></tr><tr><td><code>relatedRank</code></td><td>integer</td><td>Position inside its top or rising list.</td><td><code>1</code></td></tr><tr><td><code>relatedValue</code></td><td>integer</td><td>Score from Google: 0 to 100 for top queries, percent growth for rising queries.</td><td><code>100</code></td></tr><tr><td><code>relatedLabel</code></td><td>string</td><td>Value as Google shows it, for example 100, +250% or Breakout.</td><td><code>100</code></td></tr><tr><td><code>isBreakout</code></td><td>boolean</td><td>True when the rising query grew by more than 5,000 percent.</td><td><code>false</code></td></tr><tr><td><code>relatedUrl</code></td><td>string</td><td>Google Trends page of the related query.</td><td><code>https://trends.google.com/trends/explore?q=python+tutorial&amp;date=today+12-m&a</code></td></tr><tr><td><code>sourceUrl</code></td><td>string</td><td>Google Trends page that shows the same keyword, location and range.</td><td><code>https://trends.google.com/trends/explore?hl=en-US&amp;date=today+12-m&amp;q=pyth</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>UTC timestamp of the run.</td><td><code>2026-10-08T03:00:00.000Z</code></td></tr><tr><td><code>reason</code></td><td>string</td><td>Present on status rows only: noData, fetchFailed or badLocation.</td><td><code>noData</code></td></tr><tr><td><code>message</code></td><td>string</td><td>Present on status rows only: what happened and what to try.</td><td><code>Google Trends has too little search volume for this keyword in this location and</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;type&quot;: &quot;keywordSummary&quot;,
+  &quot;found&quot;: true,
+  &quot;keyword&quot;: &quot;python&quot;,
+  &quot;geo&quot;: &quot;US&quot;,
+  &quot;timeRange&quot;: &quot;today 12-m&quot;,
+  &quot;searchType&quot;: &quot;web&quot;,
+  &quot;category&quot;: 0,
+  &quot;rank&quot;: 1,
+  &quot;averageValue&quot;: 54.2,
+  &quot;normalizedAverage&quot;: 63.4,
+  &quot;peakValue&quot;: 100,
+  &quot;peakDate&quot;: &quot;2025-12-14&quot;,
+  &quot;latestValue&quot;: 58.1,
+  &quot;changePct&quot;: -12.5,
+  &quot;trendDirection&quot;: &quot;steady&quot;,
+  &quot;dataPoints&quot;: 53,
+  &quot;pointsWithData&quot;: 53,
+  &quot;scaleQuality&quot;: &quot;exact&quot;,
+  &quot;anchorKeyword&quot;: &quot;golang&quot;,
+  &quot;timeline&quot;: [
+    {
+      &quot;date&quot;: &quot;2025-10-05&quot;,
+      &quot;value&quot;: 61,
+      &quot;normalizedValue&quot;: 30.1,
+      &quot;isPartial&quot;: false
+    }
+  ],
+  &quot;regionCode&quot;: &quot;US-WA&quot;,
+  &quot;regionName&quot;: &quot;Washington&quot;,
+  &quot;regionValue&quot;: 100,
+  &quot;regionRank&quot;: 1,
+  &quot;latitude&quot;: 47.6,
+  &quot;longitude&quot;: -122.3,
+  &quot;relatedQuery&quot;: &quot;python tutorial&quot;,
+  &quot;relatedKind&quot;: &quot;top&quot;,
+  &quot;relatedRank&quot;: 1,
+  &quot;relatedValue&quot;: 100,
+  &quot;relatedLabel&quot;: &quot;100&quot;,
+  &quot;isBreakout&quot;: false,
+  &quot;relatedUrl&quot;: &quot;https://trends.google.com/trends/explore?q=python+tutorial&amp;date=today+12-m&amp;geo=US&quot;,
+  &quot;sourceUrl&quot;: &quot;https://trends.google.com/trends/explore?hl=en-US&amp;date=today+12-m&amp;q=python&amp;geo=US&quot;,
+  &quot;scrapedAt&quot;: &quot;2026-10-08T03:00:00.000Z&quot;,
+  &quot;reason&quot;: &quot;noData&quot;,
+  &quot;message&quot;: &quot;Google Trends has too little search volume for this keyword in this location and time range.&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>keywords</code></td><td>Keywords</td><td>array</td><td>Keywords or topics to compare, one per line, up to 100. Lists longer than five are linked automatically so every number is on the same 0 to 100 scale. Duplicates are ignored.</td></tr><tr><td><code>geos</code></td><td>Locations</td><td>array</td><td>Where to measure interest: a country code such as &quot;US&quot; or &quot;DE&quot;, a region such as &quot;US-CA&quot; or &quot;GB-ENG&quot;, or &quot;WORLDWIDE&quot;. Each location is a separate comparison, up to 10 per run.</td></tr><tr><td><code>timeRange</code></td><td>Time range</td><td>string</td><td>Period to measure. Short ranges return hourly points, long ones weekly or monthly points.</td></tr><tr><td><code>customTimeRange</code></td><td>Custom date range</td><td>string</td><td>Optional range &quot;YYYY-MM-DD YYYY-MM-DD&quot;, start date first, for example &quot;2024-01-01 2024-12-31&quot;. When filled it replaces the time range above.</td></tr><tr><td><code>searchType</code></td><td>Search type</td><td>string</td><td>Which Google property the searches come from.</td></tr><tr><td><code>category</code></td><td>Category ID</td><td>integer</td><td>Optional Google Trends category number that narrows the searches, for example 5 for Computers and Electronics. 0 means all categories.</td></tr><tr><td><code>dataTypes</code></td><td>Data to return</td><td>array</td><td>Row types to produce, one per line: keywordSummary (one ranked row per keyword and location), interestOverTime (one row per keyword and location with the whole timeline in one field), interestByRegion and relatedQueries (both read per keyword). Unknown values are ignored.</td></tr><tr><td><code>regionResolution</code></td><td>Region detail</td><td>string</td><td>Granularity of the interest by region rows: automatic picks countries for worldwide runs and states or provinces for a country; cities and metro areas give finer rows inside a country, and Google reports only cities with enough search volume, so rare keywords may return few or none.</td></tr><tr><td><code>maxRegionsPerKeyword</code></td><td>Regions per keyword</td><td>integer</td><td>Keep this many top regions for each keyword and location.</td></tr><tr><td><code>relatedQueryKind</code></td><td>Related queries to return</td><td>string</td><td>Top queries are the most searched alongside the keyword; rising queries grew fastest and include breakout flags.</td></tr><tr><td><code>maxRelatedPerKeyword</code></td><td>Related queries per keyword</td><td>integer</td><td>Keep this many related queries of each kind for each keyword and location.</td></tr><tr><td><code>maxItems</code></td><td>Maximum rows</td><td>integer</td><td>Stop after this many rows in total across all keywords and locations.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Google Trends rate limits shared server addresses, so Apify Proxy is on by default. Switch it off only when you run the Actor from a home connection.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~google-trends-keyword-ranker/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;keywords&quot;:[&quot;python&quot;,&quot;rust&quot;,&quot;golang&quot;],&quot;geos&quot;:[&quot;US&quot;],&quot;dataTypes&quot;:[&quot;keywordSummary&quot;,&quot;relatedQueries&quot;],&quot;maxRelatedPerKeyword&quot;:5,&quot;maxItems&quot;:30}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/google-trends-keyword-ranker').call({
+  &quot;keywords&quot;: [
+    &quot;python&quot;,
+    &quot;rust&quot;,
+    &quot;golang&quot;
+  ],
+  &quot;geos&quot;: [
+    &quot;US&quot;
+  ],
+  &quot;dataTypes&quot;: [
+    &quot;keywordSummary&quot;,
+    &quot;relatedQueries&quot;
+  ],
+  &quot;maxRelatedPerKeyword&quot;: 5,
+  &quot;maxItems&quot;: 30
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/google-trends-keyword-ranker&quot;).call(run_input={
+  &quot;keywords&quot;: [
+    &quot;python&quot;,
+    &quot;rust&quot;,
+    &quot;golang&quot;
+  ],
+  &quot;geos&quot;: [
+    &quot;US&quot;
+  ],
+  &quot;dataTypes&quot;: [
+    &quot;keywordSummary&quot;,
+    &quot;relatedQueries&quot;
+  ],
+  &quot;maxRelatedPerKeyword&quot;: 5,
+  &quot;maxItems&quot;: 30
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+
+
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/google-trends-keyword-ranker" rel="noopener">Try Google Trends Keyword Ranker and Compare Tool on Apify</a></div>
+<h2>Guide</h2><p><a href="/guides/google-trends-keyword-ranker/">How to compare more than 5 keywords on Google Trends with one scale</a> — Rank up to 100 keywords on one comparable Google Trends scale, per country, with regions and related queries, in Python or cURL and without a browser.</p>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Data</span><h3><a href="/product-hunt-launch-pricing-intel/">Product Hunt Launch Pricing &amp; Website Intel</a></h3><p>Top Product Hunt launches with the product's resolved website, live pricing page, plan tiers and lowest paid price.</p><div class="meta">from $2.80 / 1,000 results</div></article><article class="card"><span class="pill">Public procurement</span><h3><a href="/ted-contract-expiry-radar/">TED Contract Expiry Radar - Recompete Leads</a></h3><p>Find EU public contracts approaching expiry from TED award notices: incumbent, buyer, value, end date and renewal options.</p><div class="meta">from $7.00 / 1,000 results</div></article><article class="card"><span class="pill">Public procurement</span><h3><a href="/uk-contract-expiry-radar/">UK Contract Expiry Radar - Recompete Leads</a></h3><p>UK public contracts ending soon with incumbent supplier, buyer, value and contact - recompete leads from Contracts Finder award notices.</p><div class="meta">from $3.50 / 1,000 results</div></article><article class="card"><span class="pill">Company data</span><h3><a href="/french-company-finder/">French Company Finder - Sirene Financials</a></h3><p>French company lead lists from Sirene screened by net result and revenue, with net margin, size, matching establishment and optional directors.</p><div class="meta">from $5.60 / 1,000 results</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
