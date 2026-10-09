@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to track which sources Google AI Overview cites for your queries | datagrit</title>
+<meta name="description" content="Check a list of Google queries for AI Overview citations, brand mentions and organic rank, per country, in Python or cURL and without a browser.">
+<link rel="canonical" href="https://getdatagrit.github.io/guides/google-ai-overview-citation-tracker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="How to track which sources Google AI Overview cites for your queries | datagrit">
+<meta property="og:description" content="Check a list of Google queries for AI Overview citations, brand mentions and organic rank, per country, in Python or cURL and without a browser."><meta property="og:url" content="https://getdatagrit.github.io/guides/google-ai-overview-citation-tracker/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to track which sources Google AI Overview cites for your queries | datagrit"><meta name="twitter:description" content="Check a list of Google queries for AI Overview citations, brand mentions and organic rank, per country, in Python or cURL and without a browser."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to track which sources Google AI Overview cites for your queries","description":"Check a list of Google queries for AI Overview citations, brand mentions and organic rank, per country, in Python or cURL and without a browser.","datePublished":"2026-10-08","dateModified":"2026-10-08","image":"https://getdatagrit.github.io/og/default.png","mainEntityOfPage":"https://getdatagrit.github.io/guides/google-ai-overview-citation-tracker/","author":{"@id":"https://getdatagrit.github.io/#org"},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"keywords":"seo, python, api, ai","about":{"@type":"SoftwareApplication","name":"Google AI Overview Citation & Brand Tracker","url":"https://getdatagrit.github.io/google-ai-overview-citation-tracker/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://getdatagrit.github.io/guides/"},{"@type":"ListItem","position":3,"name":"How to track which sources Google AI Overview cites for your queries","item":"https://getdatagrit.github.io/guides/google-ai-overview-citation-tracker/"}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/guides/">Guides</a> › Google AI Overview Citation &amp; Brand Tracker</p>
+<span class="pill">Guide</span>
+<h1>How to track which sources Google AI Overview cites for your queries</h1>
+<p class="lead">Check a list of Google queries for AI Overview citations, brand mentions and organic rank, per country, in Python or cURL and without a browser.</p>
+<p class="note">Published 2026-10-08 · uses the <a href="/google-ai-overview-citation-tracker/">Google AI Overview Citation &amp; Brand Tracker</a> Actor</p>
+<p>For many searches Google now answers above the results with an AI Overview: a short generated answer with a handful of cited pages. If your page is one of the cited sources, you get a visible link at the top of the page. If it is not, a page that ranks second in the organic results can still be invisible for the reader who stops at the answer. Rank trackers were built for the ten blue links and say nothing about this block, so teams that care about visibility in AI answers (often called AEO or GEO) end up checking queries by hand.</p>
+<p>This guide shows how to check a list of queries automatically with the Google AI Overview Citation &amp; Brand Tracker Actor, what each row contains, and where the method has limits.</p>
+<h3>What you need to measure</h3>
+<p>Three questions cover most reporting needs:</p>
+<ul>
+<li>Does Google show an AI Overview for this query in this country and language at all?</li>
+<li>Which domains does it cite, and in which order?</li>
+<li>Is my domain or my brand in it, and how does that compare with my organic position?</li>
+</ul>
+<p>The first question is more slippery than it looks, because Google decides per request whether to show an AI Overview. The Actor reports what the page it received contained: a page with an AI Overview is <code>present</code>, with its text and citations; a page without one is <code>absent</code>, with the organic results still in the row. A query can flip between checks, so the useful setup is a scheduled run over the same list, compared over time.</p>
+<h3>Run it from Python</h3>
+<p>The Actor takes a list of queries, the market (<code>gl</code> for country, <code>hl</code> for language), and optionally the domains and brand names you track.</p>
+<pre><code>
+from apify_client import ApifyClient
+
+client = ApifyClient(&quot;YOUR_APIFY_TOKEN&quot;)
+
+run = client.actor(&quot;datagrit/google-ai-overview-citation-tracker&quot;).call(run_input={
+    &quot;queries&quot;: [
+        &quot;what is kubernetes&quot;,
+        &quot;how to lower blood pressure&quot;,
+        &quot;best project management software&quot;,
+    ],
+    &quot;gl&quot;: &quot;us&quot;,
+    &quot;hl&quot;: &quot;en&quot;,
+    &quot;trackedDomains&quot;: [&quot;kubernetes.io&quot;, &quot;mayoclinic.org&quot;],
+    &quot;brandNames&quot;: [&quot;Kubernetes&quot;, &quot;Mayo Clinic&quot;],
+    &quot;maxItems&quot;: 50,
+})
+
+rows = list(client.dataset(run[&quot;defaultDatasetId&quot;]).iterate_items())
+</code></pre>
+<p>The same call with cURL:</p>
+<pre><code>
+curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~google-ai-overview-citation-tracker/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;queries&quot;: [&quot;what is kubernetes&quot;], &quot;gl&quot;: &quot;us&quot;, &quot;hl&quot;: &quot;en&quot;, &quot;trackedDomains&quot;: [&quot;kubernetes.io&quot;]}'
+</code></pre>
+<p>A run reads several queries in parallel, and a list of ten queries usually finishes in about two minutes, because Google answers some requests slowly.</p>
+<h3>The fields that matter</h3>
+<div class="table"><table><thead><tr><th>Field</th><th>Meaning</th><th>Example</th></tr></thead><tbody>
+<tr><td><code>aiOverviewPresent</code></td><td>True when the page had an AI Overview, false when it did not</td><td><code>true</code></td></tr>
+<tr><td><code>aiOverviewText</code></td><td>The answer as plain text, one line per paragraph or list item</td><td><code>Kubernetes (often called K8s) is ...</code></td></tr>
+<tr><td><code>citationCount</code></td><td>Distinct source pages cited</td><td><code>6</code></td></tr>
+<tr><td><code>citedDomains</code></td><td>Domains in order of first citation</td><td><code>[&quot;kubernetes.io&quot;, &quot;redhat.com&quot;]</code></td></tr>
+<tr><td><code>trackedDomainCited</code></td><td>Whether any tracked domain is cited</td><td><code>true</code></td></tr>
+<tr><td><code>bestCitationPosition</code></td><td>Position of the first citation from a tracked domain</td><td><code>1</code></td></tr>
+<tr><td><code>brandMentionCount</code></td><td>Mentions of your brand names in the answer text</td><td><code>2</code></td></tr>
+<tr><td><code>trackedDomainOrganicRank</code></td><td>First organic position of a tracked domain</td><td><code>1</code></td></tr>
+</tbody></table></div>
+<p>Tracking fields are <code>null</code> when you pass no domains or brands, so an empty list is never confused with &quot;not cited&quot;. Rows with <code>found: false</code> are status rows and are not charged.</p>
+<h3>Three recipes</h3>
+<h4>A weekly visibility table</h4>
+<p>Schedule the Actor weekly with the same query list and load the rows into a sheet or a database table keyed by query and date. The interesting columns are <code>trackedDomainCited</code> and <code>bestCitationPosition</code>. Plot the share of queries where you are cited, per week, per market. Because Google varies AI Overviews, one check is a sample; the trend over several weeks is the signal.</p>
+<h4>Cited but not ranked, ranked but not cited</h4>
+<p>Filtering rows with pandas separates two groups that need different work:</p>
+<pre><code>
+import pandas as pd
+
+df = pd.DataFrame(rows)
+df = df[df[&quot;found&quot;] == True]
+
+cited_not_ranked = df[(df[&quot;trackedDomainCited&quot;] == True) &amp; (df[&quot;trackedDomainOrganicRank&quot;].isna())]
+ranked_not_cited = df[(df[&quot;trackedDomainCited&quot;] == False) &amp; (df[&quot;trackedDomainOrganicRank&quot;] &lt;= 3)]
+</code></pre>
+<p>Pages in the second group already rank well and are not used as a source. They are the first candidates for a clearer definition, a table, or a section that answers the question in two sentences.</p>
+<h4>Brand mentions without a link</h4>
+<p><code>brandMentionCount</code> counts names inside the answer text, independent of the citations. A competitor can be named in the answer while your page is cited, or the other way around. Tracking both tells you whether you are only a source or also part of the answer.</p>
+<h3>Limits worth knowing</h3>
+<ul>
+<li>The Actor reads the AI Overview shown on the regular results page. It does not cover Google AI Mode.</li>
+<li>AI Overviews differ by country, language and moment. Use the same market settings for every comparison and judge trends, not single rows.</li>
+<li>Google changes its page markup from time to time. When citations or organic results are no longer found, the run fails with a message instead of delivering empty rows, so a schedule turns red instead of reporting zeros.</li>
+<li>The run message counts how many AI Overviews were found, how many had citations parsed and how many queries had organic results. Read those counts before trusting a report built on the rows.</li>
+</ul>
+<h3>Getting started</h3>
+<p>Open the <a href="https://apify.com/datagrit/google-ai-overview-citation-tracker" rel="noopener">Google AI Overview Citation &amp; Brand Tracker</a> on the Apify Store, paste ten of your own queries and add your domain. Pricing is pay per result, and a status row for a query without results or with an unreadable page costs nothing. Documentation and examples are also on the <a href="https://getdatagrit.github.io/google-ai-overview-citation-tracker/">project page</a>.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/google-ai-overview-citation-tracker" rel="noopener">Try Google AI Overview Citation &amp; Brand Tracker on Apify</a><a class="btn ghost" href="/google-ai-overview-citation-tracker/">Actor documentation</a></div>
+<h2>More guides</h2><div class="grid"><article class="card"><span class="pill">Guide</span><h3><a href="/guides/google-trends-keyword-ranker/">How to compare more than 5 keywords on Google Trends with one scale</a></h3><p>Rank up to 100 keywords on one comparable Google Trends scale, per country, with regions and related queries, in Python or cURL and without a browser.</p><div class="meta">2026-10-08</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/medium-publication-finder/">How to find active Medium publications and rank them by engagement</a></h3><p>Find Medium publications by keyword and score each by followers, posting cadence, claps per 1,000 followers and paywalled share, in Python or cURL.</p><div class="meta">2026-10-07</div></article><article class="card"><span class="pill">Guide</span><h3><a href="/guides/product-hunt-launch-pricing-intel/">How to track Product Hunt launches and what each product charges</a></h3><p>Pull Product Hunt leaderboards with each launch's real website, pricing page, plan tiers and lowest paid price, from Python or cURL.</p><div class="meta">2026-10-06</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
