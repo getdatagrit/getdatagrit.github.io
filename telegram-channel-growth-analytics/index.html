@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Telegram Channel Analytics: Growth, Views, Reach | datagrit</title>
+<meta name="description" content="Telegram channel analytics with growth tracking: subscriber change since your last run, median views, view rate, reactions and forward sources. No login.">
+<link rel="canonical" href="https://getdatagrit.github.io/telegram-channel-growth-analytics/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article"><meta property="og:site_name" content="datagrit"><meta property="og:title" content="Telegram Channel Analytics: Growth, Views, Reach | datagrit">
+<meta property="og:description" content="Telegram channel analytics with growth tracking: subscriber change since your last run, median views, view rate, reactions and forward sources. No login."><meta property="og:url" content="https://getdatagrit.github.io/telegram-channel-growth-analytics/"><meta property="og:image" content="https://getdatagrit.github.io/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Telegram Channel Analytics: Growth, Views, Reach | datagrit"><meta name="twitter:description" content="Telegram channel analytics with growth tracking: subscriber change since your last run, median views, view rate, reactions and forward sources. No login."><meta name="twitter:image" content="https://getdatagrit.github.io/og/default.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1726"><link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Telegram Channel Analytics: Growth and Reach","description":"Telegram channel analytics with growth tracking: subscriber change since your last run, median views, view rate, reactions and forward sources. No login.","url":"https://getdatagrit.github.io/telegram-channel-growth-analytics/","image":"https://getdatagrit.github.io/og/default.png","applicationCategory":"BusinessApplication","applicationSubCategory":"Data","operatingSystem":"Web, Apify platform","softwareVersion":"0.2","dateModified":"2026-10-07T00:19:40.455Z","offers":{"@type":"Offer","url":"https://apify.com/datagrit/telegram-channel-growth-analytics","priceCurrency":"USD","price":0.0035,"description":"from $3.50 per 1,000 results + $10 per run. The price per result depends on your Apify plan."},"publisher":{"@type":"Organization","@id":"https://getdatagrit.github.io/#org","name":"datagrit","url":"https://getdatagrit.github.io/","logo":"https://getdatagrit.github.io/favicon.png","sameAs":["https://apify.com/datagrit","https://github.com/getdatagrit"]},"sameAs":["https://apify.com/datagrit/telegram-channel-growth-analytics"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"datagrit","item":"https://getdatagrit.github.io/"},{"@type":"ListItem","position":2,"name":"Data","item":"https://getdatagrit.github.io/#social"},{"@type":"ListItem","position":3,"name":"Telegram Channel Analytics: Growth and Reach","item":"https://getdatagrit.github.io/telegram-channel-growth-analytics/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is the view rate above 100%?","acceptedAnswer":{"@type":"Answer","text":"Views can exceed subscribers when posts are shared widely. If the sample contains old viral posts, set Maximum post age to 30 or 60 days for a current picture."}},{"@type":"Question","name":"Why does a channel come back without data?","acceptedAnswer":{"@type":"Answer","text":"The row says why: the username does not exist (`notFound`), belongs to a user, bot or group (`notAChannel`), or the channel owner disabled the public preview (`previewUnavailable`). Such rows are not charged."}},{"@type":"Question","name":"How fresh is the data?","acceptedAnswer":{"@type":"Answer","text":"Every run reads the preview live. Views of posts younger than 24 hours are still growing, so the median uses settled posts when at least five exist."}},{"@type":"Question","name":"Can I schedule runs?","acceptedAnswer":{"@type":"Answer","text":"Yes, use Apify schedules; the growth columns rely on repeated runs."}},{"@type":"Question","name":"Something looks wrong.","acceptedAnswer":{"@type":"Answer","text":"Open an issue with the input you used; layout changes at Telegram are fixed quickly."}}]}</script>
+</head><body>
+<header class="top"><div class="wrap"><a class="brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" aria-hidden="true">
+  <rect width="512" height="512" rx="112" fill="#0E1726"/>
+  <g fill="#1C2A40">
+    <rect x="76" y="76" width="56" height="56" rx="14"/><rect x="152" y="76" width="56" height="56" rx="14"/><rect x="228" y="76" width="56" height="56" rx="14"/><rect x="304" y="76" width="56" height="56" rx="14"/>
+    <rect x="76" y="152" width="56" height="56" rx="14"/><rect x="152" y="152" width="56" height="56" rx="14"/><rect x="228" y="152" width="56" height="56" rx="14"/><rect x="304" y="152" width="56" height="56" rx="14"/>
+    <rect x="76" y="228" width="56" height="56" rx="14"/>
+    <rect x="152" y="304" width="56" height="56" rx="14"/><rect x="228" y="304" width="56" height="56" rx="14"/><rect x="304" y="304" width="56" height="56" rx="14"/>
+    <rect x="76" y="380" width="56" height="56" rx="14"/>
+  </g>
+  <g fill="#2EE6A8">
+    <rect x="380" y="76" width="56" height="56" rx="14"/>
+    <rect x="380" y="152" width="56" height="56" rx="14"/>
+    <rect x="152" y="228" width="56" height="56" rx="14"/><rect x="228" y="228" width="56" height="56" rx="14"/><rect x="304" y="228" width="56" height="56" rx="14"/><rect x="380" y="228" width="56" height="56" rx="14"/>
+    <rect x="76" y="304" width="56" height="56" rx="14"/><rect x="380" y="304" width="56" height="56" rx="14"/>
+    <rect x="152" y="380" width="56" height="56" rx="14"/><rect x="228" y="380" width="56" height="56" rx="14"/><rect x="304" y="380" width="56" height="56" rx="14"/><rect x="380" y="380" width="56" height="56" rx="14"/>
+  </g>
+</svg>
+datagrit</a>
+<nav><a href="/#actors">Actors</a><a href="/guides/">Guides</a><a class="hide-sm" href="/#how">How it works</a><a href="https://apify.com/datagrit" rel="noopener">Apify Store</a></nav></div></header>
+<main class="wrap"><p class="crumbs"><a href="/">datagrit</a> › <a href="/#social">Data</a> › Telegram Channel Analytics: Growth and Reach</p>
+<span class="pill">Data</span>
+<h1>Telegram Channel Analytics: Growth and Reach</h1>
+<p class="lead">One row per public Telegram channel: subscribers and growth since your last run, median views, view rate, posting cadence, reactions and forward sources.</p>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/telegram-channel-growth-analytics" rel="noopener">Run it on Apify Store</a><a class="btn ghost" href="#api">Use the API</a><span class="note">from $3.50 per 1,000 results + $10 per run · no code needed</span></div>
+<div class="facts"><div class="fact"><b>from $3.50 per 1,000 results + $10 per run</b><span>pay only for channel analyseds you get</span></div><div class="fact"><b>JSON · CSV · Excel</b><span>export or call via API</span></div><div class="fact"><b>Scheduled runs</b><span>daily or weekly feeds with Apify schedules</span></div><div class="fact"><b>v0.2</b><span>updated 2026-10-07</span></div></div>
+<p>Telegram Channel Analytics: Growth and Reach turns a list of public Telegram channels into one analytics row per channel: subscribers, how many of them actually see a post (view rate), how often the channel posts, how people react, how much of it is forwarded from other channels, and how the audience changed since your last run.</p>
+<p>It reads the public web preview of each channel, so there is no login, no API key and no Telegram account involved. Export the rows as JSON, CSV or Excel, call the Actor through the Apify API, or connect it to n8n, Make and AI agents through MCP.</p>
+<h2>Why use Telegram channel analytics?</h2>
+<p>What sets this Actor apart is memory: it stores the subscriber count and median views of every channel it delivers, so each scheduled run adds the change since the previous run (<code>subscribersChange</code>, <code>subscribersChangePerDay</code>, <code>medianViewsChangePct</code>, <code>previousCheckedAt</code>, <code>observations</code>) to the row, with nothing to set up. It also lists the channels each one forwards from most (<code>topForwardSources</code>) and screens a shortlist by subscriber range.</p>
+<ul>
+<li><strong>Vet channels before you buy an ad.</strong> Compare median views, view rate and reactions per 1,000 views across a shortlist instead of trusting the subscriber number.</li>
+<li><strong>Track growth of your own and competing channels.</strong> Schedule the Actor daily or weekly; from the second run every row carries the subscriber change, the change per day and the change in median views.</li>
+<li><strong>Find the channels worth a partnership.</strong> Filter by minimum and maximum subscribers, then rank by view rate, posting cadence and the days since the last post to drop dead channels.</li>
+<li><strong>Map who a channel amplifies.</strong> Each row lists the channels it forwards from most often, which shows content sources and network clusters.</li>
+<li><strong>Feed dashboards and agents.</strong> One flat row per channel, stable field names, no message dumps to post-process.</li>
+</ul>
+<h2>Output fields</h2>
+<p>Each row has the channel identity (<code>channel</code>, <code>title</code>, <code>verified</code>, <code>description</code>), size (<code>subscribers</code>, <code>photosTotal</code>, <code>videosTotal</code>, <code>linksTotal</code>), cadence (<code>postsPerDay</code>, <code>lastPostAt</code>, <code>daysSinceLastPost</code>), reach (<code>medianViews</code>, <code>averageViews</code>, <code>maxViews</code>, <code>viewRatePct</code>), engagement (<code>medianReactions</code>, <code>reactionsPer1kViews</code>), content mix (<code>forwardedSharePct</code>, <code>topForwardSources</code>, <code>mediaPostsSharePct</code>, <code>linkPostsSharePct</code>) and growth since the previous run (<code>subscribersChange</code>, <code>subscribersChangePct</code>, <code>subscribersChangePerDay</code>, <code>medianViewsChangePct</code>).</p>
+<p>When a channel cannot be read you get one row with <code>found: false</code>, a <code>reason</code> and a <code>message</code>: <code>notFound</code> (no such username on Telegram), <code>notAChannel</code> (the username belongs to a user, a bot or a group), <code>previewUnavailable</code> (the channel exists but its owner disabled the public preview) or <code>fetchFailed</code> (Telegram did not answer).</p>
+<h2>How growth tracking works</h2>
+<p>The Actor remembers the subscriber count and median views of every delivered channel in a store tied to your account. The first run for a channel has no comparison, so growth columns are empty and <code>isFirstObservation</code> is <code>true</code>; from the second run on they are filled. Run it on a schedule to build a series.</p>
+<p>Telegram rounds large subscriber counts (for example 1.1M), so for channels above roughly 10,000 subscribers the change is approximate and <code>subscribersChangeApproximate</code> says so.</p>
+<h2>Is it legal to scrape Telegram channels?</h2>
+<p>The Actor reads only the public preview page that Telegram serves to anyone without logging in. It does not read private channels, groups or messages, and it does not bypass access controls. You are responsible for using the data in line with applicable laws, including data protection rules, and Telegram's terms. If you find an issue, open it in the Issues tab; problems are answered within one business day.</p>
+<h2 id="output">Output fields</h2>
+<p>Every result is one flat record, so it drops straight into a spreadsheet, a database or a CRM.</p>
+<div class="table"><table><thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td><code>channel</code></td><td>string</td><td>Public username of the channel without the at sign, as Telegram writes it. Empty only on the status row of a run with no channel.</td><td><code>telegram</code></td></tr><tr><td><code>channelUrl</code></td><td>string</td><td>Link to the channel on t.me.</td><td><code>https://t.me/telegram</code></td></tr><tr><td><code>title</code></td><td>string</td><td>Display name of the channel.</td><td><code>Telegram News</code></td></tr><tr><td><code>description</code></td><td>string</td><td>Channel description from the public header; empty when the channel has none.</td><td><code>The official Telegram on Telegram. Much recursion. Very Telegram. Wow.</code></td></tr><tr><td><code>verified</code></td><td>boolean</td><td>True when Telegram shows the verified badge next to the channel name.</td><td><code>true</code></td></tr><tr><td><code>subscribers</code></td><td>integer</td><td>Subscriber count shown on the public page. Telegram rounds it above 10,000 (see subscribersApproximate).</td><td><code>9380000</code></td></tr><tr><td><code>subscribersApproximate</code></td><td>boolean</td><td>True when Telegram shows the count abbreviated (for example 9.38M), so the exact number is unknown; false for exact counts.</td><td><code>true</code></td></tr><tr><td><code>photosTotal</code></td><td>integer</td><td>Number of photos in the whole channel history as listed in the header counters; empty when the header does not list it.</td><td><code>16</code></td></tr><tr><td><code>videosTotal</code></td><td>integer</td><td>Number of videos in the whole channel history as listed in the header counters; empty when the header does not list it.</td><td><code>228</code></td></tr><tr><td><code>linksTotal</code></td><td>integer</td><td>Number of links in the whole channel history as listed in the header counters; empty when the header does not list it.</td><td><code>378</code></td></tr><tr><td><code>postsAnalyzed</code></td><td>integer</td><td>Number of recent posts the metrics below are computed from (limited by Posts per channel and Maximum post age).</td><td><code>40</code></td></tr><tr><td><code>firstPostAt</code></td><td>string</td><td>ISO 8601 time of the oldest post in the analysed sample.</td><td><code>2026-08-20T10:15:00.000Z</code></td></tr><tr><td><code>lastPostAt</code></td><td>string</td><td>ISO 8601 time of the newest post on the channel, even when it falls outside the Maximum post age window.</td><td><code>2026-10-06T18:40:12.000Z</code></td></tr><tr><td><code>daysSinceLastPost</code></td><td>number</td><td>Days between the run and the newest post; a quick inactivity check.</td><td><code>0.2</code></td></tr><tr><td><code>postsPerDay</code></td><td>number</td><td>Average posting cadence over the analysed sample (posts minus one, divided by the days they span); empty with fewer than two posts.</td><td><code>1.4</code></td></tr><tr><td><code>viewsSamplePosts</code></td><td>integer</td><td>Number of posts the view and reaction figures use: posts older than 24 hours when at least five exist, otherwise all posts with views.</td><td><code>38</code></td></tr><tr><td><code>medianViews</code></td><td>integer</td><td>Median views per post in the view sample; robust against one viral post.</td><td><code>412000</code></td></tr><tr><td><code>averageViews</code></td><td>integer</td><td>Mean views per post in the view sample.</td><td><code>436800</code></td></tr><tr><td><code>maxViews</code></td><td>integer</td><td>Highest view count in the view sample.</td><td><code>1200000</code></td></tr><tr><td><code>viewRatePct</code></td><td>number</td><td>Median views divided by current subscribers, in percent; the standard reach measure for ad buyers. Above 100 means posts are seen by far more people than subscribe, typical for rarely posting channels with viral history.</td><td><code>4.39</code></td></tr><tr><td><code>postsWithReactions</code></td><td>integer</td><td>Number of posts in the view sample that display a reactions bar; zero when the channel has reactions turned off.</td><td><code>38</code></td></tr><tr><td><code>medianReactions</code></td><td>number</td><td>Median number of emoji reactions per post (Stars reactions are excluded); empty when the channel shows no reactions.</td><td><code>5995</code></td></tr><tr><td><code>reactionsPer1kViews</code></td><td>number</td><td>Total emoji reactions divided by views on the same posts, per 1,000 views.</td><td><code>18.3</code></td></tr><tr><td><code>forwardedPosts</code></td><td>integer</td><td>Number of analysed posts that were forwarded from another chat.</td><td><code>4</code></td></tr><tr><td><code>forwardedSharePct</code></td><td>number</td><td>Share of analysed posts that are forwards, in percent: high values mean the channel mostly redistributes other channels.</td><td><code>10</code></td></tr><tr><td><code>topForwardSources</code></td><td>array</td><td>Up to five channels this channel forwards from most, as objects with channel and posts. Sources that are private or users are not listed.</td><td><code>[{&quot;channel&quot;:&quot;khabib_nurmagomedov&quot;,&quot;posts&quot;:1}]</code></td></tr><tr><td><code>mediaPostsSharePct</code></td><td>number</td><td>Share of analysed posts that carry a photo, video, file, voice message or sticker.</td><td><code>47.4</code></td></tr><tr><td><code>linkPostsSharePct</code></td><td>number</td><td>Share of analysed posts that contain a link or a link preview.</td><td><code>10.5</code></td></tr><tr><td><code>isFirstObservation</code></td><td>boolean</td><td>True when your account has not read this channel before, so the growth columns are empty.</td><td><code>false</code></td></tr><tr><td><code>observations</code></td><td>integer</td><td>How many runs of your account have recorded this channel, including this one.</td><td><code>5</code></td></tr><tr><td><code>previousCheckedAt</code></td><td>string</td><td>ISO 8601 time of your previous run that included this channel.</td><td><code>2026-10-05T07:00:00.000Z</code></td></tr><tr><td><code>previousSubscribers</code></td><td>integer</td><td>Subscriber count recorded at your previous run.</td><td><code>9340000</code></td></tr><tr><td><code>subscribersChange</code></td><td>integer</td><td>Current minus previous subscribers. Approximate when subscribersChangeApproximate is true, because Telegram abbreviates large counts.</td><td><code>40000</code></td></tr><tr><td><code>subscribersChangePct</code></td><td>number</td><td>Subscribers change relative to the previous count, in percent.</td><td><code>0.43</code></td></tr><tr><td><code>subscribersChangePerDay</code></td><td>number</td><td>Subscribers change divided by the days since the previous check; empty when under one hour passed.</td><td><code>20000</code></td></tr><tr><td><code>subscribersChangeApproximate</code></td><td>boolean</td><td>True when the current or the previous count was rounded by Telegram, so the change carries that rounding error.</td><td><code>true</code></td></tr><tr><td><code>previousMedianViews</code></td><td>integer</td><td>Median views recorded at your previous run.</td><td><code>398000</code></td></tr><tr><td><code>medianViewsChangePct</code></td><td>number</td><td>Change of median views since the previous run, in percent; shows whether reach grows with the audience.</td><td><code>3.5</code></td></tr><tr><td><code>found</code></td><td>boolean</td><td>True for a channel row; false only for status rows that explain why a channel or the whole run returned no data.</td><td><code>true</code></td></tr><tr><td><code>reason</code></td><td>string</td><td>Present only on status rows: notFound, notAChannel, previewUnavailable, fetchFailed or filteredOut.</td><td><code>previewUnavailable</code></td></tr><tr><td><code>message</code></td><td>string</td><td>Present only on status rows: a sentence explaining the reason.</td><td><code>The channel exists but its owner disabled the public web preview.</code></td></tr><tr><td><code>sourceUrl</code></td><td>string</td><td>Telegram web preview page the row was read from.</td><td><code>https://t.me/s/telegram</code></td></tr><tr><td><code>scrapedAt</code></td><td>string</td><td>ISO 8601 timestamp of extraction.</td><td><code>2026-10-07T07:00:00.000Z</code></td></tr></tbody></table></div>
+<h3>Sample record</h3>
+<pre><code>{
+  &quot;channel&quot;: &quot;telegram&quot;,
+  &quot;channelUrl&quot;: &quot;https://t.me/telegram&quot;,
+  &quot;title&quot;: &quot;Telegram News&quot;,
+  &quot;description&quot;: &quot;The official Telegram on Telegram. Much recursion. Very Telegram. Wow.&quot;,
+  &quot;verified&quot;: true,
+  &quot;subscribers&quot;: 9380000,
+  &quot;subscribersApproximate&quot;: true,
+  &quot;photosTotal&quot;: 16,
+  &quot;videosTotal&quot;: 228,
+  &quot;linksTotal&quot;: 378,
+  &quot;postsAnalyzed&quot;: 40,
+  &quot;firstPostAt&quot;: &quot;2026-08-20T10:15:00.000Z&quot;,
+  &quot;lastPostAt&quot;: &quot;2026-10-06T18:40:12.000Z&quot;,
+  &quot;daysSinceLastPost&quot;: 0.2,
+  &quot;postsPerDay&quot;: 1.4,
+  &quot;viewsSamplePosts&quot;: 38,
+  &quot;medianViews&quot;: 412000,
+  &quot;averageViews&quot;: 436800,
+  &quot;maxViews&quot;: 1200000,
+  &quot;viewRatePct&quot;: 4.39,
+  &quot;postsWithReactions&quot;: 38,
+  &quot;medianReactions&quot;: 5995,
+  &quot;reactionsPer1kViews&quot;: 18.3,
+  &quot;forwardedPosts&quot;: 4,
+  &quot;forwardedSharePct&quot;: 10,
+  &quot;topForwardSources&quot;: [
+    {
+      &quot;channel&quot;: &quot;khabib_nurmagomedov&quot;,
+      &quot;posts&quot;: 1
+    }
+  ],
+  &quot;mediaPostsSharePct&quot;: 47.4,
+  &quot;linkPostsSharePct&quot;: 10.5,
+  &quot;isFirstObservation&quot;: false,
+  &quot;observations&quot;: 5,
+  &quot;previousCheckedAt&quot;: &quot;2026-10-05T07:00:00.000Z&quot;,
+  &quot;previousSubscribers&quot;: 9340000,
+  &quot;subscribersChange&quot;: 40000,
+  &quot;subscribersChangePct&quot;: 0.43,
+  &quot;subscribersChangePerDay&quot;: 20000,
+  &quot;subscribersChangeApproximate&quot;: true,
+  &quot;previousMedianViews&quot;: 398000,
+  &quot;medianViewsChangePct&quot;: 3.5,
+  &quot;found&quot;: true,
+  &quot;reason&quot;: &quot;previewUnavailable&quot;,
+  &quot;message&quot;: &quot;The channel exists but its owner disabled the public web preview.&quot;,
+  &quot;sourceUrl&quot;: &quot;https://t.me/s/telegram&quot;,
+  &quot;scrapedAt&quot;: &quot;2026-10-07T07:00:00.000Z&quot;
+}</code></pre>
+<h2 id="input">Input</h2>
+<div class="table"><table><thead><tr><th>Field</th><th>Name</th><th>Type</th><th>What it does</th></tr></thead><tbody><tr><td><code>channels</code> <span class="note">required</span></td><td>Channels</td><td>array</td><td>Public Telegram channels to analyse, one per line: usernames (telegram), with an at sign (@durov) or as links (https://t.me/bloomberg). Channels without a public web preview cannot be read and come back as status rows.</td></tr><tr><td><code>postsPerChannel</code></td><td>Posts per channel</td><td>integer</td><td>How many of the latest posts feed the view, cadence, reaction and forward metrics. Telegram serves about 20 posts per request, so 40 posts cost two requests per channel.</td></tr><tr><td><code>maxPostAgeDays</code></td><td>Maximum post age (days)</td><td>integer</td><td>Ignore posts older than this many days, so rarely posting channels are not judged on years-old posts. 0 means no age limit; the latest post time is reported either way.</td></tr><tr><td><code>minSubscribers</code></td><td>Minimum subscribers</td><td>integer</td><td>Skip channels with fewer subscribers than this. 0 disables the filter. Skipped channels are not charged and not recorded for growth tracking.</td></tr><tr><td><code>maxSubscribers</code></td><td>Maximum subscribers</td><td>integer</td><td>Skip channels with more subscribers than this, for example to find mid-size channels. 0 disables the filter.</td></tr><tr><td><code>maxItems</code></td><td>Maximum channels</td><td>integer</td><td>Stop after this many channel rows in total. Status rows do not count.</td></tr><tr><td><code>proxyConfiguration</code></td><td>Proxy configuration</td><td>object</td><td>Optional proxy. Leave disabled unless Telegram blocks the platform IP range; residential proxy raises the platform cost of the run.</td></tr></tbody></table></div>
+<h2 id="api">Call it from your code</h2>
+<p>Run the Actor and get the results in one request. Replace <code>YOUR_APIFY_TOKEN</code> with the token from your Apify account settings.</p>
+<div class="tabs"><input type="radio" name="t" id="t1" checked><label for="t1">cURL</label><input type="radio" name="t" id="t2"><label for="t2">Node.js</label><input type="radio" name="t" id="t3"><label for="t3">Python</label>
+<div class="panel p1"><pre><code>curl -X POST &quot;https://api.apify.com/v2/acts/datagrit~telegram-channel-growth-analytics/run-sync-get-dataset-items?token=YOUR_APIFY_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;channels&quot;:[&quot;telegram&quot;,&quot;durov&quot;,&quot;bloomberg&quot;,&quot;rian_ru&quot;,&quot;tass_agency&quot;,&quot;nexta_live&quot;,&quot;botnews&quot;,&quot;tginfo&quot;,&quot;contest&quot;,&quot;designers&quot;,&quot;habr_com&quot;,&quot;proxy_tg&quot;],&quot;postsPerChannel&quot;:40,&quot;maxItems&quot;:50}'</code></pre></div><div class="panel p2"><pre><code>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('datagrit/telegram-channel-growth-analytics').call({
+  &quot;channels&quot;: [
+    &quot;telegram&quot;,
+    &quot;durov&quot;,
+    &quot;bloomberg&quot;,
+    &quot;rian_ru&quot;,
+    &quot;tass_agency&quot;,
+    &quot;nexta_live&quot;,
+    &quot;botnews&quot;,
+    &quot;tginfo&quot;,
+    &quot;contest&quot;,
+    &quot;designers&quot;,
+    &quot;habr_com&quot;,
+    &quot;proxy_tg&quot;
+  ],
+  &quot;postsPerChannel&quot;: 40,
+  &quot;maxItems&quot;: 50
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items.length, items[0]);</code></pre><p class="note">Install with <code>npm i apify-client</code>.</p></div>
+<div class="panel p3"><pre><code>from apify_client import ApifyClient
+import os
+
+client = ApifyClient(os.environ[&quot;APIFY_TOKEN&quot;])
+run = client.actor(&quot;datagrit/telegram-channel-growth-analytics&quot;).call(run_input={
+  &quot;channels&quot;: [
+    &quot;telegram&quot;,
+    &quot;durov&quot;,
+    &quot;bloomberg&quot;,
+    &quot;rian_ru&quot;,
+    &quot;tass_agency&quot;,
+    &quot;nexta_live&quot;,
+    &quot;botnews&quot;,
+    &quot;tginfo&quot;,
+    &quot;contest&quot;,
+    &quot;designers&quot;,
+    &quot;habr_com&quot;,
+    &quot;proxy_tg&quot;
+  ],
+  &quot;postsPerChannel&quot;: 40,
+  &quot;maxItems&quot;: 50
+})
+items = client.dataset(run[&quot;defaultDatasetId&quot;]).list_items().items
+print(len(items), items[0] if items else None)</code></pre><p class="note">Install with <code>pip install apify-client</code>.</p></div></div>
+
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>Why is the view rate above 100%?</summary><p>Views can exceed subscribers when posts are shared widely. If the sample contains old viral posts, set Maximum post age to 30 or 60 days for a current picture.</p></details>
+<details><summary>Why does a channel come back without data?</summary><p>The row says why: the username does not exist (`notFound`), belongs to a user, bot or group (`notAChannel`), or the channel owner disabled the public preview (`previewUnavailable`). Such rows are not charged.</p></details>
+<details><summary>How fresh is the data?</summary><p>Every run reads the preview live. Views of posts younger than 24 hours are still growing, so the median uses settled posts when at least five exist.</p></details>
+<details><summary>Can I schedule runs?</summary><p>Yes, use Apify schedules; the growth columns rely on repeated runs.</p></details>
+<details><summary>Something looks wrong.</summary><p>Open an issue with the input you used; layout changes at Telegram are fixed quickly.</p></details>
+<div class="cta"><a class="btn" href="https://apify.com/datagrit/telegram-channel-growth-analytics" rel="noopener">Try Telegram Channel Analytics: Growth and Reach on Apify</a></div>
+<h2>Guide</h2><p><a href="/guides/telegram-channel-growth-analytics/">How to measure Telegram channel reach and growth without the Telegram API</a> — Get subscribers, view rate, posting cadence, reactions and growth since the last run for public Telegram channels, from Python or cURL, no login.</p>
+<h2>Related Actors</h2><div class="grid"><article class="card"><span class="pill">Data</span><h3><a href="/bilibili-anime-series-tracker/">Bilibili Anime Catalog, Rankings &amp; Calendar</a></h3><p>Bilibili anime, Chinese animation, film, documentary and TV series: filterable catalog, Top 100 rankings, release calendar and season details with ratings and follower counts.</p><div class="meta">from $3.50 / 1,000 results</div></article><article class="card"><span class="pill">Data</span><h3><a href="/bluesky-community-finder/">Bluesky Community Finder: Starter Packs &amp; Feeds</a></h3><p>Find Bluesky starter packs, custom feeds and curated lists by topic, with join counts, feed likes and full member lists with follower counts.</p><div class="meta">from $3.50 / 1,000 results</div></article><article class="card"><span class="pill">Data</span><h3><a href="/medium-publication-finder/">Medium Publication Finder: Subscribers &amp; Activity</a></h3><p>Find Medium publications by keyword and score each one: subscribers, posting cadence, claps per post, paywalled share and top authors.</p><div class="meta">from $3.50 / 1,000 results</div></article><article class="card"><span class="pill">Data</span><h3><a href="/substack-sponsor-prospector/">Substack Newsletter Sponsorship Prospect Finder</a></h3><p>Substack publications ranked for sponsorship: subscriber count, paid-tier size, plan prices, posting cadence and engagement per 1,000 subscribers.</p><div class="meta">from $3.15 / 1,000 results</div></article></div></main>
+<footer><div class="wrap"><span>© 2026 datagrit · public data as ready-to-run Apify Actors</span>
+<a href="https://apify.com/datagrit" rel="noopener me">Apify Store</a><a href="https://github.com/getdatagrit" rel="noopener me">GitHub</a><a href="/sitemap.xml">Sitemap</a></div></footer>
+</body></html>
